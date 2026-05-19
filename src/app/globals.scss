@@ -124,8 +124,8 @@ body {
   //   sans-serif, Arial, Helvetica, sans-serif !important;
 
   font-family: Arial, Helvetica, sans-serif !important;
-  color: var(--color-text-01) !important;
-  background-color: var(--color-bg-01);
+  color: var(--color-primary) !important;
+  background-color: var(--color-tertiary-200);
 
   button {
     cursor: pointer;
@@ -156,7 +156,7 @@ body {
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
     transition: background-color 5000s ease-in-out 0s;
-    box-shadow: 0 0 0px 1000px var(--color-bg-01) inset !important;
-    -webkit-text-fill-color: var(--color-bg-03) !important;
+    box-shadow: 0 0 0px 1000px var(--color-neutral-100) inset !important;
+    -webkit-text-fill-color: var(--color-text-body) !important;
   }
 }
