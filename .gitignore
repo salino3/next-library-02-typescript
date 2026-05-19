@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+save-codes
 
 # next.js
 /.next/
