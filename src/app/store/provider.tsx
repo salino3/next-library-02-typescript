@@ -2,12 +2,14 @@ import { create } from "zustand";
 import { useShallow } from "zustand/react/shallow";
 import { immer } from "zustand/middleware/immer";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { PropsProvider } from "./interface";
+import { PropsProvider, Theme } from "./interface";
 
 export const useProvider = create<PropsProvider>()(
   persist(
     immer((set, get) => ({
-      currentUser: null,
+      authors: [],
+      theme: Theme.dark,
+      books: [],
     })),
     {
       name: "library-next-storage",
@@ -15,7 +17,8 @@ export const useProvider = create<PropsProvider>()(
       storage: createJSONStorage(() => sessionStorage),
       //* For default 'persist' saves all object and arrays
       partialize: (state) => ({
-        currentUser: state.currentUser,
+        authors: state.authors,
+        books: state.books,
       }),
     },
   ),
