@@ -1,25 +1,91 @@
 :host,
 :root {
   // WEB appling colors
-  --color-bg-01: #333;
-  --color-bg-02: rgb(3, 241, 102);
-  --color-bg-03: rgb(181, 255, 212);
 
-  --color-text-01: gray;
-  --color-border-01: rgb(41, 33, 165);
+  // ==========================================================================
+  // Brand Colors
+  // ==========================================================================
+
+  // Primary: Deep Burgundy / Mahogany
+  --color-primary: #4a1a17;
+  --color-primary-050: #fdf4f3;
+  --color-primary-100: #fad0cd;
+  --color-primary-200: #f4a6a0;
+  --color-primary-300: #eb7b73;
+  --color-primary-400: #df4f45;
+  --color-primary-500: #4a1a17; // Main
+  --color-primary-600: #3e1513;
+  --color-primary-700: #31110f;
+  --color-primary-800: #240c0b;
+  --color-primary-900: #120605;
+
+  // Secondary: Forest Green / Dark Teal
+  --color-secondary: #1e352f;
+  --color-secondary-050: #f2f7f6;
+  --color-secondary-100: #d0e2de;
+  --color-secondary-200: #a2c4bc;
+  --color-secondary-300: #74a59a;
+  --color-secondary-400: #498577;
+  --color-secondary-500: #1e352f; // Main
+  --color-secondary-600: #192d28;
+  --color-secondary-700: #142420;
+  --color-secondary-800: #0e1a17;
+  --color-secondary-900: #070d0b;
+
+  // Tertiary: Antique Gold / Ochre
+  --color-tertiary: #c5a059;
+  --color-tertiary-050: #fdfbf7;
+  --color-tertiary-100: #f6eddc;
+  --color-tertiary-200: #ecdcbc;
+  --color-tertiary-300: #e1c99a;
+  --color-tertiary-400: #d4b67a;
+  --color-tertiary-500: #c5a059; // Main
+  --color-tertiary-600: #a48344;
+  --color-tertiary-700: #816634;
+  --color-tertiary-800: #5e4a25;
+  --color-tertiary-900: #3a2e16;
+
+  // Neutral: Warm Parchment / Cream Backgrounds
+  --color-neutral: #fdf9f0;
+  --color-neutral-050: #ffffff;
+  --color-neutral-100: #faf6ed;
+  --color-neutral-200: #f2eada;
+  --color-neutral-300: #eadbca;
+  --color-neutral-400: #dcbfa7;
+  --color-neutral-500: #fdf9f0; // Main Canvas
+  --color-neutral-600: #706357;
+  --color-neutral-700: #4e443c;
+  --color-neutral-800: #332d27;
+  --color-neutral-900: #1a1613;
+
+  // ==========================================================================
+  // Typography Semantics
+  // ==========================================================================
+  --font-headline: "Playfair Display", serif;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-label: "IBM Plex Sans", sans-serif;
+
+  --color-text-headline: var(
+    --color-primary
+  ); // As seen in "Aa" headline preview
+  --color-text-body: #332d27; // Dark charcoal-brown for readability
+  --color-text-muted: var(--color-neutral-600);
 
   //
-  --color-link: #553eb6;
-  --color-error: #d32f2f;
-  --opacified-error: rgb(211, 47, 47, 0.2);
-  --color-correct: rgb(0, 106, 0);
-  --color-shadow-gold: rgb(212, 175, 55, 0.75);
-  --color-evidenced: rgb(63, 189, 235);
-  --color-dark-evidenced: rgb(0, 140, 255);
-  --color-hover: rgba(255, 255, 255, 0.15);
-  --color-border: gray;
-  --color-text-btn: #ffffff;
-  --color-dangerous: #f01919;
+  // ==========================================================================
+  // Other colors
+  // ==========================================================================
+  // --color-link: #553eb6;
+  // --color-error: #d32f2f;
+  // --opacified-error: rgb(211, 47, 47, 0.2);
+  // --color-correct: rgb(0, 106, 0);
+  // --color-shadow-gold: rgb(212, 175, 55, 0.75);
+  // --color-evidenced: rgb(63, 189, 235);
+  // --color-dark-evidenced: rgb(0, 140, 255);
+  // --color-hover: rgba(255, 255, 255, 0.15);
+  // --color-border: gray;
+  // --color-text-btn: #ffffff;
+  // --color-dangerous: #f01919;
 }
 
 *,
@@ -58,8 +124,8 @@ body {
   //   sans-serif, Arial, Helvetica, sans-serif !important;
 
   font-family: Arial, Helvetica, sans-serif !important;
-  color: var(--color-text-01) !important;
-  background-color: var(--color-bg-01);
+  color: var(--color-primary) !important;
+  background-color: var(--color-tertiary-200);
 
   button {
     cursor: pointer;
@@ -90,7 +156,7 @@ body {
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
     transition: background-color 5000s ease-in-out 0s;
-    box-shadow: 0 0 0px 1000px var(--color-bg-01) inset !important;
-    -webkit-text-fill-color: var(--color-bg-03) !important;
+    box-shadow: 0 0 0px 1000px var(--color-neutral-100) inset !important;
+    -webkit-text-fill-color: var(--color-text-body) !important;
   }
 }
