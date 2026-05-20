@@ -1,0 +1,3 @@
+CONSTANTS_SERVER: {
+  URL_BACK: process.env.URL_BACK;
+}
