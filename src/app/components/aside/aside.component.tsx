@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useAppFunctions } from "@/app/hooks/use-app-functions";
 import "./aside.styles.scss";
 
