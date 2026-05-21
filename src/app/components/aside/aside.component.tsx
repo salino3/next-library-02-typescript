@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useAppFunctions } from "@/app/hooks/use-app-functions";
 import "./aside.styles.scss";
 
@@ -6,7 +7,7 @@ export const Aside = () => {
   const { handleImgError } = useAppFunctions();
 
   return (
-    <aside>
+    <aside className="rootAsideComponent">
       <h3> Aside Component</h3>
       <div className="publicityContainer">
         <div className="boxImage">
@@ -16,17 +17,17 @@ export const Aside = () => {
               handleImgError(e, true)
             }
             loading="lazy"
-            alt="Advertising 1"
+            alt="Advertising Book Layout 1"
           />
         </div>
         <div className="boxImage">
           <img
-            src="/ie"
+            src="/uy"
             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
               handleImgError(e, true)
             }
             loading="lazy"
-            alt="Advertising 2"
+            alt="Advertising Book Layout 2"
           />
         </div>
       </div>

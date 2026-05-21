@@ -1,0 +1,30 @@
+.rootAsideComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  .publicityContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    .boxImage {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      object-fit: cover;
+      max-width: 120px;
+      max-height: 120px;
+
+      img {
+        height: auto;
+        max-width: 120px;
+        max-height: 120px;
+      }
+    }
+  }
+}
