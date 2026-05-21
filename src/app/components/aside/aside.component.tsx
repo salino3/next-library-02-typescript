@@ -12,7 +12,9 @@ export const Aside = () => {
 
   return (
     <aside className={`rootAsideComponent aside_${aside}`}>
-      <h3> Aside Component</h3>
+      <div className="boxTitle">
+        <h3> Aside Component</h3>
+      </div>
       <div className="publicityContainer">
         <div className="boxImage">
           <img

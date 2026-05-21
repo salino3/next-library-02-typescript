@@ -14,9 +14,29 @@
     border-color 0s ease;
   overflow-x: hidden;
 
-  h3 {
-    transition: width 1s;
+  .boxTitle {
     white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    border: solid;
+    border-top: 0;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    width: 100%;
+    background-color: var(--color-tertiary-500);
+
+    h3 {
+      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+      width: 100%;
+    }
   }
 
   .publicityContainer {
@@ -54,9 +74,6 @@
 .aside_open {
   width: 250px;
   border-color: var(--color-primary);
-  h3 {
-    width: 180px;
-  }
 }
 
 .aside_close {
@@ -65,7 +82,4 @@
   transition:
     width 1s ease,
     border-color 0s ease 1s;
-  h3 {
-    width: 0px;
-  }
 }
