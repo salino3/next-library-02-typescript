@@ -1,12 +1,15 @@
 "use client";
+import { useProviderSelector } from "@/app/store/provider";
 import { useAppFunctions } from "@/app/hooks/use-app-functions";
 import "./aside.styles.scss";
 
 export const Aside = () => {
+  const { aside } = useProviderSelector("aside");
+
   const { handleImgError } = useAppFunctions();
 
   return (
-    <aside className="rootAsideComponent">
+    <aside className={`rootAsideComponent aside_${aside}`}>
       <h3> Aside Component</h3>
       <div className="publicityContainer">
         <div className="boxImage">

@@ -9,7 +9,7 @@
   position: relative;
   flex-grow: 1;
   border: solid;
-
+  transition: width 1s;
   .publicityContainer {
     display: flex;
     flex-direction: column;
@@ -40,4 +40,12 @@
       }
     }
   }
+}
+
+.aside-open {
+  width: 250px;
+}
+
+.aside-close {
+  width: 0px;
 }

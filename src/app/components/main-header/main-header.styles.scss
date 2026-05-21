@@ -79,13 +79,16 @@
     .btnAside {
       all: unset;
       position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
       bottom: -1.6rem;
       background-color: transparent;
       border: solid var(--color-primary);
       border-bottom: none;
       border-top-left-radius: 0.25rem;
       border-top-right-radius: 0.25rem;
-      padding: 0 3px;
+      padding: 0 5px;
       cursor: pointer;
 
       &:hover {

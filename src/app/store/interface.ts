@@ -3,6 +3,11 @@ export enum Theme {
   "light",
 }
 
+export enum Aside {
+  "open",
+  "close",
+}
+
 export interface Books {
   id: number | null;
   title: string;
@@ -21,4 +26,5 @@ export interface PropsProvider {
   theme: Theme;
   authors: AuthorsProps[];
   books: Books[];
+  aside: Aside;
 }

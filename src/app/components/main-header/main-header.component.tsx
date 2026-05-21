@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import "./main-header.styles.scss";
+import { MenuIconHeaser } from "@/app/icons/menu-icon-header";
 
 //*
 //  import { useRouter } from "next/navigation";
@@ -81,7 +82,9 @@ export const MainHeader = () => {
             ))}
           </ul>
         </nav>
-        <button className="btnAside">Aside</button>
+        <button onClick={() => {}} className="btnAside">
+          <MenuIconHeaser />
+        </button>
       </div>
     </div>
   );
