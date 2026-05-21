@@ -1,0 +1,130 @@
+.rootMainHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  padding-bottom: 1.6rem;
+  border: solid;
+  width: 100%;
+  background-color: var(--color-neutral-400);
+  z-index: 0;
+  .containerMainHeader {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    .boxDBConnStatus {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      font-size: x-small;
+      width: 200px;
+      max-width: 200px;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      width: 350px;
+      ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+
+        padding: 0;
+        margin: 0;
+        li {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+
+          a {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-grow: 1;
+            color: var(--color-primary);
+            width: 100%;
+            max-width: 100px;
+            text-decoration: var(--link-selected, none);
+            padding: 0.25rem;
+            transition:
+              background-color 0.5s,
+              color 0.25s;
+            border-radius: 0.35rem;
+            &:hover {
+              color: var(--color-secondary-050);
+              background-color: var(--color-tertiary);
+            }
+          }
+        }
+      }
+    }
+
+    .btnAside {
+      all: unset;
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      bottom: -1.6rem;
+      left: 0rem;
+      background-color: transparent;
+      border: solid var(--color-primary);
+      border-bottom: none;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      padding: 0 5px;
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--color-primary);
+        color: var(--color-secondary-050);
+        background-color: var(--color-tertiary);
+      }
+
+      &:active {
+        scale: (0.95);
+      }
+    }
+
+    @media screen and (max-width: 724px) {
+      display: grid;
+      grid-template-areas:
+        "A . B"
+        "C C C";
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+
+      .boxDBConnStatus {
+        grid-area: A;
+      }
+
+      h3 {
+        grid-area: B;
+        text-align: center;
+      }
+      nav {
+        grid-area: C;
+        width: 300px;
+      }
+    }
+  }
+}

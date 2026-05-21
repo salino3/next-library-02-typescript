@@ -1,6 +1,11 @@
 export enum Theme {
-  "dark",
-  "light",
+  dark = "dark",
+  light = "light",
+}
+
+export enum AsideProps {
+  open = "open",
+  close = "close",
 }
 
 export interface Books {
@@ -21,4 +26,6 @@ export interface PropsProvider {
   theme: Theme;
   authors: AuthorsProps[];
   books: Books[];
+  aside: AsideProps;
+  setAsideValue: () => void;
 }

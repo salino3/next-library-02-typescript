@@ -1,8 +1,8 @@
-.rootHome {
+.LayoutDashboard {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   height: 100%;
   width: 100%;
   position: relative;
@@ -14,9 +14,5 @@
 
   &::-webkit-scrollbar {
     display: none; // Chrome, Safari, Opera
-  }
-
-  @media screen and (max-width: 724px) {
-    flex-direction: column;
   }
 }

@@ -1,0 +1,111 @@
+.rootAsideComponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  gap: 1rem;
+  position: relative;
+  flex-grow: 1;
+  border: 2px solid var(--color-primary);
+  transition:
+    height 1s ease,
+    width 1s ease,
+    border-color 0s ease;
+  overflow-x: hidden;
+
+  .boxTitle {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    border: solid;
+    border-top: 0;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    width: 100%;
+    background-color: var(--color-tertiary-500);
+
+    h3 {
+      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .publicityContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+    height: 100%;
+    padding: 1rem;
+    .boxImage {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      object-fit: cover;
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+
+      max-height: 260px;
+      border: solid;
+      overflow: hidden;
+      border-radius: 0.25rem;
+      img {
+        width: 100%;
+
+        height: 100%;
+        max-height: 260px;
+      }
+    }
+  }
+}
+
+.aside_open {
+  width: 250px;
+  border-color: var(--color-primary);
+}
+
+.aside_close {
+  width: 0px;
+  border-color: transparent;
+  transition:
+    height 1s ease,
+    width 1s ease,
+    border-color 0s ease 1s;
+}
+
+@media screen and (max-width: 724px) {
+  .rootAsideComponent {
+    .publicityContainer {
+      flex-direction: row;
+      width: 100%;
+    }
+
+    max-width: unset;
+  }
+
+  .aside_open {
+    width: 100%;
+    height: 250px;
+    border-color: var(--color-primary);
+  }
+
+  .aside_close {
+    width: 100%;
+    height: 0px;
+    border-color: transparent;
+  }
+}
