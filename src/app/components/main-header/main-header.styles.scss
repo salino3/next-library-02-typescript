@@ -17,7 +17,13 @@
     width: 100%;
 
     .boxDBConnStatus {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
       font-size: x-small;
+      width: 200px;
+      max-width: 200px;
     }
 
     nav {
@@ -52,7 +58,7 @@
             color: var(--color-primary);
             width: 100%;
             max-width: 100px;
-            text-decoration: none;
+            text-decoration: var(--link-selected, none);
             padding: 0.25rem;
             transition:
               background-color 0.5s,

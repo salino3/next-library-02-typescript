@@ -1,10 +1,20 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "./main-header.styles.scss";
 import Link from "next/link";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import "./main-header.styles.scss";
+
+//*
+//  import { useRouter } from "next/navigation";
+//  const router = useRouter();
+//  If URL is: /store/shoes?color=blue
+//  const { pathname, query } = router;
+//  router.replace(pathname);
 
 export const MainHeader = () => {
+  const pathName = usePathname();
+  console.log("clog2", pathName);
   const [dbTime, setDbTime] = useState<string | null>(null);
 
   useEffect(() => {
@@ -34,13 +44,42 @@ export const MainHeader = () => {
         <nav>
           <ul>
             <li>
-              <Link href={"/dashboard"}>Dashboard</Link>
+              <Link
+                style={
+                  {
+                    "--link-selected": pathName === "/" ? "underline" : "none",
+                  } as React.CSSProperties
+                }
+                href={"/"}
+              >
+                Dashboard
+              </Link>
             </li>
             <li>
-              <Link href={"/books"}>Books</Link>
+              <Link
+                style={
+                  {
+                    "--link-selected":
+                      pathName === "/books" ? "underline" : "none",
+                  } as React.CSSProperties
+                }
+                href={"/books"}
+              >
+                Books
+              </Link>
             </li>
             <li>
-              <Link href={"/authors"}>Authors</Link>
+              <Link
+                style={
+                  {
+                    "--link-selected":
+                      pathName === "/authors" ? "underline" : "none",
+                  } as React.CSSProperties
+                }
+                href={"/authors"}
+              >
+                Authors
+              </Link>
             </li>
           </ul>
         </nav>
