@@ -5,11 +5,13 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+  padding-bottom: 1.6rem;
   border: solid;
   width: 100%;
   background-color: var(--color-neutral-400);
   z-index: 0;
   .containerMainHeader {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -71,6 +73,29 @@
             }
           }
         }
+      }
+    }
+
+    .btnAside {
+      all: unset;
+      position: absolute;
+      bottom: -1.6rem;
+      background-color: transparent;
+      border: solid var(--color-primary);
+      border-bottom: none;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      padding: 0 3px;
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--color-primary);
+        color: var(--color-secondary-050);
+        background-color: var(--color-tertiary);
+      }
+
+      &:active {
+        scale: (0.95);
       }
     }
   }

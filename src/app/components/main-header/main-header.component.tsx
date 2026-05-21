@@ -81,6 +81,7 @@ export const MainHeader = () => {
             ))}
           </ul>
         </nav>
+        <button className="btnAside">Aside</button>
       </div>
     </div>
   );
