@@ -8,7 +8,8 @@
   border: solid;
   width: 100%;
   background-color: var(--color-neutral-400);
-
+  position: fixed;
+  z-index: 1;
   .containerMainHeader {
     display: flex;
     flex-direction: row;

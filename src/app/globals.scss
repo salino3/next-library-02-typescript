@@ -64,7 +64,7 @@
   --font-headline: "Playfair Display", serif;
   --font-body: "IBM Plex Sans", sans-serif;
   --font-label: "IBM Plex Sans", sans-serif;
-
+  --padding-top-app: 80px;
   --color-text-headline: var(
     --color-primary
   ); // As seen in "Aa" headline preview
@@ -126,7 +126,8 @@ body {
   font-family: Arial, Helvetica, sans-serif !important;
   color: var(--color-primary) !important;
   background-color: var(--color-tertiary-200);
-
+  position: relative;
+  z-index: 0;
   button {
     cursor: pointer;
   }
