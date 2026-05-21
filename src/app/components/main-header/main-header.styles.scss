@@ -1,0 +1,70 @@
+.rootMainHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: solid;
+  width: 100%;
+
+  .containerMainHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    .boxDBConnStatus {
+      font-size: x-small;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      width: 350px;
+      ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+
+        padding: 0;
+        margin: 0;
+        li {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+
+          a {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-grow: 1;
+            color: var(--color-primary);
+            width: 100%;
+            max-width: 100px;
+            text-decoration: none;
+            padding: 0.25rem;
+            transition:
+              background-color 0.5s,
+              color 0.25s;
+            border-radius: 0.35rem;
+            &:hover {
+              color: var(--color-secondary-050);
+              background-color: var(--color-tertiary);
+            }
+          }
+        }
+      }
+    }
+  }
+}
