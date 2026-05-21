@@ -2,7 +2,7 @@ interface Props {
   click?: React.MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export const MenuIconHeaser: React.FC<Props> = ({ click }) => (
+export const MenuIconHeader: React.FC<Props> = ({ click }) => (
   <div
     onClick={click}
     style={{

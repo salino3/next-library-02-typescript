@@ -3,8 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useProviderSelector } from "@/app/store/provider";
+import { MenuIconHeader } from "@/app/icons/menu-icon-header";
 import "./main-header.styles.scss";
-import { MenuIconHeaser } from "@/app/icons/menu-icon-header";
 
 //*
 //  import { useRouter } from "next/navigation";
@@ -21,6 +22,9 @@ interface LinkApp {
 export const MainHeader = () => {
   const pathName = usePathname();
   console.log("clog2", pathName);
+
+  const { setAsideValue } = useProviderSelector("setAsideValue");
+
   const [dbTime, setDbTime] = useState<string | null>(null);
 
   useEffect(() => {
@@ -82,8 +86,11 @@ export const MainHeader = () => {
             ))}
           </ul>
         </nav>
-        <button onClick={() => {}} className="btnAside">
-          <MenuIconHeaser />
+        <button
+          onClick={() => setAsideValue && setAsideValue()}
+          className="btnAside"
+        >
+          <MenuIconHeader />
         </button>
       </div>
     </div>

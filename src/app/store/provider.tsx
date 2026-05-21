@@ -2,15 +2,23 @@ import { create } from "zustand";
 import { useShallow } from "zustand/react/shallow";
 import { immer } from "zustand/middleware/immer";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { Aside, PropsProvider, Theme } from "./interface";
+import { AsideProps, PropsProvider, Theme } from "./interface";
 
 export const useProvider = create<PropsProvider>()(
   persist(
     immer((set, get) => ({
       authors: [],
       theme: Theme.dark,
-      aside: Aside.open,
+      aside: AsideProps.open,
       books: [],
+      setAsideValue: () => {
+        set((state) => {
+          state.aside =
+            state.aside === AsideProps.open
+              ? AsideProps.close
+              : AsideProps.open;
+        });
+      },
     })),
     {
       name: "library-next-storage",

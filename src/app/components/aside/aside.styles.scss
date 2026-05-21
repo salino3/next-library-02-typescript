@@ -9,7 +9,16 @@
   position: relative;
   flex-grow: 1;
   border: solid;
-  transition: width 1s;
+  transition:
+    width 1s ease,
+    border-color 1s ease;
+  overflow-x: hidden;
+
+  h3 {
+    transition: width 1s;
+    white-space: nowrap;
+  }
+
   .publicityContainer {
     display: flex;
     flex-direction: column;
@@ -42,10 +51,18 @@
   }
 }
 
-.aside-open {
+.aside_open {
   width: 250px;
+  border-color: var(--color-primary);
+  h3 {
+    width: 180px;
+  }
 }
 
-.aside-close {
+.aside_close {
   width: 0px;
+  border-color: 0s ease 1s;
+  h3 {
+    width: 0px;
+  }
 }

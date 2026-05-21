@@ -8,6 +8,8 @@ export const Aside = () => {
 
   const { handleImgError } = useAppFunctions();
 
+  console.log(`aside_${aside}`);
+
   return (
     <aside className={`rootAsideComponent aside_${aside}`}>
       <h3> Aside Component</h3>
