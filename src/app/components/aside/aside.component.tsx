@@ -1,9 +1,12 @@
 "use client";
+import { useMediaQuery } from "react-responsive";
 import { useProviderSelector } from "@/app/store/provider";
 import { useAppFunctions } from "@/app/hooks/use-app-functions";
 import "./aside.styles.scss";
 
 export const Aside = () => {
+  const isMobile: boolean = useMediaQuery({ maxWidth: "724px" });
+
   const { aside } = useProviderSelector("aside");
 
   const { handleImgError } = useAppFunctions();
@@ -20,7 +23,7 @@ export const Aside = () => {
           <img
             src="/uy"
             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-              handleImgError(e, true)
+              handleImgError(e, isMobile)
             }
             loading="lazy"
             alt="Advertising Book Layout 1"
@@ -30,7 +33,7 @@ export const Aside = () => {
           <img
             src="/uy"
             onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-              handleImgError(e, true)
+              handleImgError(e, isMobile)
             }
             loading="lazy"
             alt="Advertising Book Layout 2"

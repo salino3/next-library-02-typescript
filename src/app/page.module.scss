@@ -15,4 +15,8 @@
   &::-webkit-scrollbar {
     display: none; // Chrome, Safari, Opera
   }
+
+  @media screen and (max-width: 724px) {
+    flex-direction: column;
+  }
 }
