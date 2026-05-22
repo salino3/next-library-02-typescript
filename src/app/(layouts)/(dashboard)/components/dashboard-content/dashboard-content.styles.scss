@@ -1,0 +1,12 @@
+.DashboardContent {
+  background-image: url("/images/Main_Cover.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
