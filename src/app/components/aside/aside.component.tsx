@@ -11,8 +11,6 @@ export const Aside = () => {
 
   const { handleImgError } = useAppFunctions();
 
-  console.log(`aside_${aside}`);
-
   return (
     <aside className={`rootAsideComponent aside_${aside}`}>
       <div className="boxTitle">

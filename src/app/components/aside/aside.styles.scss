@@ -13,7 +13,7 @@
     height 1s ease,
     width 1s ease,
     border-color 0s ease;
-  overflow-x: hidden;
+  overflow: hidden;
 
   .boxTitle {
     white-space: nowrap;
@@ -89,9 +89,17 @@
 
 @media screen and (max-width: 724px) {
   .rootAsideComponent {
+    gap: 0px;
     .publicityContainer {
       flex-direction: row;
       width: 100%;
+
+      .boxImage {
+        max-height: 120px;
+        img {
+          max-height: 120px;
+        }
+      }
     }
 
     max-width: unset;
@@ -99,7 +107,7 @@
 
   .aside_open {
     width: 100%;
-    height: 250px;
+    height: 220px;
     border-color: var(--color-primary);
   }
 
