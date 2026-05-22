@@ -13,29 +13,31 @@ export const Aside = () => {
 
   return (
     <aside className={`rootAsideComponent aside_${aside}`}>
-      <div className="boxTitle">
-        <h3> Aside Component</h3>
-      </div>
-      <div className="publicityContainer">
-        <div className="boxImage">
-          <img
-            src="/uy"
-            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-              handleImgError(e, isMobile)
-            }
-            loading="lazy"
-            alt="Advertising Book Layout 1"
-          />
+      <div className="containerAside">
+        <div className="boxTitle">
+          <h3> Aside Component</h3>
         </div>
-        <div className="boxImage">
-          <img
-            src="/uy"
-            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-              handleImgError(e, isMobile)
-            }
-            loading="lazy"
-            alt="Advertising Book Layout 2"
-          />
+        <div className="publicityContainer">
+          <div className="boxImage">
+            <img
+              src="/uy"
+              onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
+                handleImgError(e, isMobile)
+              }
+              loading="lazy"
+              alt="Advertising Book Layout 1"
+            />
+          </div>
+          <div className="boxImage">
+            <img
+              src="/uy"
+              onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
+                handleImgError(e, isMobile)
+              }
+              loading="lazy"
+              alt="Advertising Book Layout 2"
+            />
+          </div>
         </div>
       </div>
     </aside>
