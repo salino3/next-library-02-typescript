@@ -1,3 +1,4 @@
+"use client";
 import { useAppFunctions } from "@/app/hooks/use-app-functions";
 
 type LazyProps = "lazy" | "eager" | undefined;
