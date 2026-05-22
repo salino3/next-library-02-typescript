@@ -1,7 +1,7 @@
 "use client";
 import { useMediaQuery } from "react-responsive";
 import { useProviderSelector } from "@/app/store/provider";
-import { useAppFunctions } from "@/app/hooks/use-app-functions";
+import { ImageComponent } from "@/app/common-app/image/image.component";
 import "./aside.styles.scss";
 
 export const Aside = () => {
@@ -9,34 +9,26 @@ export const Aside = () => {
 
   const { aside } = useProviderSelector("aside");
 
-  const { handleImgError } = useAppFunctions();
-
-  console.log(`aside_${aside}`);
-
   return (
     <aside className={`rootAsideComponent aside_${aside}`}>
-      <div className="boxTitle">
-        <h3> Aside Component</h3>
-      </div>
-      <div className="publicityContainer">
-        <div className="boxImage">
-          <img
-            src="/uy"
-            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-              handleImgError(e, isMobile)
-            }
-            loading="lazy"
-            alt="Advertising Book Layout 1"
-          />
+      <div className="containerAside">
+        <div className="boxTitle">
+          <h3> Aside Component</h3>
         </div>
-        <div className="boxImage">
-          <img
+        <div className="publicityContainer">
+          <ImageComponent
+            vertical={isMobile}
             src="/uy"
-            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) =>
-              handleImgError(e, isMobile)
-            }
-            loading="lazy"
+            lazy={"lazy"}
+            alt="Advertising Book Layout 1"
+            customStyle="boxImage"
+          />
+          <ImageComponent
+            vertical={isMobile}
+            src="/uy"
+            lazy={"lazy"}
             alt="Advertising Book Layout 2"
+            customStyle="boxImage"
           />
         </div>
       </div>
