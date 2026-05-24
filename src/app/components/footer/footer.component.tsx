@@ -28,7 +28,7 @@ export const Footer = () => {
             ipsa neque optio in aspernatur.
           </p>
         </div>
-        <button>Lorem ipsum dolor sit</button>
+        <button className="btnFooter">Lorem ipsum dolor sit</button>
       </div>
     </footer>
   );

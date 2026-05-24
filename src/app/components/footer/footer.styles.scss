@@ -7,9 +7,10 @@
   align-items: start;
   position: relative;
   z-index: 0;
-  min-height: 300px;
+  min-height: 400px;
   padding: 1rem 2rem;
   width: 100%;
+
   .squareImgFooter {
     display: flex;
     flex-direction: column;
@@ -49,6 +50,31 @@
       h3 {
         color: var(--color-neutral);
         font-size: x-large;
+      }
+    }
+
+    .btnFooter {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      font-weight: bold;
+      font-size: larger;
+      background-color: var(--color-tertiary-400);
+      color: var(--color-primary);
+      padding: 0.5rem 1.5rem;
+      cursor: pointer;
+
+      &:hover {
+        border-color: var(--color-primary);
+        color: var(--color-secondary-050);
+        background-color: var(--color-tertiary);
+      }
+
+      &:active {
+        scale: (0.95);
       }
     }
   }
