@@ -1,3 +1,17 @@
+// --- SCROLL-DRIVEN 3D ANIMATION KEYFRAMES ---
+@keyframes unfoldBox {
+  from {
+    opacity: 0;
+    // Tilted backwards on the X axis and pushed slightly back in 3D space
+    transform: rotateX(75deg) translateZ(-50px);
+  }
+  to {
+    opacity: 1;
+    // Fully upright and flat against the viewport
+    transform: rotateX(0deg) translateZ(0px);
+  }
+}
+
 .DashboardSubContent {
   display: flex;
   flex-direction: column;
@@ -8,6 +22,8 @@
   height: 100%;
   padding: 5rem 2rem;
   gap: 5rem;
+  // CRITICAL: Enables the 3D context for children elements
+  perspective: 1200px;
 
   .upBox,
   .downBox {
@@ -16,6 +32,13 @@
     justify-content: center;
     align-items: flex-start;
     width: 100%;
+
+    // Defines the rotation anchor point at the bottom of the element (the "foot")
+    transform-origin: bottom center;
+
+    // Binds the custom keyframes to the scroll progress using native View Timeline
+    animation: unfoldBox linear both;
+    animation-timeline: view();
   }
 
   .upBox {
@@ -27,6 +50,8 @@
     -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
     justify-content: space-between;
     align-items: stretch;
+    // Animation timing: Starts unfolding as it enters, finishes early
+    animation-range: entry 10% contain 40%;
 
     .firstParragraph,
     .secondParragraph {
@@ -51,6 +76,8 @@
     box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
     -webkit-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
     -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+    animation-range: entry 25% contain 55%;
+
     .authorsBarImage {
       container-type: inline-size;
       width: 100%;
