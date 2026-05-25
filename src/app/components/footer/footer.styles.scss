@@ -1,14 +1,29 @@
+// --- SCROLL-DRIVEN SLIDE IN KEYFRAMES ---
+@keyframes slideInIcon {
+  from {
+    opacity: 0;
+    // Starts off-screen to the left
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    // Lands perfectly at its original layout position
+    transform: translateX(0);
+  }
+}
+
 .rootFooter {
   color: var(--color-tertiary-400);
   background-color: var(--color-primary);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: start;
   position: relative;
   z-index: 0;
-  min-height: 400px;
-  padding: 1rem 2rem;
+  height: 400px;
+  min-height: max-content;
+  padding: 1rem 2rem 4rem;
   width: 100%;
 
   .squareImgFooter {
@@ -37,6 +52,14 @@
       border: solid;
       border-radius: 0.75rem;
       padding: 1rem;
+
+      // --- SCROLL ANIMATION CONFIGURATION ---
+      // Binds the slide-in effect to the element's visibility in the viewport
+      animation: slideInIcon linear both;
+      animation-timeline: view();
+
+      // Delays the start until the footer is 15% inside the viewport
+      animation-range: entry 15% contain 38%;
     }
 
     .footerTitle {

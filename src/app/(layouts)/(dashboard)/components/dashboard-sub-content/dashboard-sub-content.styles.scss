@@ -1,0 +1,108 @@
+// --- SCROLL-DRIVEN 3D ANIMATION KEYFRAMES ---
+@keyframes unfoldBox {
+  from {
+    opacity: 0;
+    // Tilted backwards on the X axis and pushed slightly back in 3D space
+    transform: rotateX(75deg) translateZ(-50px);
+  }
+  to {
+    opacity: 1;
+    // Fully upright and flat against the viewport
+    transform: rotateX(0deg) translateZ(0px);
+  }
+}
+
+.DashboardSubContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 5rem 2rem;
+  gap: 5rem;
+  // CRITICAL: Enables the 3D context for children elements
+  perspective: 1200px;
+
+  .upBox,
+  .downBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+
+    // Defines the rotation anchor point at the bottom of the element (the "foot")
+    transform-origin: bottom center;
+
+    // Binds the custom keyframes to the scroll progress using native View Timeline
+    animation: unfoldBox linear both;
+    animation-timeline: view();
+  }
+
+  .upBox {
+    background-color: var(--color-neutral-200);
+    padding: 2rem 4rem;
+    border-radius: 1rem;
+    box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+    -webkit-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+    -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 1rem;
+    container-type: inline-size;
+    // Animation timing: Starts unfolding as it enters, finishes early
+    animation-range: entry 10% contain 40%;
+
+    .firstParragraph,
+    .secondParragraph {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+      text-align: justify;
+      max-width: 42cqw;
+      .title,
+      p {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 724px) {
+      animation-range: entry 10% contain 10%;
+      padding: 1rem;
+    }
+  }
+
+  .downBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+    -webkit-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+    -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+    animation-range: entry 25% contain 55%;
+
+    .authorsBarImage {
+      container-type: inline-size;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 100cqw;
+      }
+    }
+  }
+}

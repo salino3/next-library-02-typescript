@@ -12,7 +12,10 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
-
+  padding-bottom: 10rem;
+  box-shadow: 6px -51px 45px 0px rgba(22, 21, 21, 1) inset;
+  -webkit-box-shadow: 6px -51px 45px 0px rgba(22, 21, 21, 1) inset;
+  -moz-box-shadow: 6px -51px 45px 0px rgba(22, 21, 21, 1) inset;
   .boxCardTitle {
     position: sticky;
     top: 4rem;
@@ -39,6 +42,7 @@
       h1 {
         text-align: center;
         text-decoration-line: underline;
+        text-shadow: 2px 2px 5px var(--color-tertiary-600);
       }
     }
 
@@ -67,6 +71,11 @@
           max-height: 200px;
         }
       }
+    }
+
+    @media screen and (max-width: 724px) {
+      min-width: unset;
+      flex-direction: column;
     }
   }
 }
