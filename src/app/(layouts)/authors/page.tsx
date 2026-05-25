@@ -1,5 +1,6 @@
 "use client";
 import { Aside } from "@/app/components/aside/aside.component";
+import { Footer } from "@/app/components/footer/footer.component";
 import style from "../../page.module.scss";
 import "./authors.styles.scss";
 
@@ -12,6 +13,8 @@ const LayoutAuthors = () => {
         <div className="booksContent">
           <h1>Library with Next - LayoutAuthors</h1>
         </div>
+
+        <Footer />
       </div>
     </div>
   );
