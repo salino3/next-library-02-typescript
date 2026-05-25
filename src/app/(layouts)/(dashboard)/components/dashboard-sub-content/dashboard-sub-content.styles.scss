@@ -50,6 +50,7 @@
     -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
     justify-content: space-between;
     align-items: stretch;
+    gap: 1rem;
     // Animation timing: Starts unfolding as it enters, finishes early
     animation-range: entry 10% contain 40%;
 
