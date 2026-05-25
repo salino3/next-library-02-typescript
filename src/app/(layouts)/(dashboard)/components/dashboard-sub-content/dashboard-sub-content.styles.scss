@@ -18,8 +18,7 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  min-height: 1000px;
-  height: 100%;
+  height: auto;
   padding: 5rem 2rem;
   gap: 5rem;
   // CRITICAL: Enables the 3D context for children elements
@@ -32,6 +31,7 @@
     justify-content: center;
     align-items: flex-start;
     width: 100%;
+    height: auto;
 
     // Defines the rotation anchor point at the bottom of the element (the "foot")
     transform-origin: bottom center;
@@ -51,6 +51,7 @@
     justify-content: space-between;
     align-items: stretch;
     gap: 1rem;
+    container-type: inline-size;
     // Animation timing: Starts unfolding as it enters, finishes early
     animation-range: entry 10% contain 40%;
 
@@ -58,12 +59,25 @@
     .secondParragraph {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
+      justify-content: space-between;
+      align-items: center;
       width: 100%;
       gap: 1rem;
-      width: 32rem;
       text-align: justify;
+      max-width: 42cqw;
+      .title,
+      p {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 724px) {
+      animation-range: entry 10% contain 10%;
+      padding: 1rem;
     }
   }
 
