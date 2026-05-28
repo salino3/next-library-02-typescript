@@ -3,6 +3,7 @@ import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { Suspense, useState } from "react";
 import { ListBook } from "../list-book/list-book.component";
+import { FoundedBook } from "../founded-book/founded-book.component";
 import { SearchBookResponse } from "@/app/service/interface";
 import "./books-content.styles.scss";
 
@@ -13,7 +14,7 @@ export const BooksContent = () => {
 
   return (
     <div className="rootBooksContent">
-      <h1>Library with Next - LayoutBooks</h1>
+      <h1>Library with Next - Layout Books</h1>
       <div className="boxTextBooks">
         <div className="boxContentTextBooks bCTB_01">
           <h3 className="title">Title Books Content</h3>
@@ -56,7 +57,8 @@ export const BooksContent = () => {
         </div>
       </div>
       <FormSearchBook />
-      {/* TODO:  FoundedBook */}
+
+      <FoundedBook />
 
       <Suspense
         fallback={
