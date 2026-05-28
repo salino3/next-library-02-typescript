@@ -1,0 +1,20 @@
+.btnSubmitBasicBtn {
+  cursor: pointer;
+  width: 100%;
+
+  background-color: var(--color-bg-03);
+  color: var(--color-text-01);
+  font-size: medium;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.5s;
+  font-weight: bold;
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: var(--color-bg-02);
+  }
+}

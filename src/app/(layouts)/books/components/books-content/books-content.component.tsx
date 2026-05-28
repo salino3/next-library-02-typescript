@@ -1,4 +1,5 @@
 "use client";
+import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import "./books-content.styles.scss";
 
 export const BooksContent = () => {
@@ -21,7 +22,7 @@ export const BooksContent = () => {
           </p>
         </div>
         <div className="boxContentTextBooks bCTB_02">
-          <h3 className="title">Title Books Content</h3>{" "}
+          <h3 className="title">Title Books Content</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
             libero, explicabo, temporibus eveniet ipsa quos ullam rerum quasi
@@ -34,7 +35,7 @@ export const BooksContent = () => {
           </p>
         </div>
         <div className="boxContentTextBooks bCTB_03">
-          <h3 className="title">Title Books Content</h3>{" "}
+          <h3 className="title">Title Books Content</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
             libero, explicabo, temporibus eveniet ipsa quos ullam rerum quasi
@@ -47,6 +48,8 @@ export const BooksContent = () => {
           </p>
         </div>
       </div>
+
+      <FormSearchBook />
     </div>
   );
 };
