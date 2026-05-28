@@ -11,7 +11,7 @@ export const BooksContent = () => {
   const [dataBooksPromise, setDataBooksPromise] = useState<
     Promise<SearchBookResponse>
   >(() => ServicesApp.getFilteredListBooks("", 0));
-  //   console.log("clog5", dataBooksPromise.value.data);
+
   return (
     <div className="rootBooksContent">
       <h1>Library with Next - LayoutBooks</h1>
