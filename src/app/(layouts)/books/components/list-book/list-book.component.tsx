@@ -11,7 +11,7 @@ interface BooksListProps {
 
 export const ListBook = ({ dataPromise }: BooksListProps) => {
   const { results, total } = use(dataPromise);
-  console.log("clog4", results);
+
   if (!results || results.length === 0) {
     return <p>No books found matching that criteria.</p>;
   }

@@ -3,9 +3,8 @@ import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { Suspense, useState } from "react";
 import { ListBook } from "../list-book/list-book.component";
-import "./books-content.styles.scss";
 import { SearchBookResponse } from "@/app/service/interface";
-import { AxiosResponse } from "axios";
+import "./books-content.styles.scss";
 
 export const BooksContent = () => {
   const [dataBooksPromise, setDataBooksPromise] = useState<
@@ -59,7 +58,6 @@ export const BooksContent = () => {
       <FormSearchBook />
       {/* TODO:  FoundedBook */}
 
-      {/* 2. Wrap your hook consumer in Suspense */}
       <Suspense
         fallback={
           <p className="text-blue-500 font-bold">Loading book list...</p>
