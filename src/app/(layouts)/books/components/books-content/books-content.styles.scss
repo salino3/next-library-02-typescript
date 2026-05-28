@@ -41,5 +41,9 @@
         text-align: justify;
       }
     }
+
+    @media screen and (max-width: 724px) {
+      flex-wrap: wrap;
+    }
   }
 }
