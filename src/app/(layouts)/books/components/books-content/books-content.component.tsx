@@ -1,9 +1,17 @@
 "use client";
+import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
-import { CardBook } from "../card-book/card-book.component";
+import { Suspense, useState } from "react";
+import { ListBook } from "../list-book/list-book.component";
 import "./books-content.styles.scss";
+import { SearchBookResponse } from "@/app/service/interface";
+import { AxiosResponse } from "axios";
 
 export const BooksContent = () => {
+  const [dataBooksPromise, setDataBooksPromise] = useState<
+    Promise<SearchBookResponse>
+  >(() => ServicesApp.getFilteredListBooks("", 0));
+  //   console.log("clog5", dataBooksPromise.value.data);
   return (
     <div className="rootBooksContent">
       <h1>Library with Next - LayoutBooks</h1>
@@ -51,9 +59,14 @@ export const BooksContent = () => {
       <FormSearchBook />
       {/* TODO:  FoundedBook */}
 
-      <ul>
-        <CardBook />
-      </ul>
+      {/* 2. Wrap your hook consumer in Suspense */}
+      <Suspense
+        fallback={
+          <p className="text-blue-500 font-bold">Loading book list...</p>
+        }
+      >
+        <ListBook dataPromise={dataBooksPromise} />
+      </Suspense>
     </div>
   );
 };
