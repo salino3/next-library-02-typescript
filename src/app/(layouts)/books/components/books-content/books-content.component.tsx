@@ -15,7 +15,6 @@ export const BooksContent = () => {
   const [searchTitle, setSearchTitle] = useState<string>("");
 
   useEffect(() => {
-    console.log("clog6", searchTitle);
     setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
   }, [searchTitle]);
 

@@ -20,7 +20,6 @@ export const FormSearchBook = ({ setSearchTitle, searchTitle }: Props) => {
   //
   useEffect(() => {
     if (state.success) {
-      console.log("Book:", state.title);
       setSearchTitle(state.title ?? "");
     }
   }, [state.success, state.title]);

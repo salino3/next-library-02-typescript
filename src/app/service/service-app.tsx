@@ -1,9 +1,9 @@
 import { CONSTANTS_SERVER } from "@/lib/constants-server";
 import axios, { AxiosResponse } from "axios";
-import { SearchBookResponse } from "./interface";
+import { BookResponse, SearchBookResponse } from "./interface";
 
 export class ServicesApp {
-  public static async getAllBooks(): Promise<AxiosResponse> {
+  public static async getAllBooks(): Promise<BookResponse[] | AxiosResponse> {
     return await axios.get(CONSTANTS_SERVER.URL_BACK + "books").catch((err) => {
       console.error(err);
       return Promise.reject(err);
@@ -27,6 +27,19 @@ export class ServicesApp {
           headers: { "Content-Type": "application/json" },
         },
       )
+      .then((res) => res.data)
+      .catch((err) => {
+        console.error(err);
+        return Promise.reject(err);
+      });
+  }
+
+  //
+  public static async getBookInfo(
+    bookId: number,
+  ): Promise<BookResponse | AxiosResponse> {
+    return await axios
+      .get(CONSTANTS_SERVER.URL_BACK + bookId)
       .then((res) => res.data)
       .catch((err) => {
         console.error(err);

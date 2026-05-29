@@ -21,7 +21,6 @@ interface LinkApp {
 
 export const MainHeader = () => {
   const pathName = usePathname();
-  console.log("clog2", pathName);
 
   const { setAsideValue } = useProviderSelector("setAsideValue");
 
