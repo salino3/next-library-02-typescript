@@ -11,6 +11,7 @@ export const CardBook = ({ book }: CardBookProps) => {
   return (
     <li key={book.id} className="rootCardBook">
       <h5 className="font-medium text-lg">{book.title}</h5>
+      <button onClick={() => {}}>Show Book</button>
     </li>
   );
 };

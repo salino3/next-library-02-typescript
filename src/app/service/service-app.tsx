@@ -16,11 +16,17 @@ export class ServicesApp {
     offset: number = 0,
   ): Promise<SearchBookResponse> {
     return await axios
-      .post(CONSTANTS_SERVER.URL_BACK + "books/search", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: { title: searchName, limit: 10, offset },
-      })
+      .post(
+        CONSTANTS_SERVER.URL_BACK + "books/search",
+        {
+          title: searchName,
+          limit: 10,
+          offset: offset,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        },
+      )
       .then((res) => res.data)
       .catch((err) => {
         console.error(err);

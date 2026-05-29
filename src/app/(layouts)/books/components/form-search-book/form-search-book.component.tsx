@@ -1,4 +1,4 @@
-import { useActionState, useEffect } from "react";
+import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
 import {
   ActionStateBooksAction,
   searchBooksAction,
@@ -6,7 +6,12 @@ import {
 import { SubmitBasicBtn } from "@/app/common-app/submit-basic-btn/submit-basic-btn.component";
 import "./form-search-book.styles.scss";
 
-export const FormSearchBook = () => {
+interface Props {
+  setSearchTitle: Dispatch<SetStateAction<string>>;
+  searchTitle: string;
+}
+
+export const FormSearchBook = ({ setSearchTitle, searchTitle }: Props) => {
   const [state, formAction, isPending] = useActionState<
     ActionStateBooksAction,
     FormData
@@ -14,24 +19,31 @@ export const FormSearchBook = () => {
 
   //
   useEffect(() => {
-    if (state.success && state.title) {
+    if (state.success) {
       console.log("Book:", state.title);
+      setSearchTitle(state.title ?? "");
     }
   }, [state.success, state.title]);
 
   return (
     <form id="rootFormSearchBook" action={formAction}>
-      <fieldset disabled={isPending} className={"flex flex-col gap-2"}>
+      <fieldset disabled={isPending}>
         <legend>Search Your Books</legend>
         <div className="boxInput">
-          <label htmlFor="title">Text book title</label>
-          <input type="text" alt="Book title" name="title" id="title" />
+          <label htmlFor="title">Write book title</label>
+          <input
+            type="text"
+            alt="Book title"
+            defaultValue={state.title ?? ""}
+            name="title"
+            id="title"
+          />
           <div className="boxErrorIdForm">
             {state.error && <strong>{state.error}</strong>}
           </div>
         </div>
 
-        <SubmitBasicBtn />
+        <SubmitBasicBtn searchTitle={searchTitle} />
       </fieldset>
     </form>
   );
