@@ -36,10 +36,10 @@ export class ServicesApp {
 
   //
   public static async getBookInfo(
-    bookId: number,
+    bookId: string,
   ): Promise<BookResponse | AxiosResponse> {
     return await axios
-      .get(CONSTANTS_SERVER.URL_BACK + bookId)
+      .get(`${CONSTANTS_SERVER.URL_BACK}books/${bookId}`)
       .then((res) => res.data)
       .catch((err) => {
         console.error(err);
