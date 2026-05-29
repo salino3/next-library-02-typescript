@@ -19,9 +19,24 @@ interface LinkApp {
   title: string;
 }
 
+// Links <nav>
+const linksApp: LinkApp[] = [
+  {
+    pathName: "/",
+    title: "Dashboard",
+  },
+  {
+    pathName: "/books",
+    title: "Books",
+  },
+  {
+    pathName: "/authors",
+    title: "Authors",
+  },
+];
+
 export const MainHeader = () => {
   const pathName = usePathname();
-  console.log("clog2", pathName);
 
   const { setAsideValue } = useProviderSelector("setAsideValue");
 
@@ -38,22 +53,6 @@ export const MainHeader = () => {
       })
       .catch((err) => console.error("Error checking Next.js local API:", err));
   }, []);
-
-  // Links <nav>
-  const linksApp: LinkApp[] = [
-    {
-      pathName: "/",
-      title: "Dashboard",
-    },
-    {
-      pathName: "/books",
-      title: "Books",
-    },
-    {
-      pathName: "/authors",
-      title: "Authors",
-    },
-  ];
 
   return (
     <div className="rootMainHeader">

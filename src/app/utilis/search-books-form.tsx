@@ -14,11 +14,7 @@ export async function searchBooksAction(
   try {
     const title = formData.get("title") as string;
 
-    if (title) {
-      return { success: true, error: "", title: title };
-    } else {
-      return { success: true, error: "" };
-    }
+    return { success: true, error: "", title: title };
   } catch (err) {
     return { success: false, error: "Failed to search book" };
   }

@@ -1,7 +1,7 @@
 "use client";
+import { Suspense, useEffect, useState } from "react";
 import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
-import { Suspense, useState } from "react";
 import { ListBook } from "../list-book/list-book.component";
 import { FoundedBook } from "../founded-book/founded-book.component";
 import { SearchBookResponse } from "@/app/service/interface";
@@ -11,6 +11,12 @@ export const BooksContent = () => {
   const [dataBooksPromise, setDataBooksPromise] = useState<
     Promise<SearchBookResponse>
   >(() => ServicesApp.getFilteredListBooks("", 0));
+
+  const [searchTitle, setSearchTitle] = useState<string>("");
+
+  useEffect(() => {
+    setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
+  }, [searchTitle]);
 
   return (
     <div className="rootBooksContent">
@@ -56,7 +62,11 @@ export const BooksContent = () => {
           </p>
         </div>
       </div>
-      <FormSearchBook />
+
+      <FormSearchBook
+        setSearchTitle={setSearchTitle}
+        searchTitle={searchTitle}
+      />
 
       <FoundedBook />
 
