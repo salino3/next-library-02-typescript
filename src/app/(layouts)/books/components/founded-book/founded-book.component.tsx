@@ -22,9 +22,11 @@ export const BoxText = ({
     <div className={`containerBoxText ${customStyle}`}>
       <strong>{title}:</strong>
       {title === "Author" ? (
-        <Link href={"/authors"}>search the Author..</Link>
+        <Link className="valueLine" href={"/authors"}>
+          search Author..
+        </Link>
       ) : (
-        <span>{value} </span>
+        <span className="valueLine">{value} </span>
       )}
     </div>
   );
@@ -43,7 +45,6 @@ export const FoundedBook = ({ bookData }: Props) => {
 
   const stableImageSrc: string = `/images/book_img_0${(Number(book.id) % 4) + 1}.png`;
 
-  console.log("clog6", book);
   return (
     <div className="rootFoundedBookRoot">
       <div className="boxLeft">
