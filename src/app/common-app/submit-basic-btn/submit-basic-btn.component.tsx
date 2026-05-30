@@ -37,7 +37,7 @@ export function SubmitBasicBtn({ searchTitle }: Props) {
       disabled={pending || searchTitle == liveValue}
       className="btnSubmitBasicBtn"
     >
-      {pending ? "Loading..." : "Login User"}
+      {pending ? "Loading..." : "Search Books"}
     </button>
   );
 }
