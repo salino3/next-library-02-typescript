@@ -4,10 +4,10 @@
   justify-content: flex-start;
   align-items: center;
   max-height: 100%;
-  height: max-content;
+  height: 100%;
   width: 100%;
   position: relative;
-
+  flex-grow: 1;
   overflow: scroll;
   -ms-overflow-style: none; // IE 10+
   scrollbar-width: none; // Firefox

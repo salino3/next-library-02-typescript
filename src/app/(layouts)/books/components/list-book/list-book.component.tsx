@@ -1,15 +1,16 @@
 "use client";
 
-import { use } from "react";
+import { Dispatch, SetStateAction, use } from "react";
 import { BookResponse } from "@/app/service/interface";
 import { CardBook } from "../card-book/card-book.component";
 
 interface BooksListProps {
   // We pass the pending promise down as a prop
   dataPromise: Promise<{ total: number; results: BookResponse[] }>;
+  setBookData: Dispatch<SetStateAction<Promise<BookResponse> | null>>;
 }
 
-export const ListBook = ({ dataPromise }: BooksListProps) => {
+export const ListBook = ({ dataPromise, setBookData }: BooksListProps) => {
   const { results, total } = use(dataPromise);
 
   if (!results || results.length === 0) {
@@ -17,6 +18,6 @@ export const ListBook = ({ dataPromise }: BooksListProps) => {
   }
 
   return results.map((book: BookResponse) => (
-    <CardBook key={book.id} book={book} />
+    <CardBook key={book.id} book={book} setBookData={setBookData} />
   ));
 };

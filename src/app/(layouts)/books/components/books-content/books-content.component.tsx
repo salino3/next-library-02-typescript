@@ -4,7 +4,7 @@ import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { ListBook } from "../list-book/list-book.component";
 import { FoundedBook } from "../founded-book/founded-book.component";
-import { SearchBookResponse } from "@/app/service/interface";
+import { BookResponse, SearchBookResponse } from "@/app/service/interface";
 import "./books-content.styles.scss";
 
 export const BooksContent = () => {
@@ -13,6 +13,7 @@ export const BooksContent = () => {
   >(() => ServicesApp.getFilteredListBooks("", 0));
 
   const [searchTitle, setSearchTitle] = useState<string>("");
+  const [bookData, setBookData] = useState<Promise<BookResponse> | null>(null);
 
   useEffect(() => {
     setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
@@ -67,15 +68,12 @@ export const BooksContent = () => {
         setSearchTitle={setSearchTitle}
         searchTitle={searchTitle}
       />
+      <Suspense fallback={<p>Loading book data...</p>}>
+        <FoundedBook bookData={bookData} />
+      </Suspense>
 
-      <FoundedBook />
-
-      <Suspense
-        fallback={
-          <p className="text-blue-500 font-bold">Loading book list...</p>
-        }
-      >
-        <ListBook dataPromise={dataBooksPromise} />
+      <Suspense fallback={<p>Loading book list...</p>}>
+        <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />
       </Suspense>
     </div>
   );
