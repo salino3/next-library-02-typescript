@@ -3,6 +3,7 @@ import { use } from "react";
 import { BookResponse } from "@/app/service/interface";
 import { ImageComponent } from "@/app/common-app/image/image.component";
 import "./founded-book.styles.scss";
+import Link from "next/link";
 
 interface Props {
   bookData: Promise<BookResponse> | null;
@@ -14,13 +15,17 @@ export const BoxText = ({
   customStyle,
 }: {
   title: string;
-  value: string;
+  value: BookResponse[keyof BookResponse];
   customStyle?: string;
 }) => {
   return (
     <div className={`containerBoxText ${customStyle}`}>
       <strong>{title}:</strong>
-      <span>{value} </span>
+      {title === "Author" ? (
+        <Link href={"/authors"}>search the Author..</Link>
+      ) : (
+        <span>{value} </span>
+      )}
     </div>
   );
 };
@@ -38,6 +43,7 @@ export const FoundedBook = ({ bookData }: Props) => {
 
   const stableImageSrc: string = `/images/book_img_0${(Number(book.id) % 4) + 1}.png`;
 
+  console.log("clog6", book);
   return (
     <div className="rootFoundedBookRoot">
       <div className="boxLeft">
@@ -52,6 +58,9 @@ export const FoundedBook = ({ bookData }: Props) => {
       {/*  */}
       <div className="boxRight">
         <BoxText title={"Title"} value={book.title} />
+        <BoxText title={"Pages"} value={book.pages} />
+        <BoxText title={"Price"} value={book.price} />
+        <BoxText title={"Author"} value={book.id} />
       </div>
     </div>
   );
