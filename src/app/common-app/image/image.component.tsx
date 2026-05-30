@@ -4,7 +4,7 @@ import { useAppFunctions } from "@/app/hooks/use-app-functions";
 type LazyProps = "lazy" | "eager" | undefined;
 
 interface Props {
-  customStyle: string;
+  customStyle?: string;
   src: string | undefined;
   alt: string | undefined;
   lazy: LazyProps;

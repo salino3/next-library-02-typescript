@@ -1,2 +1,46 @@
-.rootFoundedRoot {
+.rootFoundedBookRoot {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: solid;
+  width: 100%;
+  .boxLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    container-type: inline-size;
+
+    .stylesFoundedBook {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      min-width: 200px;
+      max-width: auto;
+      width: 90cqw;
+      container-type: inline-size;
+      img {
+        min-width: 200px;
+        width: 90cqw;
+        max-width: auto;
+      }
+    }
+  }
+
+  .boxRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .boxRight,
+  .boxLeft {
+    border: solid;
+    width: 100%;
+  }
 }
