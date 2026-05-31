@@ -111,9 +111,10 @@
         width: 100%;
 
         .boxImage {
-          max-height: 120px;
+          max-height: 130px;
           img {
-            max-height: 120px;
+            max-height: 130px;
+            object-fit: cover;
           }
         }
       }
