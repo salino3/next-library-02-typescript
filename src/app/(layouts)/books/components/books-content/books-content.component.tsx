@@ -68,9 +68,7 @@ export const BooksContent = () => {
         setSearchTitle={setSearchTitle}
         searchTitle={searchTitle}
       />
-      <Suspense fallback={<p>Loading book data...</p>}>
-        <FoundedBook bookData={bookData} />
-      </Suspense>
+      <FoundedBook bookData={bookData} />
 
       <Suspense fallback={<p>Loading book list...</p>}>
         <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />

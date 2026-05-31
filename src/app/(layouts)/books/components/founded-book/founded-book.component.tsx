@@ -1,9 +1,9 @@
 "use client";
-import { use } from "react";
+import { Suspense, use } from "react";
+import Link from "next/link";
 import { BookResponse } from "@/app/service/interface";
 import { ImageComponent } from "@/app/common-app/image/image.component";
 import "./founded-book.styles.scss";
-import Link from "next/link";
 
 interface Props {
   bookData: Promise<BookResponse> | null;
@@ -32,21 +32,20 @@ export const BoxText = ({
   );
 };
 
-export const FoundedBook = ({ bookData }: Props) => {
-  if (!bookData) {
-    return <p>Select a book to view details.</p>;
-  }
-
+//
+const SuspendedBookContent = ({
+  bookData,
+}: {
+  bookData: Promise<BookResponse>;
+}) => {
   const book = use(bookData);
 
-  if (!book) {
-    return <p>Book not found.</p>;
-  }
+  if (!book) return <p>Book not found.</p>;
 
-  const stableImageSrc: string = `/images/book_img_0${(Number(book.id) % 4) + 1}.png`;
+  const stableImageSrc = `/images/book_img_0${(Number(book.id) % 4) + 1}.png`;
 
   return (
-    <div className="rootFoundedBookRoot">
+    <>
       <div className="boxLeft">
         <ImageComponent
           alt="Image book"
@@ -56,13 +55,29 @@ export const FoundedBook = ({ bookData }: Props) => {
           customStyle="stylesFoundedBook"
         />
       </div>
-      {/*  */}
       <div className="boxRight">
         <BoxText title={"Title"} value={book.title} />
         <BoxText title={"Pages"} value={book.pages} />
-        <BoxText title={"Price"} value={book.price} />
+        <BoxText title={"Price €"} value={book.price} />
         <BoxText title={"Author"} value={book.id} />
       </div>
+    </>
+  );
+};
+
+//
+export const FoundedBook = ({ bookData }: Props) => {
+  return (
+    <div
+      className={`rootFoundedBook ${bookData ? "foundedBook_open" : "foundedBook_close"}`}
+    >
+      <Suspense
+        fallback={
+          <span className="fallBackFoundedBook">Loading data details..</span>
+        }
+      >
+        {bookData && <SuspendedBookContent bookData={bookData} />}
+      </Suspense>
     </div>
   );
 };

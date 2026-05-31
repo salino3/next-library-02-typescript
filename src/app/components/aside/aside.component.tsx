@@ -18,7 +18,7 @@ export const Aside = () => {
         <div className="publicityContainer">
           <ImageComponent
             vertical={isMobile}
-            src="/uy"
+            src="/images/book_img_04.png"
             lazy={"lazy"}
             alt="Advertising Book Layout 1"
             customStyle="boxImage"
