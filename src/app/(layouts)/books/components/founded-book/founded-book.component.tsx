@@ -71,15 +71,15 @@ export const FoundedBook = ({ bookData }: Props) => {
     <div
       className={`rootFoundedBook ${bookData ? "foundedBook_open" : "foundedBook_close"}`}
     >
-      {bookData && (
+      {
         <Suspense
           fallback={
             <span className="fallBackFoundedBook">Loading data details..</span>
           }
         >
-          <SuspendedBookContent bookData={bookData} />
+          {bookData && <SuspendedBookContent bookData={bookData} />}
         </Suspense>
-      )}
+      }
     </div>
   );
 };
