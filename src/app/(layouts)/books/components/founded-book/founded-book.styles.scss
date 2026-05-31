@@ -86,6 +86,9 @@
 
 .foundedBook_open {
   height: 330px;
+  @media screen and (max-width: 724px) {
+    height: 550px;
+  }
 }
 
 .foundedBook_close {
