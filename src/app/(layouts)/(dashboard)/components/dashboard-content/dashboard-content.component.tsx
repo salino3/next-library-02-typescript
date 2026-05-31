@@ -1,8 +1,11 @@
 "use client";
+import { useState } from "react";
 import { ImageComponent } from "@/app/common-app/image/image.component";
 import "./dashboard-content.styles.scss";
 
 export const DashboardContent = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <div className="DashboardContent">
       <div className="boxCardTitle">
@@ -21,8 +24,9 @@ export const DashboardContent = () => {
             vertical
             src="/images/Book_Cover.svg"
             lazy={"lazy"}
+            onLoad={() => setIsLoaded(true)}
             alt="Advertising Book Layout 2"
-            customStyle="boxImageDashboard"
+            customStyle={`boxImageDashboard ${isLoaded ? "borderSolid" : ""}`}
           />
         </div>
       </div>
