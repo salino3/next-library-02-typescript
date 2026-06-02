@@ -13,16 +13,24 @@ interface CardBookProps {
 export const CardBook = ({ book, setBookData }: CardBookProps) => {
   return (
     <li className="rootCardBook">
-      <h5 className="font-medium text-lg">{book.title}</h5>
-      <button
-        onClick={() =>
-          setBookData(
-            ServicesApp.getBookInfo(String(book.id)) as Promise<BookResponse>,
-          )
-        }
-      >
-        Show Book
-      </button>
+      <h5 className="titleCardBook">
+        <strong>Title:</strong> {book.title ?? "-"}{" "}
+        <button
+          onClick={() =>
+            setBookData(
+              ServicesApp.getBookInfo(String(book.id)) as Promise<BookResponse>,
+            )
+          }
+        >
+          Show Book &#x1F56E;
+        </button>
+      </h5>
+      <span>
+        <strong>Pages:</strong> {book.pages ?? "-"}
+      </span>
+      <span>
+        <strong>Price €:</strong> {book.price ?? "-"}
+      </span>
     </li>
   );
 };
