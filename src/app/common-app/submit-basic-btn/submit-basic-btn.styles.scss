@@ -20,7 +20,7 @@
     cursor: not-allowed;
   }
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: color-mix(in srgb, var(--color-primary-green), #fff 12%);
   }
 }
