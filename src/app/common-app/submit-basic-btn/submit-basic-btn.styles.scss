@@ -1,3 +1,19 @@
+@keyframes colorPulse {
+  0% {
+    background-color: color-mix(in srgb, var(--color-primary-green), #fff 6%);
+    box-shadow: 0 0 0 0 var(--color-tertiary-shadow);
+  }
+  50% {
+    // Al picco della pulsazione, il colore si schiarisce ancora un po' e l'ombra si espande
+    background-color: color-mix(in srgb, var(--color-primary-green), #fff 15%);
+    box-shadow: 0 0 15px 5px var(--color-tertiary-shadow);
+  }
+  100% {
+    background-color: color-mix(in srgb, var(--color-primary-green), #fff 6%);
+    box-shadow: 0 0 0 0 var(--color-tertiary-shadow);
+  }
+}
+
 .btnSubmitBasicBtn {
   display: flex;
   flex-direction: row;
@@ -21,6 +37,6 @@
   }
 
   &:hover:not(:disabled) {
-    background-color: color-mix(in srgb, var(--color-primary-green), #fff 12%);
+    animation: colorPulse 2s ease-in-out infinite;
   }
 }
