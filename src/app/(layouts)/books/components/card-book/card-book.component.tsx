@@ -23,13 +23,14 @@ export const CardBook = ({ book, setBookData }: CardBookProps) => {
         <strong>Price €:</strong> {book.price ?? "-"}
       </span>
       <button
+        className="btnSearchBook"
         onClick={() =>
           setBookData(
             ServicesApp.getBookInfo(String(book.id)) as Promise<BookResponse>,
           )
         }
       >
-        Show Book &#x1F56E;
+        <span>Show Book</span> <span>&#x1F56E;</span>
       </button>
     </li>
   );
