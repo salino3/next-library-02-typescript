@@ -10,9 +10,9 @@ export const GlassMagnifyningIcon: React.FC<Props> = ({ click }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     width="18"
     height="18"
     onClickCapture={click}
