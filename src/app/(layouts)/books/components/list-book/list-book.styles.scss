@@ -24,5 +24,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     width: 100%;
+
+    @media screen and (max-width: 724px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
   }
 }

@@ -4,7 +4,6 @@
     box-shadow: 0 0 0 0 var(--color-tertiary-shadow);
   }
   50% {
-    // Al picco della pulsazione, il colore si schiarisce ancora un po' e l'ombra si espande
     background-color: color-mix(in srgb, var(--color-primary-green), #fff 15%);
     box-shadow: 0 0 15px 5px var(--color-tertiary-shadow);
   }
