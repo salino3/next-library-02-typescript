@@ -1,20 +1,41 @@
+@keyframes colorPulse {
+  0% {
+    background-color: color-mix(in srgb, var(--color-primary-green), #fff 6%);
+    box-shadow: 0 0 0 0 var(--color-tertiary-shadow);
+  }
+  50% {
+    background-color: color-mix(in srgb, var(--color-primary-green), #fff 15%);
+    box-shadow: 0 0 15px 5px var(--color-tertiary-shadow);
+  }
+  100% {
+    background-color: color-mix(in srgb, var(--color-primary-green), #fff 6%);
+    box-shadow: 0 0 0 0 var(--color-tertiary-shadow);
+  }
+}
+
 .btnSubmitBasicBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
   cursor: pointer;
   width: 100%;
+  border-radius: 2rem;
+  background-color: var(--color-primary-green);
 
-  background-color: var(--color-bg-03);
-  color: var(--color-text-01);
   font-size: medium;
   padding: 1rem 2rem;
-  border-radius: 0.5rem;
   transition: background-color 0.5s;
   font-weight: bold;
+  color: var(--color-tertiary);
+  border-color: var(--color-tertiary);
   &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
   }
 
-  &:hover {
-    background-color: var(--color-bg-02);
+  &:hover:not(:disabled) {
+    animation: colorPulse 2s ease-in-out infinite;
   }
 }

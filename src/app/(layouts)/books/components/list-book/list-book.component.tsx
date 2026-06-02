@@ -3,6 +3,7 @@
 import { Dispatch, SetStateAction, use } from "react";
 import { BookResponse } from "@/app/service/interface";
 import { CardBook } from "../card-book/card-book.component";
+import "./list-book.styles.scss";
 
 interface BooksListProps {
   // We pass the pending promise down as a prop
@@ -17,7 +18,16 @@ export const ListBook = ({ dataPromise, setBookData }: BooksListProps) => {
     return <p>No books found matching that criteria.</p>;
   }
 
-  return results.map((book: BookResponse) => (
-    <CardBook key={book.id} book={book} setBookData={setBookData} />
-  ));
+  return (
+    <div className="rootListBook">
+      <p>
+        Total books found: <span className="totalValue">{total}</span>
+      </p>
+      <ul className="ulListBook">
+        {results.map((book: BookResponse) => (
+          <CardBook key={book.id} book={book} setBookData={setBookData} />
+        ))}
+      </ul>
+    </div>
+  );
 };

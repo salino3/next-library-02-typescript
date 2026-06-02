@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { GlassMagnifyningIcon } from "@/app/icons/magnifying-glass-icon";
 import "./submit-basic-btn.styles.scss";
 
 interface Props {
@@ -38,6 +39,7 @@ export function SubmitBasicBtn({ searchTitle }: Props) {
       className="btnSubmitBasicBtn"
     >
       {pending ? "Loading..." : "Search Books"}
+      <GlassMagnifyningIcon />
     </button>
   );
 }

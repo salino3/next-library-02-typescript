@@ -1,2 +1,80 @@
 .rootCardBook {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1rem;
+  box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  -webkit-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  background-color: var(--color-neutral-200);
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 1rem;
+
+  strong {
+    color: var(--color-primary-green);
+  }
+
+  h5,
+  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  h5 {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .btnSearchBook {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+    width: 100%;
+    border-radius: 2rem;
+    background-color: var(--color-primary-green);
+
+    font-size: medium;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.5s;
+    font-weight: bold;
+    color: var(--color-tertiary);
+    border-color: var(--color-tertiary);
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(
+        in srgb,
+        var(--color-primary-green),
+        #fff 12%
+      );
+    }
+
+    span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-wrap: nowrap;
+
+      &:first-child {
+        justify-content: flex-start;
+      }
+
+      &:last-child {
+        justify-content: flex-end;
+      }
+    }
+  }
 }

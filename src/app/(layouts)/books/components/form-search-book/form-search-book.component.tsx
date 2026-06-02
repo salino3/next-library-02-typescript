@@ -27,14 +27,15 @@ export const FormSearchBook = ({ setSearchTitle, searchTitle }: Props) => {
   return (
     <form id="rootFormSearchBook" action={formAction}>
       <fieldset disabled={isPending}>
-        <legend>Search Your Books</legend>
+        <legend>Discover Your Collection</legend>
         <div className="boxInput">
-          <label htmlFor="title">Write book title</label>
+          <label htmlFor="title">Search your books</label>
           <input
             type="text"
             alt="Book title"
             defaultValue={state.title ?? ""}
             name="title"
+            placeholder="Search for a book title.."
             id="title"
           />
           <div className="boxErrorIdForm">

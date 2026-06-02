@@ -8,8 +8,20 @@
   padding-bottom: 1.6rem;
   border: solid;
   width: 100%;
-  background-color: var(--color-neutral-400);
   z-index: 0;
+
+  background-image:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in srgb, var(--color-neutral-400), #fff 15%) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-neutral-400),
+      color-mix(in srgb, var(--color-neutral-500), #000 10%)
+    );
+
   .containerMainHeader {
     position: relative;
     display: flex;

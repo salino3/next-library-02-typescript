@@ -1,5 +1,5 @@
 "use client";
-import { ReactEventHandler } from "react";
+import { CSSProperties, ReactEventHandler } from "react";
 import { useAppFunctions } from "@/app/hooks/use-app-functions";
 
 type LazyProps = "lazy" | "eager" | undefined;
@@ -11,6 +11,7 @@ interface Props {
   lazy?: LazyProps;
   vertical: boolean;
   onLoad?: ReactEventHandler<HTMLImageElement> | undefined;
+  style?: CSSProperties | undefined;
 }
 
 export const ImageComponent = (props: Props) => {
@@ -21,12 +22,13 @@ export const ImageComponent = (props: Props) => {
     lazy = "lazy",
     vertical = true,
     onLoad,
+    style,
   } = props;
 
   const { handleImgError } = useAppFunctions();
 
   return (
-    <div className={`boxImageImageComponent ${customStyle}`}>
+    <div style={style} className={`boxImageImageComponent ${customStyle}`}>
       <img
         src={src}
         onLoad={onLoad}
