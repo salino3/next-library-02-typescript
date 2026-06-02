@@ -60,7 +60,15 @@ export const MainHeader = () => {
         <div className="boxDBConnStatus">
           <h5>Next.js Direct DB Connection Status:</h5>
           {dbTime ? (
-            <small>Server time from DB: {dbTime}</small>
+            <small>
+              Server time from DB:{" "}
+              {new Date(dbTime).toLocaleDateString("it-IT")} -
+              {new Date(dbTime).toLocaleTimeString("it-IT", {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+              h
+            </small>
           ) : (
             <small>Loading...</small>
           )}
