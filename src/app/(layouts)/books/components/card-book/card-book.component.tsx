@@ -14,16 +14,7 @@ export const CardBook = ({ book, setBookData }: CardBookProps) => {
   return (
     <li className="rootCardBook">
       <h5 className="titleCardBook">
-        <strong>Title:</strong> {book.title ?? "-"}{" "}
-        <button
-          onClick={() =>
-            setBookData(
-              ServicesApp.getBookInfo(String(book.id)) as Promise<BookResponse>,
-            )
-          }
-        >
-          Show Book &#x1F56E;
-        </button>
+        <strong>Title:</strong> {book.title ?? "-"}
       </h5>
       <span>
         <strong>Pages:</strong> {book.pages ?? "-"}
@@ -31,6 +22,15 @@ export const CardBook = ({ book, setBookData }: CardBookProps) => {
       <span>
         <strong>Price €:</strong> {book.price ?? "-"}
       </span>
+      <button
+        onClick={() =>
+          setBookData(
+            ServicesApp.getBookInfo(String(book.id)) as Promise<BookResponse>,
+          )
+        }
+      >
+        Show Book &#x1F56E;
+      </button>
     </li>
   );
 };

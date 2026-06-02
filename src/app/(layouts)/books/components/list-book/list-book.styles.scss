@@ -2,15 +2,27 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   gap: 1rem;
-  .totalValue {
-    color: var(--color-primary-green);
-    font-weight: bold;
+  width: 100%;
+  p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    text-wrap: nowrap;
+    .totalValue {
+      color: var(--color-primary-green);
+      font-weight: bold;
+    }
   }
 
   .ulListBook {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
   }
 }

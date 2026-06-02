@@ -1,2 +1,34 @@
 .rootCardBook {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1rem;
+  box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  -webkit-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  background-color: var(--color-neutral-200);
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 1rem;
+
+  strong {
+    color: var(--color-primary-green);
+  }
+
+  h5,
+  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  h5 {
+    font-size: 18px;
+    font-weight: 500;
+  }
 }
