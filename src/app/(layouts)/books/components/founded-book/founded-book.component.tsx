@@ -22,7 +22,10 @@ export const BoxText = ({
     <div className={`containerBoxText ${customStyle}`}>
       <strong>{title}:</strong>
       {title === "Author" ? (
-        <Link className="valueLine" href={"/authors"}>
+        <Link
+          className="valueLine"
+          href={`/authors?search=${encodeURIComponent(String(value))}`}
+        >
           search Author..
         </Link>
       ) : (
