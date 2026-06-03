@@ -16,7 +16,7 @@ export const CardBook = ({ book, setBookData }: CardBookProps) => {
 
   function searchDataBook(bookId: number) {
     setBookData(
-      ServicesApp.getBookInfo(String(book.id)) as Promise<BookResponse>,
+      ServicesApp.getBookInfo(String(bookId)) as Promise<BookResponse>,
     );
 
     router.push(`#dataBookFounded`);
