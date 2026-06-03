@@ -1,0 +1,39 @@
+"use client";
+
+import { Dispatch, SetStateAction, use } from "react";
+import { AuthorResponse } from "@/app/service/interface";
+// import { CardBook } from "../card-book/card-book.component";
+import "./list-author.styles.scss";
+
+interface AuthorsListProps {
+  // We pass the pending promise down as a prop
+  dataPromise: Promise<{ total: number; results: AuthorResponse[] }>;
+  setAuthorData: Dispatch<SetStateAction<Promise<AuthorResponse> | null>>;
+}
+
+export const ListAuthor = ({
+  dataPromise,
+  setAuthorData,
+}: AuthorsListProps) => {
+  const { results, total } = use(dataPromise);
+
+  if (!results || results.length === 0) {
+    return <p>No authors found matching that criteria.</p>;
+  }
+
+  return (
+    <div className="rootListAuthor">
+      <p>
+        Total authors found: <span className="totalValue">{total}</span>
+      </p>
+      <ul className="ulListAuthor">
+        {results.map((author: AuthorResponse) => (
+          // TODO: Create CardAuthor componnt
+          <h5 key={author.id} className="titleCardAuthor">
+            <strong>Name:</strong> {author.name ?? "-"}
+          </h5>
+        ))}
+      </ul>
+    </div>
+  );
+};

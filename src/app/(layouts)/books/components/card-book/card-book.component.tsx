@@ -1,6 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/navigation";
 import { BookResponse } from "@/app/service/interface";
 import { ServicesApp } from "@/app/service/service-app";
 import "./card-book.styles.scss";
@@ -11,6 +12,16 @@ interface CardBookProps {
 }
 
 export const CardBook = ({ book, setBookData }: CardBookProps) => {
+  const router = useRouter();
+
+  function searchDataBook(bookId: number) {
+    setBookData(
+      ServicesApp.getBookInfo(String(bookId)) as Promise<BookResponse>,
+    );
+
+    router.push(`#dataBookFounded`);
+  }
+
   return (
     <li className="rootCardBook">
       <h5 className="titleCardBook">
@@ -22,14 +33,7 @@ export const CardBook = ({ book, setBookData }: CardBookProps) => {
       <span>
         <strong>Price €:</strong> {book.price ?? "-"}
       </span>
-      <button
-        className="btnSearchBook"
-        onClick={() =>
-          setBookData(
-            ServicesApp.getBookInfo(String(book.id)) as Promise<BookResponse>,
-          )
-        }
-      >
+      <button className="btnSearchBook" onClick={() => searchDataBook(book.id)}>
         <span>Show Book</span> <span>&#x1F56E;</span>
       </button>
     </li>

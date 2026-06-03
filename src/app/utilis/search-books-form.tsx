@@ -16,6 +16,6 @@ export async function searchBooksAction(
 
     return { success: true, error: "", title: title };
   } catch (err) {
-    return { success: false, error: "Failed to search book" };
+    return { success: false, error: "Failed to search books" };
   }
 }
