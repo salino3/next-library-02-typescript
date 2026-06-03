@@ -1,5 +1,6 @@
 "use client";
-import { Suspense, use } from "react";
+import { Suspense, use, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { BookResponse } from "@/app/service/interface";
 import { ImageComponent } from "@/app/common-app/image/image.component";
@@ -70,8 +71,27 @@ const SuspendedBookContent = ({
 
 //
 export const FoundedBook = ({ bookData }: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if (window.location.hash === "#dataBookFounded") {
+      const targetElement = document.getElementById("dataBookFounded");
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  }, [bookData, router, pathname]);
+
   return (
     <div
+      id="dataBookFounded"
       className={`rootFoundedBook ${bookData ? "foundedBook_open" : "foundedBook_close"}`}
     >
       <Suspense
