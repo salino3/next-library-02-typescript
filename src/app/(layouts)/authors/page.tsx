@@ -12,7 +12,6 @@ const LayoutAuthors = () => {
       {/*  */}
       <div className="LayoutAuthors">
         <AuthorsContent />
-
         <Footer />
       </div>
     </div>

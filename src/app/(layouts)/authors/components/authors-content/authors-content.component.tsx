@@ -3,8 +3,10 @@ import { Suspense, useEffect, useState } from "react";
 import { ServicesApp } from "@/app/service/service-app";
 
 import "./authors-content.styles.scss";
+import { FormSearchAuthor } from "../form-search-author/form-search-author.component";
 
 export const AuthorsContent = () => {
+  const [searchName, setSearchName] = useState<string>("");
   return (
     <div className="rootAuthorsContent">
       <h1>Library with Next - Layout Authors</h1>
@@ -50,10 +52,8 @@ export const AuthorsContent = () => {
         </div>
       </div>
 
-      {/* <FormSearchBook
-        setSearchTitle={setSearchTitle}
-        searchTitle={searchTitle}
-      />
+      <FormSearchAuthor setSearchName={setSearchName} searchName={searchName} />
+      {/* 
       <FoundedBook bookData={bookData} />
 
       <Suspense fallback={<p>Loading book list...</p>}>

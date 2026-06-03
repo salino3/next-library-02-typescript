@@ -1,0 +1,65 @@
+#rootFormSearchAuthor {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem 0;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  -webkit-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+  -moz-box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.66);
+
+  background-color: var(--color-neutral-200);
+
+  fieldset {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    legend {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1rem;
+    }
+
+    .boxInput {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      label {
+        font-weight: bold;
+      }
+
+      input {
+        width: 300px;
+        max-width: 300px;
+        height: 2.8rem;
+        border-radius: 8px;
+        padding-left: 5px;
+        box-shadow: 3px 3px 25px -8px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 3px 3px 25px -8px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 3px 3px 25px -8px rgba(0, 0, 0, 0.75);
+
+        &:focus {
+          outline: none;
+          box-shadow: 3px 3px 26px 8px var(--color-tertiary-shadow);
+          -webkit-box-shadow: 3px 3px 26px 8px var(--color-tertiary-shadow);
+          -moz-box-shadow: 3px 3px 26px 8px var(--color-tertiary-shadow);
+        }
+
+        @media screen and (max-width: 724px) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
