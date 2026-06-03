@@ -12,9 +12,9 @@ export async function searchAuthorAction(
   formData: FormData,
 ): Promise<ActionStateAuthorAction> {
   try {
-    const title = formData.get("title") as string;
+    const name = formData.get("name") as string;
 
-    return { success: true, error: "", name: title };
+    return { success: true, error: "", name: name };
   } catch (err) {
     return { success: false, error: "Failed to search authors" };
   }

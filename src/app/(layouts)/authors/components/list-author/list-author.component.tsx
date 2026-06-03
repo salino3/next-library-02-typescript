@@ -28,7 +28,8 @@ export const ListAuthor = ({
       </p>
       <ul className="ulListAuthor">
         {results.map((author: AuthorResponse) => (
-          <h5 className="titleCardAuthor">
+          // TODO: Create CardAuthor componnt
+          <h5 key={author.id} className="titleCardAuthor">
             <strong>Name:</strong> {author.name ?? "-"}
           </h5>
         ))}
