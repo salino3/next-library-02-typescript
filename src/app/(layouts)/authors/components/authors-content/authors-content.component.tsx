@@ -2,11 +2,25 @@
 import { Suspense, useEffect, useState } from "react";
 import { ServicesApp } from "@/app/service/service-app";
 
-import "./authors-content.styles.scss";
 import { FormSearchAuthor } from "../form-search-author/form-search-author.component";
+import { ListAuthor } from "../list-author/list-author.component";
+import { AuthorResponse, SearchAuthorResponse } from "@/app/service/interface";
+import "./authors-content.styles.scss";
 
 export const AuthorsContent = () => {
+  const [dataAuthorsPromise, setDataAuthorPromise] = useState<
+    Promise<SearchAuthorResponse>
+  >(() => ServicesApp.getFilteredListAuthors("", 0));
+
   const [searchName, setSearchName] = useState<string>("");
+  const [authorData, setAuthorData] = useState<Promise<AuthorResponse> | null>(
+    null,
+  );
+
+  useEffect(() => {
+    setDataAuthorPromise(ServicesApp.getFilteredListAuthors(searchName, 0));
+  }, [searchName]);
+
   return (
     <div className="rootAuthorsContent">
       <h1>Library with Next - Layout Authors</h1>
@@ -53,12 +67,16 @@ export const AuthorsContent = () => {
       </div>
 
       <FormSearchAuthor setSearchName={setSearchName} searchName={searchName} />
+
       {/* 
       <FoundedBook bookData={bookData} />
-
+      */}
       <Suspense fallback={<p>Loading book list...</p>}>
-        <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />
-      </Suspense> */}
+        <ListAuthor
+          dataPromise={dataAuthorsPromise}
+          setAuthorData={setAuthorData}
+        />
+      </Suspense>
     </div>
   );
 };

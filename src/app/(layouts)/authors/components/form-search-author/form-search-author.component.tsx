@@ -4,7 +4,7 @@ import {
   ActionStateAuthorAction,
   searchAuthorAction,
 } from "@/app/utilis/search-author-form";
-// import { SubmitBasicBtnAuthor } from "@/app/common-app/submit-basic-btn/submit-basic-btn.component";
+import { SubmitBasicBtnAuthors } from "@/app/common-app/submit-basic-btn-authors/submit-basic-btn-authors.component";
 import "./form-search-book.styles.scss";
 
 interface Props {
@@ -43,8 +43,7 @@ export const FormSearchAuthor = ({ setSearchName, searchName }: Props) => {
             {state.error && <strong>{state.error}</strong>}
           </div>
         </div>
-        {/* TODO: Create Button component */}
-        {/* <SubmitBasicBtnAuthor searchName={searchName} /> */}
+        <SubmitBasicBtnAuthors searchName={searchName} />
       </fieldset>
     </form>
   );
