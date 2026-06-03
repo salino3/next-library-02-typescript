@@ -5,13 +5,16 @@ import { AuthorResponse } from "@/app/service/interface";
 // import { CardBook } from "../card-book/card-book.component";
 import "./list-author.styles.scss";
 
-interface BooksListProps {
+interface AuthorsListProps {
   // We pass the pending promise down as a prop
   dataPromise: Promise<{ total: number; results: AuthorResponse[] }>;
   setAuthorData: Dispatch<SetStateAction<Promise<AuthorResponse> | null>>;
 }
 
-export const ListAuthor = ({ dataPromise, setAuthorData }: BooksListProps) => {
+export const ListAuthor = ({
+  dataPromise,
+  setAuthorData,
+}: AuthorsListProps) => {
   const { results, total } = use(dataPromise);
 
   if (!results || results.length === 0) {
@@ -24,10 +27,11 @@ export const ListAuthor = ({ dataPromise, setAuthorData }: BooksListProps) => {
         Total authors found: <span className="totalValue">{total}</span>
       </p>
       <ul className="ulListAuthor">
-        {results.map(
-          (book: AuthorResponse) =>
-            "<CardBook key={book.id} book={book} setAuthorData={setAuthorData} />",
-        )}
+        {results.map((author: AuthorResponse) => (
+          <h5 className="titleCardAuthor">
+            <strong>Name:</strong> {author.name ?? "-"}
+          </h5>
+        ))}
       </ul>
     </div>
   );
