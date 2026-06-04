@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, use } from "react";
 import { AuthorResponse } from "@/app/service/interface";
-// import { CardBook } from "../card-book/card-book.component";
+import { CardAuthor } from "../card-author/card-author.component";
 import "./list-author.styles.scss";
 
 interface AuthorsListProps {
@@ -28,10 +28,11 @@ export const ListAuthor = ({
       </p>
       <ul className="ulListAuthor">
         {results.map((author: AuthorResponse) => (
-          // TODO: Create CardAuthor componnt
-          <h5 key={author.id} className="titleCardAuthor">
-            <strong>Name:</strong> {author.name ?? "-"}
-          </h5>
+          <CardAuthor
+            key={author.id}
+            author={author}
+            setAuthorData={setAuthorData}
+          />
         ))}
       </ul>
     </div>

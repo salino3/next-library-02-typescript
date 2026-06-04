@@ -24,8 +24,8 @@ export const CardBook = ({ book, setBookData }: CardBookProps) => {
 
   return (
     <li className="rootCardBook">
-      <h5 className="titleCardBook">
-        <strong>Title:</strong> {book.title ?? "-"}
+      <h5>
+        <strong>Title:</strong> {book.title || "-"}
       </h5>
       <span>
         <strong>Pages:</strong> {book.pages ?? "-"}
