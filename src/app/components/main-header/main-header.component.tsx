@@ -2,17 +2,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useProviderSelector } from "@/app/store/provider";
 import { MenuIconHeader } from "@/app/icons/menu-icon-header";
 import "./main-header.styles.scss";
-
-//*
-//  import { useRouter } from "next/navigation";
-//  const router = useRouter();
-//  If URL is: /store/shoes?color=blue
-//  const { pathname, query } = router;
-//  router.replace(pathname);
 
 interface LinkApp {
   pathName: string;
