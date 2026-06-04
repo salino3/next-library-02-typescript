@@ -19,7 +19,7 @@ export const Footer = () => {
           customStyle={"imgMarkIcon"}
           vertical
         />
-        <div className="footerTitle">
+        <div className="BoxFooterTitle">
           <h3>Next App Library</h3>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,

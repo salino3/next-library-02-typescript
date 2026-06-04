@@ -62,8 +62,9 @@
       animation-range: entry 15% contain 38%;
     }
 
-    .footerTitle {
+    .BoxFooterTitle {
       width: 40vw;
+      min-width: 280px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -73,6 +74,13 @@
       h3 {
         color: var(--color-neutral);
         font-size: x-large;
+        text-align: left;
+        word-break: break-word;
+      }
+
+      p {
+        text-align: justify;
+        word-break: break-all;
       }
     }
 
@@ -85,11 +93,13 @@
 
       font-weight: bold;
       font-size: larger;
-      background-color: var(--color-tertiary-400);
+      background-color: var(--color-tertiary-300);
       color: var(--color-primary);
       padding: 0.5rem 1.5rem;
       cursor: pointer;
-
+      transition:
+        color 0.5s ease,
+        background 1s ease;
       &:hover {
         border-color: var(--color-primary);
         color: var(--color-secondary-050);
