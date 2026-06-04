@@ -39,7 +39,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: left;
+        word-break: break-word;
+      }
+
+      p {
         text-align: justify;
+        word-break: break-all;
       }
     }
 
