@@ -1,0 +1,100 @@
+.fallBackFoundedAuthor {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rootFoundedAuthor {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-bottom: solid var(--color-neutral-700);
+  width: 100%;
+
+  flex-grow: 1;
+  overflow-y: hidden;
+  transition: height 1s ease;
+
+  .boxLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-grow: 1;
+    container-type: inline-size;
+    width: 100%;
+    .stylesFoundedAuthor {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      max-width: auto;
+      height: fit-content;
+      max-height: 320px;
+      width: fit-content;
+      border-radius: 1rem;
+      overflow: hidden;
+      img {
+        max-width: auto;
+        height: auto;
+        max-height: 320px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .boxRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-grow: 1;
+    padding: 1rem;
+    width: 100%;
+    .containerBoxText {
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      strong {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .valueLine {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        text-wrap: nowrap;
+      }
+    }
+  }
+
+  @media screen and (max-width: 724px) {
+    flex-direction: column;
+  }
+}
+
+.foundedAuthor_open {
+  height: 340px;
+  @media screen and (max-width: 724px) {
+    height: 530px;
+    .boxLeft {
+      align-items: center;
+    }
+  }
+}
+
+.foundedAuthor_close {
+  height: 0px;
+}

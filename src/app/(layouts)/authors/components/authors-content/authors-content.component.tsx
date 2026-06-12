@@ -4,6 +4,7 @@ import { ServicesApp } from "@/app/service/service-app";
 
 import { FormSearchAuthor } from "../form-search-author/form-search-author.component";
 import { ListAuthor } from "../list-author/list-author.component";
+import { FoundedAuthor } from "../founded-author/founded-author.component";
 import { AuthorResponse, SearchAuthorResponse } from "@/app/service/interface";
 import "./authors-content.styles.scss";
 
@@ -69,9 +70,8 @@ export const AuthorsContent = () => {
 
       <FormSearchAuthor setSearchName={setSearchName} searchName={searchName} />
 
-      {/* 
-      <FoundedBook bookData={bookData} />
-      */}
+      <FoundedAuthor authorData={authorData} />
+
       <Suspense fallback={<p>Loading book list...</p>}>
         <ListAuthor
           dataPromise={dataAuthorsPromise}
