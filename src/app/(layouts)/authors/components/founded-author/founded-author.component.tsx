@@ -19,7 +19,7 @@ export const BoxText = ({
   customStyle?: string;
 }) => {
   return (
-    <div className={`containerBoxText ${customStyle}`}>
+    <div className={`containerBoxText_01 ${customStyle}`}>
       <strong>{title}:</strong>
 
       <span className="valueLine">{value} </span>
@@ -53,7 +53,6 @@ const SuspendedAuthorContent = ({
       <div className="boxRight">
         <BoxText title={"Name"} value={author.name} />
         <BoxText title={"Bio"} value={author.bio} />
-        <BoxText title={"ID Author"} value={author.id} />
       </div>
     </>
   );
