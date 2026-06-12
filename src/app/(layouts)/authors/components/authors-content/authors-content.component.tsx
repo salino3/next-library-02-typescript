@@ -1,13 +1,18 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ServicesApp } from "@/app/service/service-app";
-
 import { FormSearchAuthor } from "../form-search-author/form-search-author.component";
 import { ListAuthor } from "../list-author/list-author.component";
+import { FoundedAuthor } from "../founded-author/founded-author.component";
 import { AuthorResponse, SearchAuthorResponse } from "@/app/service/interface";
 import "./authors-content.styles.scss";
 
 export const AuthorsContent = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [dataAuthorsPromise, setDataAuthorPromise] = useState<
     Promise<SearchAuthorResponse>
   >(() => ServicesApp.getFilteredListAuthors("", 0));
@@ -21,7 +26,21 @@ export const AuthorsContent = () => {
     setDataAuthorPromise(ServicesApp.getFilteredListAuthors(searchName, 0));
   }, [searchName]);
 
-  console.log("clog2", searchName);
+  //
+  useEffect(() => {
+    const authorId = searchParams.get("search");
+
+    if (authorId) {
+      // 1. Call getAuthorInfo and store the promise in state
+      setAuthorData(
+        ServicesApp.getAuthorInfo(authorId) as Promise<AuthorResponse>,
+      );
+      router.push(`#dataAuthorFounded`);
+      // 2. Clean the URL from ?search= and scroll to the founded author section
+      router.replace(`${pathname}#dataAuthorFounded`, { scroll: false });
+    }
+  }, [searchParams, pathname, router]);
+
   return (
     <div className="rootAuthorsContent">
       <h1>Library with Next - Layout Authors</h1>
@@ -69,9 +88,8 @@ export const AuthorsContent = () => {
 
       <FormSearchAuthor setSearchName={setSearchName} searchName={searchName} />
 
-      {/* 
-      <FoundedBook bookData={bookData} />
-      */}
+      <FoundedAuthor authorData={authorData} />
+
       <Suspense fallback={<p>Loading book list...</p>}>
         <ListAuthor
           dataPromise={dataAuthorsPromise}
