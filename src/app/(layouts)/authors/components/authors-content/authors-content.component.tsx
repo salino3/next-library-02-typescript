@@ -22,7 +22,6 @@ export const AuthorsContent = () => {
     setDataAuthorPromise(ServicesApp.getFilteredListAuthors(searchName, 0));
   }, [searchName]);
 
-  console.log("clog2", searchName);
   return (
     <div className="rootAuthorsContent">
       <h1>Library with Next - Layout Authors</h1>
