@@ -4,6 +4,7 @@ import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { ListBook } from "../list-book/list-book.component";
 import { FoundedBook } from "../founded-book/founded-book.component";
+import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
 import { BookResponse, SearchBookResponse } from "@/app/service/interface";
 import "./books-content.styles.scss";
 
@@ -79,6 +80,9 @@ export const BooksContent = () => {
       <Suspense fallback={<p>Loading book list...</p>}>
         <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />
       </Suspense>
+      {showModal && (
+        <ModalApp showModal={showModal} setShowModal={setShowModal} />
+      )}
     </div>
   );
 };
