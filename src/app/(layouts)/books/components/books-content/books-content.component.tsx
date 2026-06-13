@@ -14,6 +14,7 @@ export const BooksContent = () => {
 
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [bookData, setBookData] = useState<Promise<BookResponse> | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
@@ -63,7 +64,12 @@ export const BooksContent = () => {
           </p>
         </div>
       </div>
-      <button className="btnSearchWithAI">Search with AI</button>
+      <button
+        onClick={() => setShowModal(!showModal)}
+        className="btnSearchWithAI"
+      >
+        Search with AI
+      </button>
       <FormSearchBook
         setSearchTitle={setSearchTitle}
         searchTitle={searchTitle}
