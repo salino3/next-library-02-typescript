@@ -5,6 +5,7 @@ import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchAuthor } from "../form-search-author/form-search-author.component";
 import { ListAuthor } from "../list-author/list-author.component";
 import { FoundedAuthor } from "../founded-author/founded-author.component";
+import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
 import { AuthorResponse, SearchAuthorResponse } from "@/app/service/interface";
 import "./authors-content.styles.scss";
 
@@ -21,6 +22,7 @@ export const AuthorsContent = () => {
   const [authorData, setAuthorData] = useState<Promise<AuthorResponse> | null>(
     null,
   );
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     setDataAuthorPromise(ServicesApp.getFilteredListAuthors(searchName, 0));
@@ -85,7 +87,12 @@ export const AuthorsContent = () => {
           </p>
         </div>
       </div>
-
+      <button
+        onClick={() => setShowModal(!showModal)}
+        className="btnSearchWithAI"
+      >
+        Search with AI
+      </button>
       <FormSearchAuthor setSearchName={setSearchName} searchName={searchName} />
 
       <FoundedAuthor authorData={authorData} />
@@ -96,6 +103,10 @@ export const AuthorsContent = () => {
           setAuthorData={setAuthorData}
         />
       </Suspense>
+
+      {showModal && (
+        <ModalApp showModal={showModal} setShowModal={setShowModal} />
+      )}
     </div>
   );
 };
