@@ -63,7 +63,7 @@ export const BooksContent = () => {
           </p>
         </div>
       </div>
-
+      <button className="btnSearchWithAI">Search with AI</button>
       <FormSearchBook
         setSearchTitle={setSearchTitle}
         searchTitle={searchTitle}
