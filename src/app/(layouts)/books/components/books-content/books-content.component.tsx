@@ -4,6 +4,7 @@ import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { ListBook } from "../list-book/list-book.component";
 import { FoundedBook } from "../founded-book/founded-book.component";
+import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
 import { BookResponse, SearchBookResponse } from "@/app/service/interface";
 import "./books-content.styles.scss";
 
@@ -14,6 +15,7 @@ export const BooksContent = () => {
 
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [bookData, setBookData] = useState<Promise<BookResponse> | null>(null);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
@@ -63,7 +65,12 @@ export const BooksContent = () => {
           </p>
         </div>
       </div>
-
+      <button
+        onClick={() => setShowModal(!showModal)}
+        className="btnSearchWithAI"
+      >
+        Search with AI
+      </button>
       <FormSearchBook
         setSearchTitle={setSearchTitle}
         searchTitle={searchTitle}
@@ -73,6 +80,9 @@ export const BooksContent = () => {
       <Suspense fallback={<p>Loading book list...</p>}>
         <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />
       </Suspense>
+      {showModal && (
+        <ModalApp showModal={showModal} setShowModal={setShowModal} />
+      )}
     </div>
   );
 };
