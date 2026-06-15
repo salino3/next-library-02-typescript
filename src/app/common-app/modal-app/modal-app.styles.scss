@@ -27,13 +27,8 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center; // Centers it cleanly on screen
-  background-color: rgba(
-    43,
-    29,
-    14,
-    0.5
-  ); // Warm wood-toned translucent shadow overlay
+  align-items: center;
+  background-color: rgba(43, 29, 14, 0.5);
   backdrop-filter: blur(2px);
   z-index: 1000;
 
@@ -41,39 +36,45 @@
     animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
-    position: relative; // Removed top: 30% and fixed position to let flexbox center it perfectly
+    position: relative;
     gap: 16px;
-    padding: 24px;
+    padding: 18px 24px 24px;
     box-shadow: 0px 12px 32px rgba(43, 29, 14, 0.25);
     border-radius: 16px;
-    border: 2px solid #5c3a21; // Dark brown border matches app styling cards
+    border: 2px solid #5c3a21;
     width: 90%;
-    max-width: 550px; // Wider container to display textarea and result lists comfortably
-    background-color: #f7ede2; // Vintage cream/parchment background color
-    color: #3d2314; // Deep brown text color instead of stark black
+    max-width: 550px;
+    background-color: #f7ede2;
+    color: #3d2314;
     font-family: inherit;
 
     header {
       width: 100%;
       display: flex;
       justify-content: flex-end;
-      border-bottom: 1px dashed rgba(92, 58, 33, 0.3);
-      padding-bottom: 8px;
+      border-bottom: 1px dashed rgba(92, 58, 33, 0.2);
+      padding-bottom: 10px;
 
-      button {
-        background-color: #e6ccb2;
-        color: #5c3a21;
-        border: 1px solid #7f5539;
-        font-weight: 600;
-        padding: 6px 16px;
-        border-radius: 20px;
+      .btnCloseModal {
+        background: transparent;
+        color: #7f5539;
+        border: solid 1px rgb(127, 85, 57, 0.5);
+        padding: 6px;
+        border-radius: 50%;
         cursor: pointer;
-        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 0.5);
+        svg {
+          width: 18px;
+          height: 18px;
+        }
 
         &:hover {
-          background-color: #b07d62;
-          color: #fff;
-          transform: scale(1.05);
+          background-color: #e6ccb2;
+          color: #3d2314;
+          transform: rotate(90deg);
         }
       }
     }
@@ -84,7 +85,6 @@
   }
 }
 
-// 🌟 Internal AI Form Layout overrides to perfectly match the theme
 .aiFormWrapper {
   display: flex;
   flex-direction: column;
@@ -115,7 +115,7 @@
   textarea {
     width: 100%;
     padding: 12px;
-    background-color: #fffaf5; // Extra light parchment tone for fields
+    background-color: #fffaf5;
     border: 1px solid #b07d62;
     color: #3d2314;
     border-radius: 8px;
@@ -132,7 +132,7 @@
   }
 
   .btnSubmitAI {
-    background-color: #7f5539; // Brown button color matches the "Search with AI" banner
+    background-color: #7f5539;
     color: #fff;
     border: 1px solid #5c3a21;
     border-radius: 8px;
