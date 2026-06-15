@@ -7,3 +7,11 @@ const pool = new Pool({
 });
 
 export const query = (text: string, params?: any[]) => pool.query(text, params);
+
+// 🛡️ SECURE: Specialized Read-Only Pool for Groq
+export const readonlyPool = new Pool({
+  connectionString: process.env.DATABASE_READONLY_URL,
+});
+
+export const aiQuery = (text: string, params?: any[]) =>
+  readonlyPool.query(text, params);
