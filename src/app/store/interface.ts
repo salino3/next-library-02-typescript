@@ -3,6 +3,11 @@ export enum Theme {
   light = "light",
 }
 
+export enum pageContextAi {
+  books = "books",
+  authors = "authors",
+}
+
 export enum AsideProps {
   open = "open",
   close = "close",

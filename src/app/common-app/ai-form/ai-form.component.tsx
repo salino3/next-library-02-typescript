@@ -3,59 +3,83 @@
 import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
 import { submitAIPromptAction } from "@/app/actions/ai-prompt";
 import { SearchBookResponse } from "@/app/service/interface";
+import { pageContextAi } from "@/app/store/interface";
 import "./ai-form.styles.scss";
 
 interface Props {
   setBookDataAI: Dispatch<SetStateAction<SearchBookResponse | null>>;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+  pageContext: pageContextAi;
 }
 
-export const AIFormContent = ({ setBookDataAI }: Props) => {
-  const [state, formAction, isPending] = useActionState(submitAIPromptAction, {
-    success: false,
-    data: null,
-    error: "",
-  });
+export const AIFormContent = ({
+  setBookDataAI,
+  setShowModal,
+  pageContext,
+}: Props) => {
+  const [state, formAction, isPending] = useActionState(
+    async (prevState: any, formData: FormData) => {
+      return submitAIPromptAction(pageContext, prevState, formData);
+    },
+    {
+      success: false,
+      data: null,
+      error: "",
+    },
+  );
 
   //
   useEffect(() => {
     if (state.data) {
       setBookDataAI(state.data);
+      setShowModal(false);
     }
-  }, [state.success]);
+  }, [state, isPending]);
 
   return (
     <div className="aiFormWrapper">
       <p className="subtitle">
-        Query books by page counts, search fields, prices, or coordinate writer
-        bio details.
+        Query {pageContext} by custom filtering details using our library AI.
       </p>
 
       <form action={formAction} className="modalAIForm">
         <fieldset disabled={isPending}>
+          <label htmlFor="userPrompt" className="srOnlyWCAG">
+            Ask the Library AI Assistant
+          </label>
+
           <textarea
             name="userPrompt"
             id="userPrompt"
             placeholder="e.g., Show me books that cost a maximum of 50 euro with more than 200 pages."
             rows={5}
             required
+            /* 🛡️ Ties the textarea explicitly to the error area if an error occurs */
+            aria-describedby={state.error ? "ai-form-error" : undefined}
+            aria-invalid={!!state.error}
           />
 
           <div className="formActionButtons">
-            <button type="submit" className="btnSubmitAI">
-              {isPending ? "Groq running SQL analysis..." : "Send to AI"}
+            <button type="submit" className="btnSubmitAI" aria-busy={isPending}>
+              {isPending ? "AI running SQL analysis..." : "Send to AI"}
             </button>
+          </div>
+
+          <div
+            id="ai-form-error"
+            role="status" // Declares this as an official advisory announcement container
+            aria-live="polite" // Screen readers will finish speaking their current line, then politely read this out loud
+            aria-atomic="true" // Forces the reader to announce the complete entire text block when changes are captured
+            style={{ minHeight: "0px" }} // Keeps DOM space zeroed out when empty
+          >
+            {state.error && (
+              <div className="aiResponseContainer error">
+                <strong>⚠️ Query Rejected:</strong> {state.error}
+              </div>
+            )}
           </div>
         </fieldset>
       </form>
-
-      {/* Dynamic Display Log for Groq Response Payload */}
-      {state.success && (
-        <div
-          className={`aiResponseContainer ${state.success ? "success" : "error"}`}
-        >
-          <strong>{!state.error ? "🤖 AI Answer:" : "⚠️ System Error:"}</strong>
-        </div>
-      )}
     </div>
   );
 };

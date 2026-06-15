@@ -7,6 +7,7 @@ import { FoundedBook } from "../founded-book/founded-book.component";
 import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
 import { AIFormContent } from "@/app/common-app/ai-form/ai-form.component";
 import { BookResponse, SearchBookResponse } from "@/app/service/interface";
+import { pageContextAi } from "@/app/store/interface";
 import "./books-content.styles.scss";
 
 export const BooksContent = () => {
@@ -89,7 +90,11 @@ export const BooksContent = () => {
       </Suspense>
       {showModal && (
         <ModalApp showModal={showModal} setShowModal={setShowModal}>
-          <AIFormContent setBookDataAI={setBookDataAI} />
+          <AIFormContent
+            pageContext={pageContextAi.books}
+            setBookDataAI={setBookDataAI}
+            setShowModal={setShowModal}
+          />
         </ModalApp>
       )}
     </div>
