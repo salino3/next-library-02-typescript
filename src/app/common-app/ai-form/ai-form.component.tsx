@@ -26,7 +26,7 @@ export const AIFormContent = ({ setBookDataAI }: Props) => {
 
   return (
     <div className="aiFormWrapper">
-      <h2>✨ Ask the Library AI Assistant</h2>
+      <h2>✨ Ask at the Library AI Assistant</h2>
       <p className="subtitle">
         Query books by page counts, search fields, prices, or coordinate writer
         bio details.

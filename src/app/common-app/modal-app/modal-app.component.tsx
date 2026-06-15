@@ -8,9 +8,12 @@ interface Props {
 }
 
 export const ModalApp = ({ showModal, setShowModal, children }: Props) => {
+  if (!showModal) return null;
+
   return (
-    <div className="rootModalApp">
-      <div className="containerModalApp">
+    // Clicking the background overlay closes the modal safely
+    <div className="rootModalApp" onClick={() => setShowModal(false)}>
+      <div className="containerModalApp" onClick={(e) => e.stopPropagation()}>
         <header>
           <button onClick={() => setShowModal(false)}>Close</button>
         </header>

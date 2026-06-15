@@ -30,7 +30,7 @@ export const ListBook = ({
   return (
     <div className="rootListBook">
       <p>
-        Total books found:{" "}
+        Total books found:
         <span className="totalValue">{bookDataAI?.total ?? total}</span>
       </p>
       <ul className="ulListBook">
