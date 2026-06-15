@@ -5,6 +5,7 @@ import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { ListBook } from "../list-book/list-book.component";
 import { FoundedBook } from "../founded-book/founded-book.component";
 import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
+import { AIFormContent } from "@/app/common-app/ai-form/ai-form.component";
 import { BookResponse, SearchBookResponse } from "@/app/service/interface";
 import "./books-content.styles.scss";
 
@@ -15,10 +16,12 @@ export const BooksContent = () => {
 
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [bookData, setBookData] = useState<Promise<BookResponse> | null>(null);
+  const [bookDataAI, setBookDataAI] = useState<SearchBookResponse | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
+    setBookDataAI(null);
   }, [searchTitle]);
 
   return (
@@ -78,10 +81,16 @@ export const BooksContent = () => {
       <FoundedBook bookData={bookData} />
 
       <Suspense fallback={<p>Loading book list...</p>}>
-        <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />
+        <ListBook
+          dataPromise={dataBooksPromise}
+          bookDataAI={bookDataAI}
+          setBookData={setBookData}
+        />
       </Suspense>
       {showModal && (
-        <ModalApp showModal={showModal} setShowModal={setShowModal} />
+        <ModalApp showModal={showModal} setShowModal={setShowModal}>
+          <AIFormContent setBookDataAI={setBookDataAI} />
+        </ModalApp>
       )}
     </div>
   );

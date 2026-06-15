@@ -105,7 +105,9 @@ export const AuthorsContent = () => {
       </Suspense>
 
       {showModal && (
-        <ModalApp showModal={showModal} setShowModal={setShowModal} />
+        <ModalApp showModal={showModal} setShowModal={setShowModal}>
+          X
+        </ModalApp>
       )}
     </div>
   );
