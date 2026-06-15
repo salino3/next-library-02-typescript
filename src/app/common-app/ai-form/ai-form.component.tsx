@@ -1,15 +1,28 @@
 "use client";
 
-import { useActionState } from "react";
+import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
 import { submitAIPromptAction } from "@/app/actions/ai-prompt";
+import { SearchBookResponse } from "@/app/service/interface";
 import "./ai-form.styles.scss";
 
-export const AIFormContent = () => {
+interface Props {
+  setBookDataAI: Dispatch<SetStateAction<SearchBookResponse | null>>;
+}
+
+export const AIFormContent = ({ setBookDataAI }: Props) => {
   // 🔗 Hooks the HTML form right up to your secure backend action file
   const [state, formAction, isPending] = useActionState(submitAIPromptAction, {
     success: false,
-    answer: "",
+    data: null,
+    error: "",
   });
+
+  //
+  useEffect(() => {
+    if (state.data) {
+      setBookDataAI(state.data);
+    }
+  }, [state.success]);
 
   return (
     <div className="aiFormWrapper">
@@ -38,14 +51,11 @@ export const AIFormContent = () => {
       </form>
 
       {/* Dynamic Display Log for Groq Response Payload */}
-      {state.answer && (
+      {state.success && (
         <div
           className={`aiResponseContainer ${state.success ? "success" : "error"}`}
         >
-          <strong>
-            {state.success ? "🤖 AI Answer:" : "⚠️ System Error:"}
-          </strong>
-          <p className="responseMarkdownText">{state.answer}</p>
+          <strong>{!state.error ? "🤖 AI Answer:" : "⚠️ System Error:"}</strong>
         </div>
       )}
     </div>

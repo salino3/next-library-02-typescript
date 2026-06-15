@@ -16,10 +16,12 @@ export const BooksContent = () => {
 
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [bookData, setBookData] = useState<Promise<BookResponse> | null>(null);
+  const [bookDataAI, setBookDataAI] = useState<SearchBookResponse | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
     setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
+    setBookDataAI(null);
   }, [searchTitle]);
 
   return (
@@ -79,11 +81,15 @@ export const BooksContent = () => {
       <FoundedBook bookData={bookData} />
 
       <Suspense fallback={<p>Loading book list...</p>}>
-        <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />
+        <ListBook
+          dataPromise={dataBooksPromise}
+          bookDataAI={bookDataAI}
+          setBookData={setBookData}
+        />
       </Suspense>
       {showModal && (
         <ModalApp showModal={showModal} setShowModal={setShowModal}>
-          <AIFormContent />
+          <AIFormContent setBookDataAI={setBookDataAI} />
         </ModalApp>
       )}
     </div>

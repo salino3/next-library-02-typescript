@@ -1,6 +1,10 @@
 import "server-only"; // 🛡️ Security Guard
 import { Groq } from "groq-sdk";
 import { aiQuery } from "./db";
+import {
+  SearchAuthorResponse,
+  SearchBookResponse,
+} from "@/app/service/interface";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -26,7 +30,9 @@ const readOnlyTools = [
   },
 ];
 
-export async function askLibraryAI(userPrompt: string): Promise<any[]> {
+export async function askLibraryAI(
+  userPrompt: string,
+): Promise<SearchAuthorResponse | SearchBookResponse> {
   // 🟢 LOG 1: Track what the user typed into the textarea
   console.log("=== 📥 STEP 1: AI ASSISTANT TRIGGERED ===");
   console.log("User Input Received:", userPrompt);
@@ -90,7 +96,10 @@ export async function askLibraryAI(userPrompt: string): Promise<any[]> {
         dbResult.rows,
       );
 
-      return dbResult.rows;
+      return {
+        total: dbResult.rows.length,
+        results: dbResult.rows,
+      };
     } catch (dbError: any) {
       // 🔴 LOG 5: Catch database specific errors (syntax mistakes, etc.)
       console.error("=== ❌ DATABASE EXECUTION FAILURE ===");
@@ -100,5 +109,5 @@ export async function askLibraryAI(userPrompt: string): Promise<any[]> {
   }
 
   console.warn("⚠️ Groq did not generate a tool call.");
-  return [];
+  return { total: 0, results: [] };
 }
