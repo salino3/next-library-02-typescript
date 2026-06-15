@@ -5,6 +5,7 @@ import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { ListBook } from "../list-book/list-book.component";
 import { FoundedBook } from "../founded-book/founded-book.component";
 import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
+import { AIFormContent } from "@/app/common-app/ai-form/ai-form.component";
 import { BookResponse, SearchBookResponse } from "@/app/service/interface";
 import "./books-content.styles.scss";
 
@@ -81,7 +82,9 @@ export const BooksContent = () => {
         <ListBook dataPromise={dataBooksPromise} setBookData={setBookData} />
       </Suspense>
       {showModal && (
-        <ModalApp showModal={showModal} setShowModal={setShowModal} />
+        <ModalApp showModal={showModal} setShowModal={setShowModal}>
+          <AIFormContent />
+        </ModalApp>
       )}
     </div>
   );
