@@ -89,7 +89,10 @@ export const BooksContent = () => {
       </Suspense>
       {showModal && (
         <ModalApp showModal={showModal} setShowModal={setShowModal}>
-          <AIFormContent setBookDataAI={setBookDataAI} />
+          <AIFormContent
+            setBookDataAI={setBookDataAI}
+            setShowModal={setShowModal}
+          />
         </ModalApp>
       )}
     </div>

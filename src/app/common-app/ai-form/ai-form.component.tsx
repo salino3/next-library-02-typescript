@@ -7,9 +7,10 @@ import "./ai-form.styles.scss";
 
 interface Props {
   setBookDataAI: Dispatch<SetStateAction<SearchBookResponse | null>>;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AIFormContent = ({ setBookDataAI }: Props) => {
+export const AIFormContent = ({ setBookDataAI, setShowModal }: Props) => {
   const [state, formAction, isPending] = useActionState(submitAIPromptAction, {
     success: false,
     data: null,
@@ -20,8 +21,9 @@ export const AIFormContent = ({ setBookDataAI }: Props) => {
   useEffect(() => {
     if (state.data) {
       setBookDataAI(state.data);
+      setShowModal(false);
     }
-  }, [state.success]);
+  }, [state, isPending]);
 
   return (
     <div className="aiFormWrapper">
@@ -42,20 +44,11 @@ export const AIFormContent = ({ setBookDataAI }: Props) => {
 
           <div className="formActionButtons">
             <button type="submit" className="btnSubmitAI">
-              {isPending ? "Groq running SQL analysis..." : "Send to AI"}
+              {isPending ? "AI running SQL analysis..." : "Send to AI"}
             </button>
           </div>
         </fieldset>
       </form>
-
-      {/* Dynamic Display Log for Groq Response Payload */}
-      {state.success && (
-        <div
-          className={`aiResponseContainer ${state.success ? "success" : "error"}`}
-        >
-          <strong>{!state.error ? "🤖 AI Answer:" : "⚠️ System Error:"}</strong>
-        </div>
-      )}
     </div>
   );
 };
