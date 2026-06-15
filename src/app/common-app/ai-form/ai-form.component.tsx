@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const AIFormContent = ({ setBookDataAI }: Props) => {
-  // 🔗 Hooks the HTML form right up to your secure backend action file
   const [state, formAction, isPending] = useActionState(submitAIPromptAction, {
     success: false,
     data: null,
@@ -26,7 +25,6 @@ export const AIFormContent = ({ setBookDataAI }: Props) => {
 
   return (
     <div className="aiFormWrapper">
-      <h2>✨ Ask at the Library AI Assistant</h2>
       <p className="subtitle">
         Query books by page counts, search fields, prices, or coordinate writer
         bio details.
