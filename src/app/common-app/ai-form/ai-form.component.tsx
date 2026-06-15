@@ -8,14 +8,24 @@ import "./ai-form.styles.scss";
 interface Props {
   setBookDataAI: Dispatch<SetStateAction<SearchBookResponse | null>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
+  pageContext: "books" | "authors";
 }
 
-export const AIFormContent = ({ setBookDataAI, setShowModal }: Props) => {
-  const [state, formAction, isPending] = useActionState(submitAIPromptAction, {
-    success: false,
-    data: null,
-    error: "",
-  });
+export const AIFormContent = ({
+  setBookDataAI,
+  setShowModal,
+  pageContext,
+}: Props) => {
+  const [state, formAction, isPending] = useActionState(
+    async (prevState: any, formData: FormData) => {
+      return submitAIPromptAction(pageContext, prevState, formData);
+    },
+    {
+      success: false,
+      data: null,
+      error: "",
+    },
+  );
 
   //
   useEffect(() => {
@@ -47,6 +57,20 @@ export const AIFormContent = ({ setBookDataAI, setShowModal }: Props) => {
               {isPending ? "AI running SQL analysis..." : "Send to AI"}
             </button>
           </div>
+          {state.error && (
+            <div
+              className="aiResponseContainer error"
+              style={{
+                marginTop: "1rem",
+                color: "#721c24",
+                background: "#f8d7da",
+                padding: "12px",
+                borderRadius: "8px",
+              }}
+            >
+              <strong>⚠️ Query Rejected:</strong> {state.error}
+            </div>
+          )}
         </fieldset>
       </form>
     </div>

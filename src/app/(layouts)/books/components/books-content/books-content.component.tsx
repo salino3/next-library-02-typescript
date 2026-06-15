@@ -90,6 +90,7 @@ export const BooksContent = () => {
       {showModal && (
         <ModalApp showModal={showModal} setShowModal={setShowModal}>
           <AIFormContent
+            pageContext="books"
             setBookDataAI={setBookDataAI}
             setShowModal={setShowModal}
           />
