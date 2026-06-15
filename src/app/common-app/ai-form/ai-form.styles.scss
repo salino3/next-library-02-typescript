@@ -75,12 +75,17 @@
     font-size: 0.9rem;
     text-align: center;
     border: 1px solid transparent;
+    color: #721c24;
+    background: #f8d7da;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
 
-    &.success {
-      background-color: #ede0d4;
-      border-color: #b07d62;
-      color: #5c3a21;
-    }
+    // &.success {
+    //   background-color: #ede0d4;
+    //   border-color: #b07d62;
+    //   color: #5c3a21;
+    // }
 
     &.error {
       background-color: #f8d7da;
