@@ -94,6 +94,7 @@ export const BooksContent = () => {
             pageContext={pageContextAi.books}
             setBookDataAI={setBookDataAI}
             setShowModal={setShowModal}
+            pl="e.g., Show me books that cost a maximum of 50 euro with more than 200 pages."
           />
         </ModalApp>
       )}

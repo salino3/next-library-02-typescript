@@ -10,12 +10,14 @@ interface Props {
   setBookDataAI: Dispatch<SetStateAction<SearchBookResponse | null>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   pageContext: pageContextAi;
+  pl: string;
 }
 
 export const AIFormContent = ({
   setBookDataAI,
   setShowModal,
   pageContext,
+  pl,
 }: Props) => {
   const [state, formAction, isPending] = useActionState(
     async (prevState: any, formData: FormData) => {
@@ -51,7 +53,7 @@ export const AIFormContent = ({
           <textarea
             name="userPrompt"
             id="userPrompt"
-            placeholder="e.g., Show me books that cost a maximum of 50 euro with more than 200 pages."
+            placeholder={pl}
             rows={5}
             required
             /* 🛡️ Ties the textarea explicitly to the error area if an error occurs */
