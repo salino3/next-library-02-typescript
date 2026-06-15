@@ -3,12 +3,13 @@
 import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
 import { submitAIPromptAction } from "@/app/actions/ai-prompt";
 import { SearchBookResponse } from "@/app/service/interface";
+import { pageContextAi } from "@/app/store/interface";
 import "./ai-form.styles.scss";
 
 interface Props {
   setBookDataAI: Dispatch<SetStateAction<SearchBookResponse | null>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
-  pageContext: "books" | "authors";
+  pageContext: pageContextAi;
 }
 
 export const AIFormContent = ({

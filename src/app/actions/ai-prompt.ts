@@ -2,9 +2,10 @@
 
 import { askLibraryAI } from "@/lib/groq-assistant";
 import { SearchBookResponse } from "../service/interface";
+import { pageContextAi } from "../store/interface";
 
 export async function submitAIPromptAction(
-  pageContext: "books" | "authors",
+  pageContext: pageContextAi,
   prevState: any,
   formData: FormData,
 ) {

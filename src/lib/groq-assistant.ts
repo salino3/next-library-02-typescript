@@ -5,6 +5,7 @@ import {
   SearchAuthorResponse,
   SearchBookResponse,
 } from "@/app/service/interface";
+import { pageContextAi } from "@/app/store/interface";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -51,7 +52,7 @@ const availableTools = [
 
 export async function askLibraryAI(
   userPrompt: string,
-  pageContext: "books" | "authors",
+  pageContext: pageContextAi,
 ): Promise<SearchAuthorResponse | SearchBookResponse> {
   // 🟢 LOG 1: Track what the user typed into the textarea
   console.log("=== 📥 STEP 1: AI ASSISTANT TRIGGERED ===");
