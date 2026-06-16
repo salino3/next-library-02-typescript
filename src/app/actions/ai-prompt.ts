@@ -1,7 +1,7 @@
 "use server";
 
 import { askLibraryAI } from "@/lib/groq-assistant";
-import { SearchBookResponse } from "../service/interface";
+import { SearchAuthorResponse, SearchBookResponse } from "../service/interface";
 import { pageContextAi } from "../store/interface";
 
 export async function submitAIPromptAction(
@@ -20,10 +20,9 @@ export async function submitAIPromptAction(
   }
 
   try {
-    const aiResponse = (await askLibraryAI(
-      userPrompt,
-      pageContext,
-    )) as SearchBookResponse;
+    const aiResponse = (await askLibraryAI(userPrompt, pageContext)) as
+      | SearchBookResponse
+      | SearchAuthorResponse;
     return { success: true, data: aiResponse, error: "" };
   } catch (error: any) {
     return {

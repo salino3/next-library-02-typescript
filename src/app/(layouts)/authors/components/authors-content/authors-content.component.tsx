@@ -8,6 +8,8 @@ import { FoundedAuthor } from "../founded-author/founded-author.component";
 import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
 import { AuthorResponse, SearchAuthorResponse } from "@/app/service/interface";
 import "./authors-content.styles.scss";
+import { AIFormContent } from "@/app/common-app/ai-form/ai-form.component";
+import { pageContextAi } from "@/app/store/interface";
 
 export const AuthorsContent = () => {
   const searchParams = useSearchParams();
@@ -22,6 +24,10 @@ export const AuthorsContent = () => {
   const [authorData, setAuthorData] = useState<Promise<AuthorResponse> | null>(
     null,
   );
+  const [authorDataAI, setAuthorDataAI] = useState<SearchAuthorResponse | null>(
+    null,
+  );
+
   const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
@@ -106,7 +112,12 @@ export const AuthorsContent = () => {
 
       {showModal && (
         <ModalApp showModal={showModal} setShowModal={setShowModal}>
-          X
+          <AIFormContent
+            pageContext={pageContextAi.authors}
+            setDataAI={setAuthorDataAI}
+            setShowModal={setShowModal}
+            pl="e.g., Show me authors that calls Joe or Mario."
+          />
         </ModalApp>
       )}
     </div>
