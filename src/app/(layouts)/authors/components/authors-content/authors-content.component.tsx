@@ -103,7 +103,7 @@ export const AuthorsContent = () => {
 
       <FoundedAuthor authorData={authorData} />
 
-      <Suspense fallback={<p>Loading book list...</p>}>
+      <Suspense fallback={<p>Loading author list...</p>}>
         <ListAuthor
           dataPromise={dataAuthorsPromise}
           setAuthorData={setAuthorData}
