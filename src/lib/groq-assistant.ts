@@ -72,8 +72,9 @@ export async function askLibraryAI(
     CRITICAL INSTRUCTIONS:
     1. Ignore conversational greetings, pleasantries, or introductory phrases (like "Hi", "Hello", "I am searching for", "please give me").
     2. Isolate ONLY the core data request filters (e.g., price, pages, titles, authors) mentioned by the user.
-    3. Generate a clean, read-only SQL SELECT statement based purely on those core filters.
-    4. If you don't understand what user wants, you must call 'reportVagueInput' with a helpful error explanation. Do NOT guess a query
+    3. For find books titles it can be good idea if the title includes the user words, check it with CASE-INSENSITIVE MATCHING.
+    4. Generate a clean, read-only SQL SELECT statement based purely on those core filters.
+    5. If you don't understand what user wants, you must call 'reportVagueInput' with a helpful error explanation. Do NOT guess a query
 
     SCHEMA DETAILS:
     - Table 'books' columns: id, title, price, pages, author_id

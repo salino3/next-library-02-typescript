@@ -92,7 +92,7 @@ export const BooksContent = () => {
         <ModalApp showModal={showModal} setShowModal={setShowModal}>
           <AIFormContent
             pageContext={pageContextAi.books}
-            setBookDataAI={setBookDataAI}
+            setDataAI={setBookDataAI}
             setShowModal={setShowModal}
             pl="e.g., Show me books that cost a maximum of 50 euro with more than 200 pages."
           />

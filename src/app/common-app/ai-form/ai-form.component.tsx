@@ -2,19 +2,24 @@
 
 import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
 import { submitAIPromptAction } from "@/app/actions/ai-prompt";
-import { SearchBookResponse } from "@/app/service/interface";
+import {
+  SearchAuthorResponse,
+  SearchBookResponse,
+} from "@/app/service/interface";
 import { pageContextAi } from "@/app/store/interface";
 import "./ai-form.styles.scss";
 
 interface Props {
-  setBookDataAI: Dispatch<SetStateAction<SearchBookResponse | null>>;
+  setDataAI:
+    | Dispatch<SetStateAction<SearchBookResponse | null>>
+    | Dispatch<SetStateAction<SearchAuthorResponse | null>>;
   setShowModal: Dispatch<SetStateAction<boolean>>;
   pageContext: pageContextAi;
   pl: string;
 }
 
 export const AIFormContent = ({
-  setBookDataAI,
+  setDataAI,
   setShowModal,
   pageContext,
   pl,
@@ -33,10 +38,12 @@ export const AIFormContent = ({
   //
   useEffect(() => {
     if (state.data) {
-      setBookDataAI(state.data);
+      // server action 'submitAIPromptAction' already guarantees
+      // that it returns a valid object
+      setDataAI(state.data as unknown as any);
       setShowModal(false);
     }
-  }, [state, isPending]);
+  }, [state, pageContext, setShowModal]);
 
   return (
     <div className="aiFormWrapper">
