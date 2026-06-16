@@ -106,6 +106,7 @@ export const AuthorsContent = () => {
       <Suspense fallback={<p>Loading author list...</p>}>
         <ListAuthor
           dataPromise={dataAuthorsPromise}
+          authorDataAI={authorDataAI}
           setAuthorData={setAuthorData}
         />
       </Suspense>
