@@ -63,7 +63,7 @@ const SuspendedBookContent = ({
         <BoxText title={"Title"} value={book.title} />
         <BoxText title={"Pages"} value={book.pages} />
         <BoxText title={"Price €"} value={book.price} />
-        <BoxText title={"Author"} value={book.id} />
+        {book.author_id && <BoxText title={"Author"} value={book.author_id} />}
       </div>
     </>
   );
