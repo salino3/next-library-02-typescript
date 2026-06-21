@@ -26,7 +26,6 @@ export async function POST(request: Request) {
     }
 
     // 2️⃣ Call Firecrawl's global web search engine
-    // We limit to 3 authoritative results to keep our Groq token usage fast and low-cost
     const firecrawlResponse = await fetch(
       "https://api.firecrawl.dev/v2/search",
       {
@@ -53,12 +52,32 @@ export async function POST(request: Request) {
 
     const searchData = await firecrawlResponse.json();
 
-    // Map through Firecrawl's web results to build a rich markdown context for Groq
-    const webContext = searchData.data
-      ?.map(
-        (item: any) =>
-          `Source Title: ${item.title}\nURL: ${item.url}\nContent:\n${item.markdown || item.description}`,
-      )
+    // Firecrawl can return items inside .data, .results, or directly as the object if it's an array root
+    // 1️⃣ Extract the clean search array from the 'web' key provided by Firecrawl
+    const searchItems = Array.isArray(searchData)
+      ? searchData
+      : searchData.web || searchData.data || searchData.results || [];
+
+    if (!searchItems || searchItems.length === 0) {
+      return NextResponse.json(
+        { error: "No relevant web data found for this book query" },
+        { status: 404 },
+      );
+    }
+
+    // 2️⃣ Build the context safely. We rename the inner parameter to 'resultItem' to avoid any 'web' keyword clashes!
+    const webContext = searchItems.web
+      .map((resultItem: any) => {
+        const title = resultItem?.title || "Untitled";
+        const url = resultItem?.url || "N/A";
+        const content =
+          resultItem?.markdown ||
+          resultItem?.description ||
+          resultItem?.snippet ||
+          "";
+
+        return `Source Title: ${title}\nURL: ${url}\nContent:\n${content}`;
+      })
       .join("\n\n---\n\n");
 
     // 3️⃣ Send the rich clean data to Groq for strict structural parsing
@@ -97,7 +116,7 @@ export async function POST(request: Request) {
           content: `User Book Search Target: "${query}"\n\nFirecrawl Gathered Web Data:\n${webContext}`,
         },
       ],
-      temperature: 0.1, // Forces strict adherence to the schema instructions
+      temperature: 0.1,
     });
 
     const aiCleanPayloadString =
