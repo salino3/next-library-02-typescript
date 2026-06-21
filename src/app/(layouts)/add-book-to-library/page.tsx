@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ServicesApp } from "@/app/service/service-app";
 import "./add-book-to-library.styles.scss";
 
 // Matches your TARGET FORM JSON SCHEMA perfectly
@@ -22,7 +23,6 @@ export default function BookAutofillForm() {
   const [submittingDB, setSubmittingDB] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
 
-  // Main state holding the form data
   const [formData, setFormData] = useState<FormData>({
     author_data: { name: "", bio: "" },
     book_data: { title: "", price: 0, pages: 0 },
@@ -59,33 +59,20 @@ export default function BookAutofillForm() {
     }
   };
 
-  // 2️⃣ STEP 2: Send the structured payload to your Python FastAPI Atomic Endpoint
+  //
   const handleFinalDatabaseSubmit = async () => {
     setSubmittingDB(true);
     setStatusMessage("Saving atomic record to PostgreSQL...");
 
-    // try {
-    //   const response = await fetch(
-    //     "http://localhost:8000/save-data/new-author/book/",
-    //     {
-    //       method: "POST",
-    //       headers: { "Content-Type": "application/json" },
-    //       body: JSON.stringify(formData), // Sends the exact structure FastAPI expects
-    //     },
-    // //   );
+    try {
+      const result = await ServicesApp.addBookToLibrary(formData);
 
-    //   const result = await response.json();
-
-    //   if (!response.ok) {
-    //     throw new Error(result.detail || "Failed to commit data to database");
-    //   }
-
-    //   setStatusMessage(`Success! ${result.message}`);
-    // } catch (error: any) {
-    //   setStatusMessage(`Database Error: ${error.message}`);
-    // } finally {
-    //   setSubmittingDB(false);
-    // }
+      setStatusMessage(`Success! ${result && result.message}`);
+    } catch (error: any) {
+      setStatusMessage(`Database Error: ${error.message}`);
+    } finally {
+      setSubmittingDB(false);
+    }
   };
 
   return (
