@@ -2,20 +2,8 @@
 
 import { useState } from "react";
 import { ServicesApp } from "@/app/service/service-app";
+import { BookAutofillFormProps } from "@/app/service/interface";
 import "./add-book-to-library.styles.scss";
-
-// Matches your TARGET FORM JSON SCHEMA perfectly
-interface FormData {
-  author_data: {
-    name: string;
-    bio: string;
-  };
-  book_data: {
-    title: string;
-    price: number;
-    pages: number;
-  };
-}
 
 export default function BookAutofillForm() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,9 +11,9 @@ export default function BookAutofillForm() {
   const [submittingDB, setSubmittingDB] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<BookAutofillFormProps>({
     author_data: { name: "", bio: "" },
-    book_data: { title: "", price: 0, pages: 0 },
+    book_data: { title: "", price: null, pages: null },
   });
 
   // 1️⃣ STEP 1: Fetch data from Firecrawl + Groq via your Next.js API route
@@ -45,7 +33,7 @@ export default function BookAutofillForm() {
 
       if (!response.ok) throw new Error("Failed to generate data");
 
-      const data: FormData = await response.json();
+      const data: BookAutofillFormProps = await response.json();
 
       // Update form state with the exact structure required
       setFormData(data);
@@ -171,7 +159,7 @@ export default function BookAutofillForm() {
             Price ($):
             <input
               type="number"
-              value={formData.book_data.price}
+              value={formData.book_data.price ?? ""}
               onChange={(e) =>
                 setFormData({
                   ...formData,
@@ -189,7 +177,7 @@ export default function BookAutofillForm() {
             Pages:
             <input
               type="number"
-              value={formData.book_data.pages}
+              value={formData.book_data.pages ?? ""}
               onChange={(e) =>
                 setFormData({
                   ...formData,

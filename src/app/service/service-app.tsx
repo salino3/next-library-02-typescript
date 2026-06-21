@@ -2,7 +2,7 @@ import { CONSTANTS_SERVER } from "@/lib/constants-server";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import {
   AuthorResponse,
-  BookAutofillForm,
+  BookAutofillFormProps,
   BookResponse,
   SearchAuthorResponse,
   SearchBookResponse,
@@ -99,7 +99,7 @@ export class ServicesApp {
 
   //
   public static async addBookToLibrary(
-    objForm: BookAutofillForm,
+    objForm: BookAutofillFormProps,
   ): Promise<{ success: boolean; message: string }> {
     return await axios
       .post(`${CONSTANTS_SERVER.URL_BACK}save-data/new-author/book`, objForm)
