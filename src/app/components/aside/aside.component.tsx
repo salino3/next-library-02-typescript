@@ -1,7 +1,9 @@
 "use client";
+import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { useProviderSelector } from "@/app/store/provider";
 import { ImageComponent } from "@/app/common-app/image/image.component";
+import { routesApp } from "@/app/store/interface";
 import "./aside.styles.scss";
 
 export const Aside = () => {
@@ -15,6 +17,9 @@ export const Aside = () => {
         <div className="boxTitle">
           <h3> Aside Component</h3>
         </div>
+        <Link href={routesApp.newBookToLibrary} className="">
+          Add new book to library
+        </Link>
         <div className="publicityContainer">
           <ImageComponent
             vertical={isMobile}
