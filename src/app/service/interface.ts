@@ -22,3 +22,8 @@ export interface SearchBookResponse {
   total: number;
   results: BookResponse[];
 }
+
+export interface BookAutofillFormProps {
+  author_data: Omit<AuthorResponse, "id">;
+  book_data: Omit<BookResponse, "id" | "author_id">;
+}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useProviderSelector } from "@/app/store/provider";
 import { MenuIconHeader } from "@/app/icons/menu-icon-header";
+import { routesApp } from "@/app/store/interface";
 import "./main-header.styles.scss";
 
 interface LinkApp {
@@ -15,15 +16,15 @@ interface LinkApp {
 // Links <nav>
 const linksApp: LinkApp[] = [
   {
-    pathName: "/",
+    pathName: routesApp.dashboard,
     title: "Dashboard",
   },
   {
-    pathName: "/books",
+    pathName: routesApp.books,
     title: "Books",
   },
   {
-    pathName: "/authors",
+    pathName: routesApp.authors,
     title: "Authors",
   },
 ];

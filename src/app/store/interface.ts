@@ -1,3 +1,17 @@
+export interface RoutesAppType {
+  dashboard: string;
+  books: string;
+  authors: string;
+  newBookToLibrary: string;
+}
+
+export const routesApp: RoutesAppType = {
+  dashboard: "/",
+  books: "/books",
+  authors: "/authors",
+  newBookToLibrary: "/add-book-to-library",
+};
+
 export enum Theme {
   dark = "dark",
   light = "light",
