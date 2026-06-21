@@ -87,29 +87,31 @@ export async function POST(request: Request) {
         {
           role: "system",
           content: `You are a rigid data processing compiler. Your single duty is to process raw markdown web results and format them into a valid JSON object matching the user's TARGET SCHEMA.
-          
-          EXTRACTION SPECIFICATIONS:
-          1. "author_data.name": Extract the accurate author's full name.
-          2. "author_data.bio": Summarize a professional, clean biography (maximum 3 or 4 sentences).
-          3. "book_data.title": Extract the official metadata book title.
+      
+      EXTRACTION SPECIFICATIONS:
+      1. "author_data.name": Extract the accurate author's full name.
+      2. "author_data.bio": Summarize a professional, clean biography (maximum 3 or 4 sentences).
+      3. "book_data.title": Extract the official metadata book title.
           4. "book_data.price": Find or estimate a standard retail whole integer pricing number (e.g. 15, 24, 45). It must be a raw NUMBER/INTEGER, not a string.
-          5. "book_data.pages": Locate the actual page count. Must be a raw NUMBER/INTEGER. If not found in the text, guess a normal average length (e.g., 300).
-          
-          CRITICAL OUTPUT RULE:
-          Return exclusively raw JSON. Do not include markdown code block syntax (like \`\`\`json ... \`\`\`), no conversational intros, and no trailing explanations. Just the raw text convertible by JSON.parse().
-          
-          TARGET FORM JSON SCHEMA:
-          {
-            "author_data": {
-              "name": "string",
-              "bio": "string"
-            },
-            "book_data": {
-              "title": "string",
-              "price": number,
-              "pages": number
-            }
-          }`,
+          5. "book_data.pages": Locate the actual page count. Must be a raw NUMBER/INTEGER (e.g. 100, 125, 450). If not found in the text, it can be null, .
+      
+      CRITICAL OUTPUT RULES:
+      - Return EXCLUSIVELY raw JSON.
+      - Do NOT include markdown code block backticks (like \`\`\`json ... \`\`\`).
+      - Do NOT include any conversational intros or trailing explanations. The very first character must be '{' and the very last character must be '}'.
+      
+      TARGET FORM JSON SCHEMA:
+      {
+        "author_data": {
+          "name": "string",
+          "bio": "string"
+        },
+        "book_data": {
+          "title": "string",
+          "price": number or null,
+          "pages": number or null
+        }
+      }`,
         },
         {
           role: "user",
