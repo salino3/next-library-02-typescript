@@ -73,7 +73,7 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
 
         <div style={{ display: "flex", gap: "15px" }}>
           <label style={{ flex: 1 }}>
-            Price ($):
+            Price (€):
             <input
               type="number"
               name="price"

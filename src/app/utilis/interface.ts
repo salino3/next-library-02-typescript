@@ -16,7 +16,7 @@ export interface StateAIAutofillAction {
 export interface StateAddBookDataAction {
   success: boolean;
   error: string;
-  data?: BookAutofillFormProps | null;
+  data: BookAutofillFormProps | null;
 }
 
 export interface ActionStateAuthorAction {

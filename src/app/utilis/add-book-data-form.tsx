@@ -1,3 +1,6 @@
+"use server";
+
+import { ServicesApp } from "../service/service-app";
 import { BookAutofillFormProps } from "../service/interface";
 import { StateAddBookDataAction } from "./interface";
 
@@ -32,9 +35,27 @@ export const addBookDataForm = async (
     };
   }
 
-  return {
-    success: false,
-    data: nestedResult,
-    error: "",
-  };
+  try {
+    await ServicesApp.addBookToLibrary(nestedResult);
+
+    return {
+      success: true,
+      data: null,
+      error: "",
+    };
+  } catch (serverError: unknown) {
+    if (serverError instanceof Error) {
+      return {
+        success: false,
+        data: nestedResult,
+        error: `Database Failure: ${serverError.message || "Could not register book."}`,
+      };
+    }
+
+    return {
+      success: false,
+      data: nestedResult,
+      error: "An unknown database exception or execution error took place.",
+    };
+  }
 };

@@ -1,16 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ServicesApp } from "@/app/service/service-app";
 import { AIAutofillForm } from "./components/ai-autofill-form";
 import { AddBookForm } from "./components/add-book-form";
 import { BookAutofillFormProps } from "@/app/service/interface";
 import "./add-book-to-library.styles.scss";
 
 export default function BookAutofillForm() {
-  const [submittingDB, setSubmittingDB] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("");
-
   const [formData, setFormData] = useState<BookAutofillFormProps>({
     author_data: { name: "", bio: "" },
     book_data: { title: "", price: null, pages: null },
@@ -35,22 +31,6 @@ export default function BookAutofillForm() {
       }));
     };
 
-  //
-  const handleFinalDatabaseSubmit = async () => {
-    setSubmittingDB(true);
-    setStatusMessage("Saving atomic record to PostgreSQL...");
-
-    try {
-      const result = await ServicesApp.addBookToLibrary(formData);
-
-      setStatusMessage(`Success! ${result && result.message}`);
-    } catch (error: any) {
-      setStatusMessage(`Database Error: ${error.message}`);
-    } finally {
-      setSubmittingDB(false);
-    }
-  };
-
   return (
     <div
       className="LayoutBookAutofillForm"
@@ -61,14 +41,12 @@ export default function BookAutofillForm() {
         fontFamily: "sans-serif",
       }}
     >
-      <h2>AI Book & Author Registry</h2>
+      <h1>AI Book & Author Registry</h1>
 
-      {/* Search Input Bar */}
       <AIAutofillForm setFormData={setFormData} />
 
       <hr />
 
-      {/* Editable Form Fields (Pre-filled by AI state updates) */}
       <AddBookForm formData={formData} handleChangeForm={handleChangeForm} />
     </div>
   );
