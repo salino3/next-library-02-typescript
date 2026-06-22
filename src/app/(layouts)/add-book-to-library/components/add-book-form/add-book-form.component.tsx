@@ -23,6 +23,7 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
       error: "",
     },
   );
+
   return (
     <form
       style={{
@@ -32,8 +33,9 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
         marginTop: "1.5rem",
       }}
       className="rootAddBookForm"
+      action={formAction}
     >
-      <fieldset disabled={false}>
+      <fieldset disabled={isPending}>
         <h3>Author Information</h3>
         <label>
           Author Name:
@@ -93,14 +95,8 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
           </label>
         </div>
 
-        {/* Final Database Action Button */}
-        {/* <button
-          onClick={handleFinalDatabaseSubmit}
-          disabled={
-            submittingDB ||
-            !formData.book_data.title ||
-            !formData.author_data.name
-          }
+        <button
+          disabled={isPending}
           style={{
             marginTop: "1.5rem",
             padding: "12px",
@@ -111,10 +107,10 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
             cursor: "pointer",
           }}
         >
-          {submittingDB ? "Saving to System..." : "Confirm & Save Data"}
+          {isPending ? "Saving to System..." : "Confirm & Save Data"}
         </button>
 
-        {statusMessage && (
+        {state.error && (
           <div
             style={{
               marginTop: "1rem",
@@ -124,9 +120,9 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
               fontSize: "14px",
             }}
           >
-            {statusMessage}
+            {state.error}
           </div>
-        )} */}
+        )}
       </fieldset>
     </form>
   );
