@@ -15,9 +15,8 @@ export interface StateAIAutofillAction {
 
 export const AIAutofillForm = ({ setFormData }: Props) => {
   const [state, formAction, isPending] = useActionState(
-    async (prevState: StateAIAutofillAction, formData: FormData) => {
-      return handleAIFetch(prevState, formData);
-    },
+    async (prevState: StateAIAutofillAction, formData: FormData) =>
+      handleAIFetch(prevState, formData),
     {
       success: false,
       data: null,
@@ -25,7 +24,7 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
     },
   );
 
-  // 🌟 Clean up tracking dependency logic
+  //
   useEffect(() => {
     if (state?.success && state?.data) {
       setFormData(state.data);
@@ -34,7 +33,7 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
 
   return (
     <form
-      action={formAction} // 🌟 FIX: Changed 'onSubmit' to 'action' to resolve the crash and warning
+      action={formAction}
       className="rootAIAutofillForm"
       style={{
         display: "flex",
@@ -59,7 +58,6 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
         </button>
       </fieldset>
 
-      {/* Helper status message block */}
       {state?.error && (
         <p
           style={{

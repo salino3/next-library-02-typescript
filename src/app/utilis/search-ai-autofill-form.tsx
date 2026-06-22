@@ -1,5 +1,3 @@
-"use server";
-
 import { BookAutofillFormProps } from "../service/interface";
 import { StateAIAutofillAction } from "./interface";
 
@@ -31,7 +29,7 @@ export const handleAIFetch = async (
     return {
       success: true,
       data,
-      error: "Form auto-filled successfully! Please review before saving.",
+      error: "",
     };
   } catch (error: unknown) {
     if (error instanceof Error) {
