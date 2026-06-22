@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
-import {
-  ActionStateBooksAction,
-  searchBooksAction,
-} from "@/app/utilis/search-books-form";
+import { searchBooksAction } from "@/app/utilis/search-books-form";
 import { SubmitBasicBtn } from "@/app/common-app/submit-basic-btn/submit-basic-btn.component";
+import { ActionStateBooksAction } from "@/app/utilis/interface";
 import "./form-search-book.styles.scss";
 
 interface Props {

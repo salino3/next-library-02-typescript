@@ -1,5 +1,6 @@
-import { BookAutofillFormProps } from "@/app/service/interface";
 import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
+import { handleAIFetch } from "@/app/utilis/search-ai-autofill-form";
+import { BookAutofillFormProps } from "@/app/service/interface";
 import "./ai-autofill-form.styles.scss";
 
 interface Props {
@@ -23,54 +24,6 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
       error: "",
     },
   );
-
-  // 1️⃣ STEP 1: Fetch data from Firecrawl + Groq via your Next.js API route
-  const handleAIFetch = async (
-    prevState: StateAIAutofillAction,
-    formData: FormData,
-  ) => {
-    // This will now execute perfectly because 'action=' ensures a true FormData object is passed!
-    const aiQuery = formData.get("aiQuery") as string;
-
-    if (!aiQuery || !aiQuery.trim()) {
-      return {
-        success: false,
-        data: null,
-        error: "Please enter a valid book title or description.",
-      };
-    }
-
-    try {
-      const response = await fetch("/api/ai-autofill", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: aiQuery }),
-      });
-
-      if (!response.ok) throw new Error("Failed to generate data");
-
-      const data: BookAutofillFormProps = await response.json();
-
-      return {
-        success: true,
-        data,
-        error: "Form auto-filled successfully! Please review before saving.",
-      };
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        return {
-          success: false,
-          data: null,
-          error: `AI Error: ${error.message}`,
-        };
-      }
-      return {
-        success: false,
-        data: null,
-        error: "An unknown error occurred during execution.",
-      };
-    }
-  };
 
   // 🌟 Clean up tracking dependency logic
   useEffect(() => {

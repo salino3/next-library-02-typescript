@@ -1,10 +1,8 @@
 import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
 
-import {
-  ActionStateAuthorAction,
-  searchAuthorAction,
-} from "@/app/utilis/search-author-form";
+import { searchAuthorAction } from "@/app/utilis/search-author-form";
 import { SubmitBasicBtnAuthors } from "@/app/common-app/submit-basic-btn-authors/submit-basic-btn-authors.component";
+import { ActionStateAuthorAction } from "@/app/utilis/interface";
 import "./form-search-book.styles.scss";
 
 interface Props {
