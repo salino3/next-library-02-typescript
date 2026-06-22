@@ -1,6 +1,10 @@
 "use server";
 
-import { BookAutofillFormProps } from "../service/interface";
+import {
+  BookAutofillFormProps,
+  SearchAuthorResponse,
+  SearchBookResponse,
+} from "../service/interface";
 
 export interface StateAIAutofillAction {
   success: boolean;
@@ -12,6 +16,12 @@ export interface ActionStateAuthorAction {
   success: boolean;
   error: string;
   name?: string;
+}
+
+export interface ActionStateAIFormAction {
+  success: boolean;
+  error: string;
+  data: SearchAuthorResponse | SearchBookResponse | null;
 }
 
 export interface ActionStateBooksAction {

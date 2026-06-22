@@ -7,6 +7,7 @@ import {
   SearchBookResponse,
 } from "@/app/service/interface";
 import { pageContextAi } from "@/app/store/interface";
+import { ActionStateAIFormAction } from "@/app/utilis/interface";
 import "./ai-form.styles.scss";
 
 interface Props {
@@ -25,7 +26,7 @@ export const AIFormContent = ({
   pl,
 }: Props) => {
   const [state, formAction, isPending] = useActionState(
-    async (prevState: any, formData: FormData) => {
+    async (prevState: ActionStateAIFormAction, formData: FormData) => {
       return submitAIPromptAction(pageContext, prevState, formData);
     },
     {
