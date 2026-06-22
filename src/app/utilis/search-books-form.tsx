@@ -1,10 +1,6 @@
 "use server";
 
-export interface ActionStateBooksAction {
-  success: boolean;
-  error: string;
-  title?: string;
-}
+import { ActionStateBooksAction } from "./interface";
 
 //
 export async function searchBooksAction(

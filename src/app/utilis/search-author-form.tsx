@@ -1,10 +1,6 @@
 "use server";
 
-export interface ActionStateAuthorAction {
-  success: boolean;
-  error: string;
-  name?: string;
-}
+import { ActionStateAuthorAction } from "./interface";
 
 //
 export async function searchAuthorAction(

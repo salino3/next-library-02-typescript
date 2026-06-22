@@ -1,0 +1,129 @@
+import { useActionState } from "react";
+import { addBookDataForm } from "@/app/utilis/add-book-data-form";
+import { BookAutofillFormProps } from "@/app/service/interface";
+import { StateAddBookDataAction } from "@/app/utilis/interface";
+import "./add-book-form.style.scss";
+
+interface Props {
+  formData: BookAutofillFormProps;
+  handleChangeForm: <K extends keyof BookAutofillFormProps>(
+    key: K,
+  ) => (
+    nestedKey: keyof BookAutofillFormProps[K] & string,
+  ) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
+
+export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
+  const [state, formAction, isPending] = useActionState(
+    async (prevState: StateAddBookDataAction, formData: FormData) =>
+      addBookDataForm(prevState, formData),
+    {
+      success: false,
+      data: null,
+      error: "",
+    },
+  );
+
+  return (
+    <form
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "15px",
+        marginTop: "1.5rem",
+      }}
+      className="rootAddBookForm"
+      action={formAction}
+    >
+      <fieldset disabled={isPending}>
+        <h3>Author Information</h3>
+        <label>
+          Author Name:
+          <input
+            type="text"
+            name="name"
+            value={formData.author_data.name}
+            onChange={(e) => handleChangeForm("author_data")("name")}
+            style={{ width: "100%", padding: "6px", marginTop: "4px" }}
+          />
+        </label>
+
+        <label>
+          Author Biography:
+          <textarea
+            rows={3}
+            name="bio"
+            value={formData.author_data.bio}
+            onChange={(e) => handleChangeForm("author_data")("bio")}
+            style={{ width: "100%", padding: "6px", marginTop: "4px" }}
+          />
+        </label>
+
+        <h3>Book Information</h3>
+        <label>
+          Book Title:
+          <input
+            type="text"
+            value={formData.book_data.title}
+            name="title"
+            onChange={(e) => handleChangeForm("book_data")("title")}
+            style={{ width: "100%", padding: "6px", marginTop: "4px" }}
+          />
+        </label>
+
+        <div style={{ display: "flex", gap: "15px" }}>
+          <label style={{ flex: 1 }}>
+            Price (€):
+            <input
+              type="number"
+              name="price"
+              value={formData.book_data.price ?? ""}
+              onChange={(e) => handleChangeForm("book_data")("price")}
+              style={{ width: "100%", padding: "6px", marginTop: "4px" }}
+            />
+          </label>
+
+          <label style={{ flex: 1 }}>
+            Pages:
+            <input
+              type="number"
+              name="pages"
+              value={formData.book_data.pages ?? ""}
+              onChange={(e) => handleChangeForm("book_data")("pages")}
+              style={{ width: "100%", padding: "6px", marginTop: "4px" }}
+            />
+          </label>
+        </div>
+
+        <button
+          disabled={isPending}
+          style={{
+            marginTop: "1.5rem",
+            padding: "12px",
+            backgroundColor: "#0070f3",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          {isPending ? "Saving to System..." : "Confirm & Save Data"}
+        </button>
+
+        {state.error && (
+          <div
+            style={{
+              marginTop: "1rem",
+              padding: "10px",
+              borderRadius: "4px",
+              background: "#f0f0f0",
+              fontSize: "14px",
+            }}
+          >
+            {state.error}
+          </div>
+        )}
+      </fieldset>
+    </form>
+  );
+};

@@ -3,10 +3,11 @@
 import { askLibraryAI } from "@/lib/groq-assistant";
 import { SearchAuthorResponse, SearchBookResponse } from "../service/interface";
 import { pageContextAi } from "../store/interface";
+import { ActionStateAIFormAction } from "../utilis/interface";
 
 export async function submitAIPromptAction(
   pageContext: pageContextAi,
-  prevState: any,
+  prevState: ActionStateAIFormAction,
   formData: FormData,
 ) {
   const userPrompt = formData.get("userPrompt") as string;
