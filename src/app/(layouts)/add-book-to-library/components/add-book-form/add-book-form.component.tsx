@@ -1,4 +1,7 @@
+import { useActionState } from "react";
+import { addBookDataForm } from "@/app/utilis/add-book-data-form";
 import { BookAutofillFormProps } from "@/app/service/interface";
+import { StateAddBookDataAction } from "@/app/utilis/interface";
 import "./add-book-form.style.scss";
 
 interface Props {
@@ -11,6 +14,15 @@ interface Props {
 }
 
 export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
+  const [state, formAction, isPending] = useActionState(
+    async (prevState: StateAddBookDataAction, formData: FormData) =>
+      addBookDataForm(prevState, formData),
+    {
+      success: false,
+      data: null,
+      error: "",
+    },
+  );
   return (
     <form
       style={{
@@ -27,6 +39,7 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
           Author Name:
           <input
             type="text"
+            name="name"
             value={formData.author_data.name}
             onChange={(e) => handleChangeForm("author_data")("name")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
@@ -37,6 +50,7 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
           Author Biography:
           <textarea
             rows={3}
+            name="bio"
             value={formData.author_data.bio}
             onChange={(e) => handleChangeForm("author_data")("bio")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
@@ -49,6 +63,7 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
           <input
             type="text"
             value={formData.book_data.title}
+            name="title"
             onChange={(e) => handleChangeForm("book_data")("title")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
@@ -59,6 +74,7 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
             Price ($):
             <input
               type="number"
+              name="price"
               value={formData.book_data.price ?? ""}
               onChange={(e) => handleChangeForm("book_data")("price")}
               style={{ width: "100%", padding: "6px", marginTop: "4px" }}
@@ -69,6 +85,7 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
             Pages:
             <input
               type="number"
+              name="pages"
               value={formData.book_data.pages ?? ""}
               onChange={(e) => handleChangeForm("book_data")("pages")}
               style={{ width: "100%", padding: "6px", marginTop: "4px" }}
