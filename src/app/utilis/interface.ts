@@ -10,6 +10,7 @@ export interface StateAIAutofillAction {
   success: boolean;
   error: string;
   data?: BookAutofillFormProps | null;
+  query: string;
 }
 
 export interface ActionStateAuthorAction {

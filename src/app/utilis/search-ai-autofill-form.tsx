@@ -12,6 +12,7 @@ export const handleAIFetch = async (
       success: false,
       data: null,
       error: "Please enter a valid book title or description.",
+      query: aiQuery,
     };
   }
 
@@ -30,6 +31,7 @@ export const handleAIFetch = async (
       success: true,
       data,
       error: "",
+      query: aiQuery,
     };
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -37,12 +39,14 @@ export const handleAIFetch = async (
         success: false,
         data: null,
         error: `AI Error: ${error.message}`,
+        query: aiQuery,
       };
     }
     return {
       success: false,
       data: null,
       error: "An unknown error occurred during execution.",
+      query: aiQuery,
     };
   }
 };

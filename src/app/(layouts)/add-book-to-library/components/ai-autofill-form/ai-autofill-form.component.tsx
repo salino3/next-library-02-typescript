@@ -1,16 +1,11 @@
 import { Dispatch, SetStateAction, useActionState, useEffect } from "react";
 import { handleAIFetch } from "@/app/utilis/search-ai-autofill-form";
 import { BookAutofillFormProps } from "@/app/service/interface";
+import { StateAIAutofillAction } from "@/app/utilis/interface";
 import "./ai-autofill-form.styles.scss";
 
 interface Props {
   setFormData: Dispatch<SetStateAction<BookAutofillFormProps>>;
-}
-
-export interface StateAIAutofillAction {
-  success: boolean;
-  error: string;
-  data?: BookAutofillFormProps | null;
 }
 
 export const AIAutofillForm = ({ setFormData }: Props) => {
@@ -21,6 +16,7 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
       success: false,
       data: null,
       error: "",
+      query: "",
     },
   );
 
@@ -48,6 +44,7 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
           placeholder="e.g., White Elephant book by Ana Doe"
           style={{ flex: 1, padding: "8px" }}
           name="aiQuery"
+          defaultValue={state?.query || ""}
         />
         <button
           type="submit"
