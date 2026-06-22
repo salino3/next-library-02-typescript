@@ -12,6 +12,15 @@ export default function BookAutofillForm() {
     book_data: { title: "", price: null, pages: null },
   });
 
+  // TODO: Add validation errors message
+  const [formErrorData, setFormErrorData] = useState<{
+    name: string;
+    title: string;
+  }>({
+    name: "",
+    title: "",
+  });
+
   //
   const handleChangeForm =
     <K extends keyof BookAutofillFormProps>(key: K) =>
