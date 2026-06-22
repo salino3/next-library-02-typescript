@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { ServicesApp } from "@/app/service/service-app";
-import { BookAutofillFormProps } from "@/app/service/interface";
 import { AIAutofillForm } from "./components/ai-autofill-form";
+import { AddBookForm } from "./components/add-book-form";
+import { BookAutofillFormProps } from "@/app/service/interface";
 import "./add-book-to-library.styles.scss";
 
 export default function BookAutofillForm() {
@@ -14,6 +15,25 @@ export default function BookAutofillForm() {
     author_data: { name: "", bio: "" },
     book_data: { title: "", price: null, pages: null },
   });
+
+  //
+  const handleChangeForm =
+    <K extends keyof BookAutofillFormProps>(key: K) =>
+    (nestedKey: keyof BookAutofillFormProps[K]) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const value = e.target.value;
+
+      setFormData((prev: BookAutofillFormProps) => ({
+        ...prev,
+        [key]: {
+          ...prev[key],
+          [nestedKey]:
+            nestedKey === "price" || nestedKey === "pages"
+              ? parseInt(value, 10) || 0
+              : value,
+        },
+      }));
+    };
 
   //
   const handleFinalDatabaseSubmit = async () => {
@@ -49,139 +69,7 @@ export default function BookAutofillForm() {
       <hr />
 
       {/* Editable Form Fields (Pre-filled by AI state updates) */}
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "15px",
-          marginTop: "1.5rem",
-        }}
-      >
-        <fieldset disabled={false}>
-          <h3>Author Information</h3>
-          <label>
-            Author Name:
-            <input
-              type="text"
-              value={formData.author_data.name}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  author_data: {
-                    ...formData.author_data,
-                    name: e.target.value,
-                  },
-                })
-              }
-              style={{ width: "100%", padding: "6px", marginTop: "4px" }}
-            />
-          </label>
-
-          <label>
-            Author Biography:
-            <textarea
-              rows={3}
-              value={formData.author_data.bio}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  author_data: { ...formData.author_data, bio: e.target.value },
-                })
-              }
-              style={{ width: "100%", padding: "6px", marginTop: "4px" }}
-            />
-          </label>
-
-          <h3>Book Information</h3>
-          <label>
-            Book Title:
-            <input
-              type="text"
-              value={formData.book_data.title}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  book_data: { ...formData.book_data, title: e.target.value },
-                })
-              }
-              style={{ width: "100%", padding: "6px", marginTop: "4px" }}
-            />
-          </label>
-
-          <div style={{ display: "flex", gap: "15px" }}>
-            <label style={{ flex: 1 }}>
-              Price ($):
-              <input
-                type="number"
-                value={formData.book_data.price ?? ""}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    book_data: {
-                      ...formData.book_data,
-                      price: parseInt(e.target.value) || 0,
-                    },
-                  })
-                }
-                style={{ width: "100%", padding: "6px", marginTop: "4px" }}
-              />
-            </label>
-
-            <label style={{ flex: 1 }}>
-              Pages:
-              <input
-                type="number"
-                value={formData.book_data.pages ?? ""}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    book_data: {
-                      ...formData.book_data,
-                      pages: parseInt(e.target.value) || 0,
-                    },
-                  })
-                }
-                style={{ width: "100%", padding: "6px", marginTop: "4px" }}
-              />
-            </label>
-          </div>
-
-          {/* Final Database Action Button */}
-          <button
-            onClick={handleFinalDatabaseSubmit}
-            disabled={
-              submittingDB ||
-              !formData.book_data.title ||
-              !formData.author_data.name
-            }
-            style={{
-              marginTop: "1.5rem",
-              padding: "12px",
-              backgroundColor: "#0070f3",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            {submittingDB ? "Saving to System..." : "Confirm & Save Data"}
-          </button>
-
-          {statusMessage && (
-            <div
-              style={{
-                marginTop: "1rem",
-                padding: "10px",
-                borderRadius: "4px",
-                background: "#f0f0f0",
-                fontSize: "14px",
-              }}
-            >
-              {statusMessage}
-            </div>
-          )}
-        </fieldset>
-      </form>
+      <AddBookForm formData={formData} handleChangeForm={handleChangeForm} />
     </div>
   );
 }
