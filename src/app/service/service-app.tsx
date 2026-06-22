@@ -1,5 +1,5 @@
 import { CONSTANTS_SERVER } from "@/lib/constants-server";
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import {
   AuthorResponse,
   BookAutofillFormProps,
