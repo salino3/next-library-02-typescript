@@ -21,12 +21,40 @@ export const BooksContent = () => {
   const [bookDataAI, setBookDataAI] = useState<SearchBookResponse | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
+  const fetchAndAccumulateBooks = async () => {
+    try {
+      // 1️⃣ Fetch the next slice from the server backend
+      const newSearchValue: SearchBookResponse =
+        await ServicesApp.getFilteredListBooks(searchTitle, pageSearch);
+
+      // 2️⃣ Update your Promise state correctly
+      setDataBooksPromise(async (prevPromise: Promise<SearchBookResponse>) => {
+        // If it's a completely fresh search, instantly return a resolved promise of the new slice
+        if (pageSearch === 0) {
+          return newSearchValue;
+        }
+
+        // 🌟 Await the previous promise data right here!
+        const prevData = await prevPromise;
+
+        return {
+          total: newSearchValue.total,
+          results: [...prevData.results, ...newSearchValue.results],
+        };
+      });
+    } catch (error) {
+      console.log("Failed to fetch paginated book entries: " + error);
+    }
+  };
+
+  //
   useEffect(() => {
-    setDataBooksPromise(
-      ServicesApp.getFilteredListBooks(searchTitle, pageSearch),
-    );
+    if (searchTitle || pageSearch > 0) {
+      fetchAndAccumulateBooks();
+    }
+
     setBookDataAI(null);
-  }, [searchTitle]);
+  }, [searchTitle, pageSearch]);
 
   return (
     <div className="rootBooksContent">
@@ -90,6 +118,8 @@ export const BooksContent = () => {
           dataPromise={dataBooksPromise}
           bookDataAI={bookDataAI}
           setBookData={setBookData}
+          pageSearch={pageSearch}
+          setPageSearch={setPageSearch}
         />
       </Suspense>
       {showModal && (
