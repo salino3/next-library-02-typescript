@@ -1,62 +1,36 @@
 "use client";
 
 import { useState } from "react";
+import { Aside } from "@/app/components/aside/aside.component";
+import { Footer } from "@/app/components/footer/footer.component";
 import { AIAutofillForm } from "./components/ai-autofill-form";
 import { AddBookForm } from "./components/add-book-form";
 import { BookAutofillFormProps } from "@/app/service/interface";
+import style from "../../page.module.scss";
 import "./add-book-to-library.styles.scss";
 
+const initialState: BookAutofillFormProps = {
+  author_data: { name: "", bio: "" },
+  book_data: { title: "", price: null, pages: null },
+};
+
 export default function BookAutofillForm() {
-  const [formData, setFormData] = useState<BookAutofillFormProps>({
-    author_data: { name: "", bio: "" },
-    book_data: { title: "", price: null, pages: null },
-  });
-
-  // TODO: Add validation errors message
-  const [formErrorData, setFormErrorData] = useState<{
-    name: string;
-    title: string;
-  }>({
-    name: "",
-    title: "",
-  });
-
-  //
-  const handleChangeForm =
-    <K extends keyof BookAutofillFormProps>(key: K) =>
-    (nestedKey: keyof BookAutofillFormProps[K]) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const value = e.target.value;
-
-      setFormData((prev: BookAutofillFormProps) => ({
-        ...prev,
-        [key]: {
-          ...prev[key],
-          [nestedKey]:
-            nestedKey === "price" || nestedKey === "pages"
-              ? parseInt(value, 10) || 0
-              : value,
-        },
-      }));
-    };
+  const [formData, setFormData] = useState<BookAutofillFormProps>(initialState);
 
   return (
-    <div
-      className="LayoutBookAutofillForm"
-      style={{
-        maxWidth: "600px",
-        margin: "2rem auto",
-        padding: "1rem",
-        fontFamily: "sans-serif",
-      }}
-    >
-      <h1>AI Book & Author Registry</h1>
+    <div className={style.rootHome}>
+      <Aside />
+      {/*  */}
+      <div className="LayoutBookAutofillForm">
+        <div className="containerPage">
+          <h1>AI Book & Author Registry</h1>
 
-      <AIAutofillForm setFormData={setFormData} />
+          <AIAutofillForm setFormData={setFormData} />
 
-      <hr />
-
-      <AddBookForm formData={formData} handleChangeForm={handleChangeForm} />
+          <AddBookForm formData={formData} setFormData={setFormData} />
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 }

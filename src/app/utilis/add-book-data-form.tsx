@@ -32,6 +32,10 @@ export const addBookDataForm = async (
       data: null,
       error:
         "Validation Error: Author Name and Book Title cannot be left blank.",
+      fieldErrors: {
+        name: isNameInvalid ? "Author name is required" : "",
+        title: isTitleInvalid ? "Book title is required" : "",
+      },
     };
   }
 
@@ -42,6 +46,7 @@ export const addBookDataForm = async (
       success: true,
       data: null,
       error: "",
+      fieldErrors: null,
     };
   } catch (serverError: unknown) {
     if (serverError instanceof Error) {
@@ -49,6 +54,7 @@ export const addBookDataForm = async (
         success: false,
         data: nestedResult,
         error: `Database Failure: ${serverError.message || "Could not register book."}`,
+        fieldErrors: null,
       };
     }
 
@@ -56,6 +62,7 @@ export const addBookDataForm = async (
       success: false,
       data: nestedResult,
       error: "An unknown database exception or execution error took place.",
+      fieldErrors: null,
     };
   }
 };

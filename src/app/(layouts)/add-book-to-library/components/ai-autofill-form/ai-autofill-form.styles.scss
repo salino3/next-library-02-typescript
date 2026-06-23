@@ -4,4 +4,40 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  fieldset {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    border-radius: 5px;
+    legend {
+      padding: 0 3px;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    .btnSubmit {
+      padding: 0.8rem;
+      cursor: pointer;
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 100px;
+    }
+
+    @media screen and (max-width: 724px) {
+      flex-direction: column;
+      .btnSubmit {
+        max-width: unset;
+      }
+    }
+  }
 }

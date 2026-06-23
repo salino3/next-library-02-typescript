@@ -28,17 +28,9 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
   }, [state, setFormData]);
 
   return (
-    <form
-      action={formAction}
-      className="rootAIAutofillForm"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-        marginBottom: "2rem",
-      }}
-    >
+    <form action={formAction} className="rootAIAutofillForm">
       <fieldset disabled={isPending}>
+        <legend>Ai Autofill Form</legend>
         <input
           type="text"
           placeholder="e.g., White Elephant book by Ana Doe"
@@ -46,11 +38,7 @@ export const AIAutofillForm = ({ setFormData }: Props) => {
           name="aiQuery"
           defaultValue={state?.query || ""}
         />
-        <button
-          type="submit"
-          disabled={isPending}
-          style={{ padding: "8px 16px" }}
-        >
+        <button type="submit" disabled={isPending} className="btnSubmit">
           {isPending ? "Analyzing..." : "AI Autofill"}
         </button>
       </fieldset>

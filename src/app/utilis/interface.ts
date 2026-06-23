@@ -1,5 +1,6 @@
 "use server";
 
+import { FormErrorProps } from "../(layouts)/add-book-to-library/components/add-book-form";
 import {
   BookAutofillFormProps,
   SearchAuthorResponse,
@@ -17,6 +18,7 @@ export interface StateAddBookDataAction {
   success: boolean;
   error: string;
   data: BookAutofillFormProps | null;
+  fieldErrors: FormErrorProps | null;
 }
 
 export interface ActionStateAuthorAction {
