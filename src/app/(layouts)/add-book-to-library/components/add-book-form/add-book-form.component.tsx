@@ -75,7 +75,6 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
     }
   }, [state?.fieldErrors]);
 
-  console.log("clog2", formErrorData);
   return (
     <form
       style={{
@@ -89,66 +88,75 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
     >
       <fieldset disabled={isPending}>
         <h3>Author Information</h3>
-        <label>
-          Author Name:
+        <div className="boxInput">
+          <label htmlFor="name">Author Name:</label>
           <input
             type="text"
             name="name"
+            id="name"
             className={formErrorData.name ? "errorInput" : ""}
             value={formData.author_data.name}
             onChange={handleChangeForm("author_data")("name")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
-        </label>
+        </div>
 
-        <label>
-          Author Biography:
+        <div className="boxInput">
+          <label htmlFor="bio">Author Biography:</label>
           <textarea
             rows={3}
             name="bio"
+            id="bio"
             value={formData.author_data.bio}
             onChange={handleChangeForm("author_data")("bio")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
-        </label>
+        </div>
 
         <h3>Book Information</h3>
-        <label>
-          Book Title:
+        <div className="boxInput">
+          <label htmlFor="title">Book Title:</label>
           <input
             type="text"
             value={formData.book_data.title}
             name="title"
+            id="title"
             className={formErrorData.title ? "errorInput" : ""}
             onChange={handleChangeForm("book_data")("title")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
-        </label>
+        </div>
 
         <div style={{ display: "flex", gap: "15px" }}>
-          <label style={{ flex: 1 }}>
-            Price (€):
+          <div className="boxInput">
+            <label htmlFor="price" style={{ flex: 1 }}>
+              Price (€):
+            </label>
             <input
               type="number"
               name="price"
+              id="price"
               value={formData.book_data.price ?? ""}
               onChange={handleChangeForm("book_data")("price")}
               style={{ width: "100%", padding: "6px", marginTop: "4px" }}
             />
-          </label>
+          </div>
 
-          <label style={{ flex: 1 }}>
-            Pages:
+          <div className="boxInput">
+            <label htmlFor="pages" style={{ flex: 1 }}>
+              Pages:
+            </label>
             <input
               type="number"
               name="pages"
+              id="pages"
               value={formData.book_data.pages ?? ""}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleChangeForm("book_data")("pages")(e)
               }
               style={{ width: "100%", padding: "6px", marginTop: "4px" }}
             />
-          </label>
+          </div>
         </div>
 
         <button
