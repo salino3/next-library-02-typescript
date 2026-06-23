@@ -9,7 +9,7 @@ import { BookAutofillFormProps } from "@/app/service/interface";
 import style from "../../page.module.scss";
 import "./add-book-to-library.styles.scss";
 
-const initialState: BookAutofillFormProps = {
+export const initialState: BookAutofillFormProps = {
   author_data: { name: "", bio: "" },
   book_data: { title: "", price: null, pages: null },
 };

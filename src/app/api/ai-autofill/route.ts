@@ -90,7 +90,7 @@ export async function POST(request: Request) {
       
       EXTRACTION SPECIFICATIONS:
       1. "author_data.name": Extract the accurate author's full name.
-      2. "author_data.bio": Summarize a professional, clean biography (maximum 3 or 4 sentences).
+      2. "author_data.bio": Summarize a professional, clean biography (maximum 3 sentences).
       3. "book_data.title": Extract the official metadata book title.
           4. "book_data.price": Find or estimate a standard retail whole integer pricing number (e.g. 15, 24, 45). It must be a raw NUMBER/INTEGER, not a string.
           5. "book_data.pages": Locate the actual page count. Must be a raw NUMBER/INTEGER (e.g. 100, 125, 450). If not found in the text, it can be null, .
