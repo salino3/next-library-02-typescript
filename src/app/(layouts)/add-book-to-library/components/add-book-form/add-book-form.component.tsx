@@ -1,4 +1,10 @@
-import { Dispatch, SetStateAction, useActionState, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useActionState,
+  useEffect,
+  useState,
+} from "react";
 import { addBookDataForm } from "@/app/utilis/add-book-data-form";
 import { BookAutofillFormProps } from "@/app/service/interface";
 import { StateAddBookDataAction } from "@/app/utilis/interface";
@@ -9,7 +15,7 @@ interface Props {
   setFormData: Dispatch<SetStateAction<BookAutofillFormProps>>;
 }
 
-interface FormErrorProps {
+export interface FormErrorProps {
   name: string;
   title: string;
 }
@@ -28,6 +34,7 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
       success: false,
       data: null,
       error: "",
+      fieldErrors: null,
     },
   );
 
@@ -59,6 +66,16 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
       }
     };
 
+  useEffect(() => {
+    if (state?.fieldErrors) {
+      setFormErrorData({
+        name: state.fieldErrors.name || "",
+        title: state.fieldErrors.title || "",
+      });
+    }
+  }, [state?.fieldErrors]);
+
+  console.log("clog2", formErrorData);
   return (
     <form
       style={{
