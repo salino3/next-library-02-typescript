@@ -7,9 +7,14 @@ import "./form-search-book.styles.scss";
 interface Props {
   setSearchTitle: Dispatch<SetStateAction<string>>;
   searchTitle: string;
+  setPageSearch: Dispatch<SetStateAction<number>>;
 }
 
-export const FormSearchBook = ({ setSearchTitle, searchTitle }: Props) => {
+export const FormSearchBook = ({
+  setSearchTitle,
+  searchTitle,
+  setPageSearch,
+}: Props) => {
   const [state, formAction, isPending] = useActionState<
     ActionStateBooksAction,
     FormData
@@ -19,6 +24,7 @@ export const FormSearchBook = ({ setSearchTitle, searchTitle }: Props) => {
   useEffect(() => {
     if (state.success) {
       setSearchTitle(state.title ?? "");
+      setPageSearch(0);
     }
   }, [state.success, state.title]);
 

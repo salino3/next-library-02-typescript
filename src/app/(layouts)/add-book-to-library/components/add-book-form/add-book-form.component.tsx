@@ -6,8 +6,10 @@ import {
   useState,
 } from "react";
 import { addBookDataForm } from "@/app/utilis/add-book-data-form";
+import { ModalApp } from "@/app/common-app/modal-app/modal-app.component";
 import { BookAutofillFormProps } from "@/app/service/interface";
 import { StateAddBookDataAction } from "@/app/utilis/interface";
+import { initialState } from "../../page";
 import "./add-book-form.style.scss";
 
 interface Props {
@@ -21,7 +23,8 @@ export interface FormErrorProps {
 }
 
 export const AddBookForm = ({ formData, setFormData }: Props) => {
-  // TODO: Add validation errors message
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   const [formErrorData, setFormErrorData] = useState<FormErrorProps>({
     name: "",
     title: "",
@@ -66,6 +69,7 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
       }
     };
 
+  //
   useEffect(() => {
     if (state?.fieldErrors) {
       setFormErrorData({
@@ -74,6 +78,14 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
       });
     }
   }, [state?.fieldErrors]);
+
+  //
+  useEffect(() => {
+    if (state?.success && !state?.data) {
+      setFormData(initialState);
+      setShowModal(true);
+    }
+  }, [state]);
 
   return (
     <form className="rootAddBookForm" action={formAction}>
@@ -157,6 +169,16 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
 
         {state.error && <span className="errorMessageForm">{state.error}</span>}
       </fieldset>
+
+      {showModal && (
+        <ModalApp
+          showModal={showModal}
+          title="✨ Library AI Assistant"
+          setShowModal={setShowModal}
+        >
+          <strong>Book and Author loaded on Library Data Base</strong>
+        </ModalApp>
+      )}
     </form>
   );
 };

@@ -112,7 +112,11 @@ export const AuthorsContent = () => {
       </Suspense>
 
       {showModal && (
-        <ModalApp showModal={showModal} setShowModal={setShowModal}>
+        <ModalApp
+          showModal={showModal}
+          title="✨ Ask at the Library AI Assistant"
+          setShowModal={setShowModal}
+        >
           <AIFormContent
             pageContext={pageContextAi.authors}
             setDataAI={setAuthorDataAI}

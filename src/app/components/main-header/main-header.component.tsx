@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useProviderSelector } from "@/app/store/provider";
-import { MenuIconHeader } from "@/app/icons/menu-icon-header";
-import { routesApp } from "@/app/store/interface";
+import { AsideProps, routesApp } from "@/app/store/interface";
 import "./main-header.styles.scss";
 
 interface LinkApp {
@@ -32,7 +31,10 @@ const linksApp: LinkApp[] = [
 export const MainHeader = () => {
   const pathName = usePathname();
 
-  const { setAsideValue } = useProviderSelector("setAsideValue");
+  const { setAsideValue, aside } = useProviderSelector(
+    "setAsideValue",
+    "aside",
+  );
 
   const [dbTime, setDbTime] = useState<string | null>(null);
 
@@ -91,7 +93,7 @@ export const MainHeader = () => {
           onClick={() => setAsideValue && setAsideValue()}
           className="btnAside"
         >
-          <MenuIconHeader />
+          {aside === AsideProps.open ? AsideProps.close : AsideProps.open}
         </button>
       </div>
     </div>

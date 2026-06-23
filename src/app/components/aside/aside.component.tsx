@@ -15,10 +15,10 @@ export const Aside = () => {
     <aside className={`rootAsideComponent aside_${aside}`}>
       <div className="containerAside">
         <div className="boxTitle">
-          <h3> Aside Component</h3>
+          <h3>Aside Component</h3>
         </div>
-        <Link href={routesApp.newBookToLibrary} className="">
-          Add new book to library
+        <Link href={routesApp.newBookToLibrary} className="linkNewBook">
+          <button>Add new book to library</button>
         </Link>
         <div className="publicityContainer">
           <ImageComponent

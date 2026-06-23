@@ -4,10 +4,16 @@ import "./modal-app.styles.scss";
 interface Props {
   showModal: boolean;
   setShowModal: Dispatch<SetStateAction<boolean>>;
+  title: string;
   children: React.ReactNode;
 }
 
-export const ModalApp = ({ showModal, setShowModal, children }: Props) => {
+export const ModalApp = ({
+  showModal,
+  setShowModal,
+  title,
+  children,
+}: Props) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -77,7 +83,7 @@ export const ModalApp = ({ showModal, setShowModal, children }: Props) => {
         aria-labelledby="modalTitle"
       >
         <header>
-          <h2>✨ Ask at the Library AI Assistant</h2>
+          <h2>{title}</h2>
           <button
             className="btnCloseModal"
             onClick={() => setShowModal(false)}

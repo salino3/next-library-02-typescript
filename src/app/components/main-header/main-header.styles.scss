@@ -106,7 +106,8 @@
       border-bottom: none;
       border-top-left-radius: 0.25rem;
       border-top-right-radius: 0.25rem;
-      padding: 0 5px;
+      min-width: 40px;
+      padding: 0 5px 2px;
       cursor: pointer;
 
       &:hover {
