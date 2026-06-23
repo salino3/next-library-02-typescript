@@ -1,6 +1,40 @@
 .rootAddBookForm {
-  .errorInput {
-    border: solid 2px red;
-    outline: solid 2px red;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    .boxInput {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      gap: 0.2rem;
+      .errorInput {
+        border: solid 2px red;
+        outline: solid 2px red;
+      }
+    }
+
+    .containerInputsNumbers {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: center;
+      width: 100%;
+      gap: 1rem;
+
+      @media screen and (max-width: 724px) {
+        flex-direction: column;
+      }
+    }
   }
 }

@@ -76,16 +76,7 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
   }, [state?.fieldErrors]);
 
   return (
-    <form
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "15px",
-        marginTop: "1.5rem",
-      }}
-      className="rootAddBookForm"
-      action={formAction}
-    >
+    <form className="rootAddBookForm" action={formAction}>
       <fieldset disabled={isPending}>
         <h3>Author Information</h3>
         <div className="boxInput">
@@ -97,7 +88,6 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
             className={formErrorData.name ? "errorInput" : ""}
             value={formData.author_data.name}
             onChange={handleChangeForm("author_data")("name")}
-            style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
         </div>
 
@@ -109,7 +99,6 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
             id="bio"
             value={formData.author_data.bio}
             onChange={handleChangeForm("author_data")("bio")}
-            style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
         </div>
 
@@ -123,29 +112,23 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
             id="title"
             className={formErrorData.title ? "errorInput" : ""}
             onChange={handleChangeForm("book_data")("title")}
-            style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
         </div>
 
-        <div style={{ display: "flex", gap: "15px" }}>
+        <div className="containerInputsNumbers">
           <div className="boxInput">
-            <label htmlFor="price" style={{ flex: 1 }}>
-              Price (€):
-            </label>
+            <label htmlFor="price">Price (€):</label>
             <input
               type="number"
               name="price"
               id="price"
               value={formData.book_data.price ?? ""}
               onChange={handleChangeForm("book_data")("price")}
-              style={{ width: "100%", padding: "6px", marginTop: "4px" }}
             />
           </div>
 
           <div className="boxInput">
-            <label htmlFor="pages" style={{ flex: 1 }}>
-              Pages:
-            </label>
+            <label htmlFor="pages">Pages:</label>
             <input
               type="number"
               name="pages"
@@ -154,7 +137,6 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleChangeForm("book_data")("pages")(e)
               }
-              style={{ width: "100%", padding: "6px", marginTop: "4px" }}
             />
           </div>
         </div>
