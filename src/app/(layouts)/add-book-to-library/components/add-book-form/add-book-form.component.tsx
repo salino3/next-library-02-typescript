@@ -89,6 +89,11 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
             value={formData.author_data.name}
             onChange={handleChangeForm("author_data")("name")}
           />
+          <span
+            className={formErrorData.name ? "errorMessageInput" : "height36"}
+          >
+            {formErrorData.name}
+          </span>
         </div>
 
         <div className="boxInput">
@@ -113,6 +118,11 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
             className={formErrorData.title ? "errorInput" : ""}
             onChange={handleChangeForm("book_data")("title")}
           />
+          <span
+            className={formErrorData.title ? "errorMessageInput" : "height36"}
+          >
+            {formErrorData.title}
+          </span>
         </div>
 
         <div className="containerInputsNumbers">
@@ -145,7 +155,7 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
           {isPending ? "Saving to System..." : "Confirm & Save Data"}
         </button>
 
-        {state.error && <div className="errorMessageForm">{state.error}</div>}
+        {state.error && <span className="errorMessageForm">{state.error}</span>}
       </fieldset>
     </form>
   );
