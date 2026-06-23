@@ -16,12 +16,15 @@ export const BooksContent = () => {
   >(() => ServicesApp.getFilteredListBooks("", 0));
 
   const [searchTitle, setSearchTitle] = useState<string>("");
+  const [pageSearch, setPageSearch] = useState<number>(0);
   const [bookData, setBookData] = useState<Promise<BookResponse> | null>(null);
   const [bookDataAI, setBookDataAI] = useState<SearchBookResponse | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
 
   useEffect(() => {
-    setDataBooksPromise(ServicesApp.getFilteredListBooks(searchTitle, 0));
+    setDataBooksPromise(
+      ServicesApp.getFilteredListBooks(searchTitle, pageSearch),
+    );
     setBookDataAI(null);
   }, [searchTitle]);
 
@@ -78,6 +81,7 @@ export const BooksContent = () => {
       <FormSearchBook
         setSearchTitle={setSearchTitle}
         searchTitle={searchTitle}
+        setPageSearch={setPageSearch}
       />
       <FoundedBook bookData={bookData} />
 
