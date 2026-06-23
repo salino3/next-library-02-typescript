@@ -50,6 +50,37 @@
       }
     }
 
+    .linkNewBook {
+      text-decoration: none;
+
+      button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        padding: 3px 5px;
+        font-weight: bold;
+
+        background-color: var(--color-tertiary-300);
+        color: var(--color-primary);
+        cursor: pointer;
+        transition:
+          color 0.5s ease,
+          background 1s ease;
+        &:hover {
+          border-color: var(--color-primary);
+          color: var(--color-secondary-050);
+          background-color: var(--color-tertiary);
+        }
+
+        &:active {
+          scale: (0.95);
+        }
+      }
+    }
+
     .publicityContainer {
       display: flex;
       flex-direction: column;
