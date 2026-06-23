@@ -1,4 +1,4 @@
-import { useActionState } from "react";
+import { Dispatch, SetStateAction, useActionState, useState } from "react";
 import { addBookDataForm } from "@/app/utilis/add-book-data-form";
 import { BookAutofillFormProps } from "@/app/service/interface";
 import { StateAddBookDataAction } from "@/app/utilis/interface";
@@ -6,14 +6,19 @@ import "./add-book-form.style.scss";
 
 interface Props {
   formData: BookAutofillFormProps;
-  handleChangeForm: <K extends keyof BookAutofillFormProps>(
-    key: K,
-  ) => (
-    nestedKey: keyof BookAutofillFormProps[K] & string,
-  ) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  setFormData: Dispatch<SetStateAction<BookAutofillFormProps>>;
 }
 
-export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
+export const AddBookForm = ({ formData, setFormData }: Props) => {
+  // TODO: Add validation errors message
+  const [formErrorData, setFormErrorData] = useState<{
+    name: string;
+    title: string;
+  }>({
+    name: "",
+    title: "",
+  });
+
   const [state, formAction, isPending] = useActionState(
     async (prevState: StateAddBookDataAction, formData: FormData) =>
       addBookDataForm(prevState, formData),
@@ -23,6 +28,25 @@ export const AddBookForm = ({ formData, handleChangeForm }: Props) => {
       error: "",
     },
   );
+
+  //
+  const handleChangeForm =
+    <K extends keyof BookAutofillFormProps>(key: K) =>
+    (nestedKey: keyof BookAutofillFormProps[K]) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const value = e.target.value;
+
+      setFormData((prev: BookAutofillFormProps) => ({
+        ...prev,
+        [key]: {
+          ...prev[key],
+          [nestedKey]:
+            nestedKey === "price" || nestedKey === "pages"
+              ? parseInt(value, 10) || 0
+              : value,
+        },
+      }));
+    };
 
   return (
     <form

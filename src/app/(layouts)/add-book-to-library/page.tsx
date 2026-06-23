@@ -6,39 +6,13 @@ import { AddBookForm } from "./components/add-book-form";
 import { BookAutofillFormProps } from "@/app/service/interface";
 import "./add-book-to-library.styles.scss";
 
+const initialState: BookAutofillFormProps = {
+  author_data: { name: "", bio: "" },
+  book_data: { title: "", price: null, pages: null },
+};
+
 export default function BookAutofillForm() {
-  const [formData, setFormData] = useState<BookAutofillFormProps>({
-    author_data: { name: "", bio: "" },
-    book_data: { title: "", price: null, pages: null },
-  });
-
-  // TODO: Add validation errors message
-  const [formErrorData, setFormErrorData] = useState<{
-    name: string;
-    title: string;
-  }>({
-    name: "",
-    title: "",
-  });
-
-  //
-  const handleChangeForm =
-    <K extends keyof BookAutofillFormProps>(key: K) =>
-    (nestedKey: keyof BookAutofillFormProps[K]) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const value = e.target.value;
-
-      setFormData((prev: BookAutofillFormProps) => ({
-        ...prev,
-        [key]: {
-          ...prev[key],
-          [nestedKey]:
-            nestedKey === "price" || nestedKey === "pages"
-              ? parseInt(value, 10) || 0
-              : value,
-        },
-      }));
-    };
+  const [formData, setFormData] = useState<BookAutofillFormProps>(initialState);
 
   return (
     <div
@@ -56,7 +30,7 @@ export default function BookAutofillForm() {
 
       <hr />
 
-      <AddBookForm formData={formData} handleChangeForm={handleChangeForm} />
+      <AddBookForm formData={formData} setFormData={setFormData} />
     </div>
   );
 }
