@@ -36,5 +36,22 @@
         flex-direction: column;
       }
     }
+
+    .btnSubmit {
+      padding: 0.8rem;
+      cursor: pointer;
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    .errorMessageForm {
+      padding: 0.6rem;
+      border-radius: 5px;
+      background: #f0f0f0;
+      font-size: 14px;
+    }
   }
 }

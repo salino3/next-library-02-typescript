@@ -141,34 +141,11 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
           </div>
         </div>
 
-        <button
-          disabled={isPending}
-          style={{
-            marginTop: "1.5rem",
-            padding: "12px",
-            backgroundColor: "#0070f3",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
+        <button disabled={isPending} className="btnSubmit">
           {isPending ? "Saving to System..." : "Confirm & Save Data"}
         </button>
 
-        {state.error && (
-          <div
-            style={{
-              marginTop: "1rem",
-              padding: "10px",
-              borderRadius: "4px",
-              background: "#f0f0f0",
-              fontSize: "14px",
-            }}
-          >
-            {state.error}
-          </div>
-        )}
+        {state.error && <div className="errorMessageForm">{state.error}</div>}
       </fieldset>
     </form>
   );
