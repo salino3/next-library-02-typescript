@@ -15,22 +15,16 @@ export default function BookAutofillForm() {
   const [formData, setFormData] = useState<BookAutofillFormProps>(initialState);
 
   return (
-    <div
-      className="LayoutBookAutofillForm"
-      style={{
-        maxWidth: "600px",
-        margin: "2rem auto",
-        padding: "1rem",
-        fontFamily: "sans-serif",
-      }}
-    >
-      <h1>AI Book & Author Registry</h1>
+    <div className="LayoutBookAutofillForm">
+      <div className="containerPage">
+        <h1>AI Book & Author Registry</h1>
 
-      <AIAutofillForm setFormData={setFormData} />
+        <AIAutofillForm setFormData={setFormData} />
 
-      <hr />
+        <hr />
 
-      <AddBookForm formData={formData} setFormData={setFormData} />
+        <AddBookForm formData={formData} setFormData={setFormData} />
+      </div>
     </div>
   );
 }
