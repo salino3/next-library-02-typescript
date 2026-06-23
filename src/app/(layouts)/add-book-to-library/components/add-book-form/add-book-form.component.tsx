@@ -9,12 +9,14 @@ interface Props {
   setFormData: Dispatch<SetStateAction<BookAutofillFormProps>>;
 }
 
+interface FormErrorProps {
+  name: string;
+  title: string;
+}
+
 export const AddBookForm = ({ formData, setFormData }: Props) => {
   // TODO: Add validation errors message
-  const [formErrorData, setFormErrorData] = useState<{
-    name: string;
-    title: string;
-  }>({
+  const [formErrorData, setFormErrorData] = useState<FormErrorProps>({
     name: "",
     title: "",
   });
@@ -42,10 +44,19 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
           ...prev[key],
           [nestedKey]:
             nestedKey === "price" || nestedKey === "pages"
-              ? parseInt(value, 10) || 0
+              ? Number(value) < 1
+                ? null
+                : parseInt(value, 10) || 0
               : value,
         },
       }));
+
+      if (nestedKey === "name" || nestedKey === "title") {
+        setFormErrorData((prev: FormErrorProps) => ({
+          ...prev,
+          [nestedKey]: "",
+        }));
+      }
     };
 
   return (
@@ -66,8 +77,9 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
           <input
             type="text"
             name="name"
+            className={formErrorData.name ? "errorInput" : ""}
             value={formData.author_data.name}
-            onChange={(e) => handleChangeForm("author_data")("name")}
+            onChange={handleChangeForm("author_data")("name")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
         </label>
@@ -78,7 +90,7 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
             rows={3}
             name="bio"
             value={formData.author_data.bio}
-            onChange={(e) => handleChangeForm("author_data")("bio")}
+            onChange={handleChangeForm("author_data")("bio")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
         </label>
@@ -90,7 +102,8 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
             type="text"
             value={formData.book_data.title}
             name="title"
-            onChange={(e) => handleChangeForm("book_data")("title")}
+            className={formErrorData.title ? "errorInput" : ""}
+            onChange={handleChangeForm("book_data")("title")}
             style={{ width: "100%", padding: "6px", marginTop: "4px" }}
           />
         </label>
@@ -102,7 +115,7 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
               type="number"
               name="price"
               value={formData.book_data.price ?? ""}
-              onChange={(e) => handleChangeForm("book_data")("price")}
+              onChange={handleChangeForm("book_data")("price")}
               style={{ width: "100%", padding: "6px", marginTop: "4px" }}
             />
           </label>
@@ -113,7 +126,9 @@ export const AddBookForm = ({ formData, setFormData }: Props) => {
               type="number"
               name="pages"
               value={formData.book_data.pages ?? ""}
-              onChange={(e) => handleChangeForm("book_data")("pages")}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleChangeForm("book_data")("pages")(e)
+              }
               style={{ width: "100%", padding: "6px", marginTop: "4px" }}
             />
           </label>
