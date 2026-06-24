@@ -118,7 +118,6 @@ export const BooksContent = () => {
           dataPromise={dataBooksPromise}
           bookDataAI={bookDataAI}
           setBookData={setBookData}
-          pageSearch={pageSearch}
           setPageSearch={setPageSearch}
         />
       </Suspense>

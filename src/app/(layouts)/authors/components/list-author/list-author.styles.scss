@@ -25,9 +25,53 @@
     gap: 1rem;
     width: 100%;
 
+    justify-items: center;
+    justify-content: center;
+    // align-items: start;
+    padding: 0.5rem;
     @media screen and (max-width: 724px) {
       display: flex;
       flex-wrap: wrap;
+    }
+  }
+
+  .btnStretchListWrapper {
+    display: inline-block; // Keeps the wrapper tightly sized to the button
+    width: 100%;
+    &[data-disabled="true"] {
+      cursor: not-allowed; // Forces the 🚫 symbol across the entire area!
+    }
+
+    .btnStretchList {
+      background-color: #8b5a2b;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+      padding: 0.4rem 0;
+      font-size: large;
+      font-family: cursive;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 3px;
+      width: 100%;
+      &:hover:not(:disabled) {
+        filter: brightness(1.1);
+      }
+
+      &:active:not(:disabled) {
+        transform: scale(0.98) translateY(2px);
+      }
+
+      &:disabled {
+        background-color: #cccccc;
+        color: #666666;
+        // cursor: not-allowed;
+        transform: none !important;
+        pointer-events: none;
+      }
     }
   }
 }

@@ -10,12 +10,14 @@ interface AuthorsListProps {
   dataPromise: Promise<{ total: number; results: AuthorResponse[] }>;
   authorDataAI: SearchAuthorResponse | null;
   setAuthorData: Dispatch<SetStateAction<Promise<AuthorResponse> | null>>;
+  setPageSearch: Dispatch<SetStateAction<number>>;
 }
 
 export const ListAuthor = ({
   dataPromise,
   authorDataAI,
   setAuthorData,
+  setPageSearch,
 }: AuthorsListProps) => {
   const { results, total } = use(dataPromise);
 
@@ -26,6 +28,8 @@ export const ListAuthor = ({
   ) {
     return <p>No authors found matching that criteria.</p>;
   }
+
+  const isButtonDisabled: boolean = total < 11 || results.length === total;
 
   return (
     <div className="rootListAuthor">
@@ -44,6 +48,15 @@ export const ListAuthor = ({
           />
         ))}
       </ul>
+      <div className="btnStretchListWrapper" data-disabled={isButtonDisabled}>
+        <button
+          className="btnStretchList"
+          disabled={isButtonDisabled}
+          onClick={() => setPageSearch((prev: number) => prev + 10)}
+        >
+          More elements
+        </button>
+      </div>
     </div>
   );
 };
