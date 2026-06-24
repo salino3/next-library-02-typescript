@@ -21,10 +21,14 @@
 
   .ulListBook {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     width: 100%;
 
+    justify-items: center;
+    justify-content: center;
+    align-items: start;
+    padding: 0.5rem;
     @media screen and (max-width: 724px) {
       display: flex;
       flex-wrap: wrap;
