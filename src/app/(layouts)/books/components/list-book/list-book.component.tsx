@@ -29,6 +29,8 @@ export const ListBook = ({
     return <p>No books found matching that criteria.</p>;
   }
 
+  const isButtonDisabled: boolean = total < 11 || results.length === total;
+
   return (
     <div className="rootListBook">
       <p>
@@ -43,12 +45,15 @@ export const ListBook = ({
           <CardBook key={book.id} book={book} setBookData={setBookData} />
         ))}
       </ul>
-      <button
-        disabled={total < 11 || results.length === total}
-        onClick={() => setPageSearch((prev: number) => prev + 10)}
-      >
-        More elements
-      </button>
+      <div className="btnStretchListWrapper" data-disabled={isButtonDisabled}>
+        <button
+          className="btnStretchList"
+          disabled={isButtonDisabled}
+          onClick={() => setPageSearch((prev: number) => prev + 10)}
+        >
+          More elements
+        </button>
+      </div>
     </div>
   );
 };
