@@ -21,6 +21,7 @@ export const AuthorsContent = () => {
   >(() => ServicesApp.getFilteredListAuthors("", 0));
 
   const [searchName, setSearchName] = useState<string>("");
+  const [pageSearch, setPageSearch] = useState<number>(0);
   const [authorData, setAuthorData] = useState<Promise<AuthorResponse> | null>(
     null,
   );
@@ -30,9 +31,42 @@ export const AuthorsContent = () => {
 
   const [showModal, setShowModal] = useState<boolean>(false);
 
+  const fetchAndAccumulateAuthors = async () => {
+    try {
+      // 1️⃣ Fetch the next slice from the server backend
+      const newSearchValue: SearchAuthorResponse =
+        await ServicesApp.getFilteredListAuthors(searchName, pageSearch);
+
+      // 2️⃣ Update your Promise state correctly
+      setDataAuthorPromise(
+        async (prevPromise: Promise<SearchAuthorResponse>) => {
+          // If it's a completely fresh search, instantly return a resolved promise of the new slice
+          if (pageSearch === 0) {
+            return newSearchValue;
+          }
+
+          // 🌟 Await the previous promise data right here!
+          const prevData = await prevPromise;
+
+          return {
+            total: newSearchValue.total,
+            results: [...prevData.results, ...newSearchValue.results],
+          };
+        },
+      );
+    } catch (error) {
+      console.log("Failed to fetch paginated book entries: " + error);
+    }
+  };
+
+  //
   useEffect(() => {
-    setDataAuthorPromise(ServicesApp.getFilteredListAuthors(searchName, 0));
-  }, [searchName]);
+    if (searchName || pageSearch > 0) {
+      fetchAndAccumulateAuthors();
+    }
+
+    setAuthorDataAI(null);
+  }, [searchName, pageSearch]);
 
   //
   useEffect(() => {
@@ -108,6 +142,7 @@ export const AuthorsContent = () => {
           dataPromise={dataAuthorsPromise}
           authorDataAI={authorDataAI}
           setAuthorData={setAuthorData}
+          setPageSearch={setPageSearch}
         />
       </Suspense>
 

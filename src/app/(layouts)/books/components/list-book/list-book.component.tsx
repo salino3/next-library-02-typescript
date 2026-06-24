@@ -10,7 +10,6 @@ interface BooksListProps {
   dataPromise: Promise<{ total: number; results: BookResponse[] }>;
   bookDataAI: SearchBookResponse | null;
   setBookData: Dispatch<SetStateAction<Promise<BookResponse> | null>>;
-  pageSearch: number;
   setPageSearch: Dispatch<SetStateAction<number>>;
 }
 
@@ -18,7 +17,6 @@ export const ListBook = ({
   dataPromise,
   bookDataAI,
   setBookData,
-  pageSearch,
   setPageSearch,
 }: BooksListProps) => {
   const { results, total } = use(dataPromise);
