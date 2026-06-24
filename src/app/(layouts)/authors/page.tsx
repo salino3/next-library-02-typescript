@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { Aside } from "@/app/components/aside/aside.component";
 import { Footer } from "@/app/components/footer/footer.component";
 import { AuthorsContent } from "./components/authors-content/authors-content.component";
@@ -11,7 +12,9 @@ const LayoutAuthors = () => {
       <Aside />
       {/*  */}
       <div className="LayoutAuthors">
-        <AuthorsContent />
+        <Suspense fallback={<p>Loading authors list...</p>}>
+          <AuthorsContent />
+        </Suspense>
         <Footer />
       </div>
     </div>
