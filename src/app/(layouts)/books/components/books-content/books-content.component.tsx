@@ -1,5 +1,6 @@
 "use client";
 import { Suspense, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ServicesApp } from "@/app/service/service-app";
 import { FormSearchBook } from "../form-search-book/form-search-book.component";
 import { ListBook } from "../list-book/list-book.component";
@@ -11,6 +12,10 @@ import { pageContextAi } from "@/app/store/interface";
 import "./books-content.styles.scss";
 
 export const BooksContent = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [dataBooksPromise, setDataBooksPromise] = useState<
     Promise<SearchBookResponse>
   >(() => ServicesApp.getFilteredListBooks("", 0));
@@ -55,6 +60,19 @@ export const BooksContent = () => {
 
     setBookDataAI(null);
   }, [searchTitle, pageSearch]);
+
+  //
+  useEffect(() => {
+    const authorId = searchParams.get("search");
+
+    if (authorId) {
+      // 1. Call getAuthorInfo and store the promise in state
+      setBookData(ServicesApp.getBookInfo(authorId) as Promise<BookResponse>);
+      router.push(`#dataBookFounded`);
+      // 2. Clean the URL from ?search= and scroll to the founded author section
+      router.replace(`${pathname}#dataBookFounded`, { scroll: false });
+    }
+  }, [searchParams, pathname, router]);
 
   return (
     <div className="rootBooksContent">
