@@ -20,7 +20,7 @@ export const FormSearchBook = ({
     FormData
   >(searchBooksAction, { success: false, error: "" });
 
-  //
+  // TODO: Trigger it when input is empty?
   useEffect(() => {
     if (state.success) {
       setSearchTitle(state.title ?? "");
