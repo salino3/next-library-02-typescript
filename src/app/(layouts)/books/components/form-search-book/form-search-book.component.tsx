@@ -27,7 +27,9 @@ export const FormSearchBook = ({
     if (state.success) {
       setSearchTitle(state.title ?? "");
       setPageSearch(0);
-      setExecuteForm((prev: boolean) => !prev);
+      if (!state.title) {
+        setExecuteForm((prev: boolean) => !prev);
+      }
     }
   }, [state.success, state.title]);
 
