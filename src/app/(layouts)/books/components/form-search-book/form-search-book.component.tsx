@@ -8,12 +8,14 @@ interface Props {
   setSearchTitle: Dispatch<SetStateAction<string>>;
   searchTitle: string;
   setPageSearch: Dispatch<SetStateAction<number>>;
+  setExecuteForm: Dispatch<SetStateAction<boolean>>;
 }
 
 export const FormSearchBook = ({
   setSearchTitle,
   searchTitle,
   setPageSearch,
+  setExecuteForm,
 }: Props) => {
   const [state, formAction, isPending] = useActionState<
     ActionStateBooksAction,
@@ -25,6 +27,7 @@ export const FormSearchBook = ({
     if (state.success) {
       setSearchTitle(state.title ?? "");
       setPageSearch(0);
+      setExecuteForm((prev: boolean) => !prev);
     }
   }, [state.success, state.title]);
 

@@ -22,6 +22,7 @@ export const BooksContent = () => {
 
   const [searchTitle, setSearchTitle] = useState<string>("");
   const [pageSearch, setPageSearch] = useState<number>(0);
+  const [executeForm, setExecuteForm] = useState<boolean>(false);
   const [bookData, setBookData] = useState<Promise<BookResponse> | null>(null);
   const [bookDataAI, setBookDataAI] = useState<SearchBookResponse | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -60,6 +61,15 @@ export const BooksContent = () => {
 
     setBookDataAI(null);
   }, [searchTitle, pageSearch]);
+
+  //
+  useEffect(() => {
+    if (!searchTitle && pageSearch === 0) {
+      fetchAndAccumulateBooks();
+    }
+
+    setBookDataAI(null);
+  }, [executeForm]);
 
   //
   useEffect(() => {
@@ -128,6 +138,7 @@ export const BooksContent = () => {
         setSearchTitle={setSearchTitle}
         searchTitle={searchTitle}
         setPageSearch={setPageSearch}
+        setExecuteForm={setExecuteForm}
       />
       <FoundedBook bookData={bookData} />
 
