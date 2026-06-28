@@ -8,9 +8,16 @@ import "./form-search-book.styles.scss";
 interface Props {
   setSearchName: Dispatch<SetStateAction<string>>;
   searchName: string;
+  setPageSearch: Dispatch<SetStateAction<number>>;
+  setExecuteEvent: Dispatch<SetStateAction<boolean>>;
 }
 
-export const FormSearchAuthor = ({ setSearchName, searchName }: Props) => {
+export const FormSearchAuthor = ({
+  setSearchName,
+  searchName,
+  setPageSearch,
+  setExecuteEvent,
+}: Props) => {
   const [state, formAction, isPending] = useActionState<
     ActionStateAuthorAction,
     FormData
@@ -20,6 +27,10 @@ export const FormSearchAuthor = ({ setSearchName, searchName }: Props) => {
   useEffect(() => {
     if (state.success) {
       setSearchName(state.name ?? "");
+      setPageSearch(0);
+      if (!state.name) {
+        setExecuteEvent((prev: boolean) => !prev);
+      }
     }
   }, [state.success, state.name]);
 

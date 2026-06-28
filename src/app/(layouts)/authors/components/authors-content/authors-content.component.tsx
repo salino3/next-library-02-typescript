@@ -22,6 +22,7 @@ export const AuthorsContent = () => {
 
   const [searchName, setSearchName] = useState<string>("");
   const [pageSearch, setPageSearch] = useState<number>(0);
+  const [executeEvent, setExecuteEvent] = useState<boolean>(false);
   const [authorData, setAuthorData] = useState<Promise<AuthorResponse> | null>(
     null,
   );
@@ -67,6 +68,15 @@ export const AuthorsContent = () => {
 
     setAuthorDataAI(null);
   }, [searchName, pageSearch]);
+
+  //
+  useEffect(() => {
+    if (!searchName && pageSearch === 0) {
+      fetchAndAccumulateAuthors();
+    }
+
+    setAuthorDataAI(null);
+  }, [executeEvent]);
 
   //
   useEffect(() => {
@@ -133,7 +143,12 @@ export const AuthorsContent = () => {
       >
         Search with AI
       </button>
-      <FormSearchAuthor setSearchName={setSearchName} searchName={searchName} />
+      <FormSearchAuthor
+        setSearchName={setSearchName}
+        searchName={searchName}
+        setPageSearch={setPageSearch}
+        setExecuteEvent={setExecuteEvent}
+      />
 
       <FoundedAuthor authorData={authorData} />
 
