@@ -82,7 +82,7 @@ export async function POST(request: Request) {
 
     // 3️⃣ Send the rich clean data to Groq for strict structural parsing
     const chatCompletion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile",
+      model: "openai/gpt-oss-120b",
       messages: [
         {
           role: "system",
